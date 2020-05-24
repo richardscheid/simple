@@ -19,12 +19,13 @@ class App {
   }
 
   private database (): void {
-    mongoose.connect('',
-      { useNewUrlParser: true });
+    // mongoose.connect('', { useNewUrlParser: true });
   }
 
   private routes (): void {
-    this.express.use('/');
+    this.express.get('/', (req, res) => {
+      return res.send('testing routes');
+    });
   }
 }
 
