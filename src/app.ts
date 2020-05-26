@@ -23,7 +23,7 @@ class App {
   }
 
   private database (): void {
-    mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-mzlt4.mongodb.net/${process.env.DB_DATABASE}?retryWrites=true&w=majority`, {
+    mongoose.connect(process.env.DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false
