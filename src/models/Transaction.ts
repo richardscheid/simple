@@ -1,21 +1,22 @@
 import { Schema, Document, model } from 'mongoose';
 
 interface TransactionInterface extends Document {
-  amount: number,
   place: string,
-  status?: boolean
+  amount: number,
+  status: boolean
 }
 
 const TransactionSchema = new Schema({
-  amount: { type: Number, required: true },
   place: { type: String, required: true },
-  status: { type: Boolean, required: true },
+  amount: { type: Number, required: true },
+  status: { type: Number, required: true },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   }
 }, {
   timestamps: true
 });
 
-export default model<TransactionInterface>('User', TransactionSchema);
+export default model<TransactionInterface>('Transaction', TransactionSchema);
