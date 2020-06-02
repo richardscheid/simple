@@ -1,6 +1,6 @@
 import { Schema, Document, model } from 'mongoose';
 
-interface TransactionInterface extends Document {
+interface ITransaction extends Document {
   place: string,
   amount: number,
   status: boolean
@@ -24,4 +24,4 @@ const TransactionSchema = new Schema({
   timestamps: true
 });
 
-export default model<TransactionInterface>('Transaction', TransactionSchema);
+export default model<ITransaction>('Transaction', TransactionSchema);
