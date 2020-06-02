@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
 import User from '../models/User';
-import Category from '../models/Category';
 import Transaction from '../models/Transaction';
+import Category, { ICategory } from '../models/Category';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
@@ -18,7 +18,7 @@ class TransactionController {
     const user = await User.findById(user_id);
     if (!user) return res.status(400).json({ error: 'User does not exists!' });
 
-    const category = await Category.findOne({ name: category_name });
+    const category = await Category.findOne(<ICategory>{ name: category_name }).lean();
     if (!category) return res.status(400).json({ error: 'Category does not exists!' });
 
     const transaction = await Transaction.create({
