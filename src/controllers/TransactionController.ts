@@ -5,6 +5,7 @@ import Transaction from '../models/Transaction';
 import Category from '../models/Category';
 
 import { ICategory } from '../interfaces/ICategory';
+import { Status } from '../interfaces/ITransaction';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
@@ -14,7 +15,7 @@ class TransactionController {
   }
 
   public async create (req:Request, res:Response): Promise<Response> {
-    const { amount, place, status } = req.body;
+    const { amount, place } = req.body;
     const { user_id, category_name } = req.headers;
 
     const user = await User.findById(user_id).lean();
@@ -26,7 +27,7 @@ class TransactionController {
     const transaction = await Transaction.create({
       place,
       amount,
-      status,
+      status: Status.unverified,
       user: user._id,
       category: category._id
     });

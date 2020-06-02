@@ -1,10 +1,5 @@
-import { Schema, Document, model } from 'mongoose';
-
-interface ITransaction extends Document {
-  place: string,
-  amount: number,
-  status: boolean
-}
+import { Schema, model } from 'mongoose';
+import { ITransaction } from '../interfaces/ITransaction';
 
 const TransactionSchema = new Schema({
   place: { type: String, required: true },
