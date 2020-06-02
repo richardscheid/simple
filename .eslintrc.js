@@ -20,6 +20,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    semi: [1, 'always']
+    semi: [1, 'always'],
+    camelcase: 0
   }
 };
