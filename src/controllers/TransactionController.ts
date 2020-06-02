@@ -15,7 +15,7 @@ class TransactionController {
     const { amount, place, status } = req.body;
     const { user_id, category_name } = req.headers;
 
-    const user = await User.findById(user_id);
+    const user = await User.findById(user_id).lean();
     if (!user) return res.status(400).json({ error: 'User does not exists!' });
 
     const category = await Category.findOne(<ICategory>{ name: category_name }).lean();
