@@ -2,7 +2,9 @@ import { Request, Response } from 'express';
 
 import User from '../models/User';
 import Transaction from '../models/Transaction';
-import Category, { ICategory } from '../models/Category';
+import Category from '../models/Category';
+
+import { ICategory } from '../interfaces/ICategory';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
