@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { IAlert } from '../interfaces/IAlert';
 
 const AlertSchema = new Schema({
   name: { type: String, required: true },
@@ -7,4 +8,4 @@ const AlertSchema = new Schema({
   timestamps: true
 });
 
-export default model('Alert', AlertSchema);
+export default model<IAlert>('Alert', AlertSchema);
