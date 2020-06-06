@@ -7,6 +7,8 @@ import Category from '../models/Category';
 import { ICategory } from '../interfaces/ICategory';
 import { Status } from '../interfaces/ITransaction';
 
+import AlertService from '../services/AlertService';
+
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
     const transaction = await Transaction.find();
@@ -31,6 +33,8 @@ class TransactionController {
       user: user._id,
       category: category._id
     });
+
+    AlertService.process(transaction);
 
     return res.json(transaction);
   }
