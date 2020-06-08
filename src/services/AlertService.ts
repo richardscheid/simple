@@ -1,15 +1,15 @@
 import Alert from '../models/Alert';
-import { IAlert, Conditions } from '../interfaces/IAlert';
+import { Conditions } from '../interfaces/IAlert';
 import { ITransaction } from '../interfaces/ITransaction';
 
 class AlertService {
-  public process (transaction: ITransaction): void {
-    const alerts = Alert.find().lean();
+  async process (transaction: ITransaction): Promise<void> {
+    const alerts = await Alert.find();
 
     const amount = transaction.amount;
 
     for (const alert of alerts) {
-      const cond = alert.conditions;
+      const cond = alert.condition;
 
       if (cond === Conditions.greaterThan) {
         if (amount > alert.target) {
