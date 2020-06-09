@@ -8,7 +8,9 @@ export interface IAlert extends Document {
 }
 
 export enum Conditions {
-  greaterThan,
-  equalsTo,
-  lessThan
+  GreaterThan,
+  GreaterThanEquals,
+  EqualsTo,
+  LessThanEquals,
+  LessThan
 }
