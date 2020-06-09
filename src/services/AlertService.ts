@@ -1,6 +1,8 @@
 import Alert from '../models/Alert';
-import { Conditions } from '../interfaces/IAlert';
-import { ITransaction } from '../interfaces/ITransaction';
+import Alerts from '../models/Alerts';
+import { IAlerts } from '../interfaces/IAlerts';
+import { Conditions, IAlert } from '../interfaces/IAlert';
+import { ITransaction, Status } from '../interfaces/ITransaction';
 
 class AlertService {
   async process (transaction: ITransaction): Promise<void> {
@@ -9,22 +11,40 @@ class AlertService {
     const amount = transaction.amount;
 
     for (const alert of alerts) {
-      const cond = alert.condition;
+      const onAlert: boolean = this.verify(amount, alert.target, alert.condition);
 
-      if (cond === Conditions.greaterThan) {
-        if (amount > alert.target) {
-
-        }
-      } else if (cond === Conditions.equalsTo) {
-        if (amount === alert.target) {
-
-        }
-      } else if (cond === Conditions.lessThan) {
-        if (amount < alert.target) {
-
-        }
-      }
+      if (onAlert) this.create(alert, transaction);
     }
+  }
+
+  async create (alert: IAlert, transaction: ITransaction):Promise<IAlerts> {
+    return await Alerts.create({
+      target: alert.target,
+      condition: alert.condition,
+      amount: transaction.amount,
+      status: Status.onalert
+    });
+  }
+
+  public verify (amount: number, target: number, condition: number): boolean {
+    switch (condition) {
+      case Conditions.GreaterThan:
+        return amount > target;
+
+      case Conditions.GreaterThanEquals:
+        return amount >= target;
+
+      case Conditions.EqualsTo:
+        return amount === target;
+
+      case Conditions.LessThanEquals:
+        return amount <= target;
+
+      case Conditions.LessThan:
+        return amount < target;
+    }
+
+    return false;
   }
 }
 
