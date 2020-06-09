@@ -29,7 +29,7 @@ class TransactionController {
     const transaction = await Transaction.create({
       place,
       amount,
-      status: Status.unverified,
+      status: Status.Unverified,
       user: user._id,
       category: category._id
     });

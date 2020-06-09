@@ -22,7 +22,7 @@ class AlertService {
       target: alert.target,
       condition: alert.condition,
       amount: transaction.amount,
-      status: Status.onalert
+      status: Status.Onalert
     });
   }
 
