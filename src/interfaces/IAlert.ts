@@ -11,6 +11,6 @@ export enum Conditions {
   GreaterThan,
   GreaterThanEquals,
   EqualsTo,
+  LessThan,
   LessThanEquals,
-  LessThan
 }
