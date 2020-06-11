@@ -13,10 +13,10 @@ routes.post('/users', UserController.create);
 routes.get('/alert', AlertController.all);
 routes.post('/alert', AlertController.create);
 
-routes.get('/transactions', TransactionController.all);
-routes.post('/transactions', TransactionController.create);
-
 routes.get('/categories', CategoryController.all);
 routes.post('/categories', CategoryController.create);
+
+routes.get('/transactions', TransactionController.all);
+routes.post('/transactions', TransactionController.create);
 
 export default routes;
