@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
 import User from '../models/User';
-import Transaction from '../models/Transaction';
 import Category from '../models/Category';
+import Transaction from '../models/Transaction';
 
 import { ICategory } from '../interfaces/ICategory';
 import { Status } from '../interfaces/ITransaction';
@@ -17,7 +17,7 @@ class TransactionController {
   }
 
   public async create (req:Request, res:Response): Promise<Response> {
-    const { amount, place } = req.body;
+    const { amount, place, order } = req.body;
     const { user_id, category_name } = req.headers;
 
     const user = await User.findById(user_id).lean();
@@ -28,10 +28,11 @@ class TransactionController {
 
     const transaction = await Transaction.create({
       place,
+      order,
       amount,
-      status: Status.Unverified,
       user: user._id,
-      category: category._id
+      category: category._id,
+      status: Status.Unverified
     });
 
     AlertService.process(transaction);

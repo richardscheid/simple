@@ -19,9 +19,12 @@ class AlertService {
 
   async create (alert: IAlert, transaction: ITransaction):Promise<IAlerts> {
     return await Alerts.create({
+      name: alert.name,
       target: alert.target,
       amount: transaction.amount,
       condition: alert.condition,
+      alert: alert._id,
+      transcation: transaction._id,
       status: Status.Onalert
     });
   }
