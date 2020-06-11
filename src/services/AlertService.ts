@@ -24,7 +24,7 @@ class AlertService {
       amount: transaction.amount,
       condition: alert.condition,
       alert: alert._id,
-      transcation: transaction._id,
+      transaction: transaction._id,
       status: Status.Onalert
     });
   }
