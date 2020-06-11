@@ -7,3 +7,9 @@ export interface ITransaction extends Document {
   amount: number,
   status: number
 }
+
+export enum Status {
+  Unverified,
+  Onalert,
+  Verified
+}
