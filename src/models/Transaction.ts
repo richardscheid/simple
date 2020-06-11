@@ -3,6 +3,7 @@ import { ITransaction } from '../interfaces/ITransaction';
 
 const TransactionSchema = new Schema({
   place: { type: String, required: true },
+  order: { type: Number, required: true },
   amount: { type: Number, required: true },
   status: { type: Number, required: true },
   user: {
