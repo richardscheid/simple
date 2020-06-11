@@ -30,9 +30,9 @@ class TransactionController {
       place,
       order,
       amount,
+      status: Status.Unverified,
       user: user._id,
-      category: category._id,
-      status: Status.Unverified
+      category: category._id
     });
 
     AlertService.process(transaction);
