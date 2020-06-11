@@ -7,6 +7,11 @@ export interface IAlert extends Document {
   condition: number
 }
 
+export enum Status {
+  Onalert,
+  Verified
+}
+
 export enum Conditions {
   GreaterThan,
   GreaterThanEquals,
