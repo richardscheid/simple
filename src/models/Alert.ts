@@ -9,4 +9,4 @@ const AlertSchema = new Schema({
   timestamps: true
 });
 
-export default model<IAlert>('Alert', AlertSchema);
+export default model<IAlert>('Alert', AlertSchema, 'alert');
