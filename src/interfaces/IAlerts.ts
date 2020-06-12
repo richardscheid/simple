@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import { ICategory } from './ICategory';
 
 export interface IAlerts extends Document {
   name: string,
@@ -6,4 +7,5 @@ export interface IAlerts extends Document {
   amount: number,
   status: number,
   condition: number,
+  category?: ICategory
 }

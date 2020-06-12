@@ -1,10 +1,12 @@
 import { Document } from 'mongoose';
+import { ICategory } from './ICategory';
 
 export interface IAlert extends Document {
-  _id: number,
+  _id: string,
   name: string,
   target: number,
-  condition: number
+  condition: number,
+  category?: ICategory
 }
 
 export enum Conditions {
