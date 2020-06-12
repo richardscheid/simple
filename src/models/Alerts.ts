@@ -7,6 +7,11 @@ const AlertsSchema = new Schema({
   amount: { type: Number, required: true },
   status: { type: Number, required: true },
   condition: { type: Number, required: true },
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: false
+  },
   alert: {
     type: Schema.Types.ObjectId,
     ref: 'Alert',
