@@ -6,7 +6,7 @@ import { ITransaction, Status } from '../interfaces/ITransaction';
 
 class AlertService {
   async process (transaction: ITransaction): Promise<void> {
-    const alerts = await Alert.find();
+    const alerts = await Alert.find().populate('category');
 
     const amount = transaction.amount;
 
@@ -24,6 +24,7 @@ class AlertService {
       amount: transaction.amount,
       condition: alert.condition,
       alert: alert._id,
+      category: alert?.category?._id,
       transaction: transaction._id,
       status: Status.Onalert
     });

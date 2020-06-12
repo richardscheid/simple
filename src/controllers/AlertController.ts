@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import Alert from '../models/Alert';
+import Category from '../models/Category';
+import { ICategory } from '../interfaces/ICategory';
 
 class AlertController {
   public async all (req: Request, res:Response):Promise<Response> {
@@ -9,7 +11,21 @@ class AlertController {
   }
 
   public async create (req:Request, res:Response):Promise<Response> {
-    const alert = await Alert.create(req.body);
+    const { name, target, condition } = req.body;
+    const { category_id } = req.headers;
+
+    let category : ICategory;
+    if (category_id) {
+      category = await Category.findById(category_id);
+      if (!category) return res.status(400).json({ error: 'Category does not exists!' });
+    }
+
+    const alert = await Alert.create({
+      name,
+      target,
+      condition,
+      category: category._id
+    });
 
     return res.json(alert);
   }
