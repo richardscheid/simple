@@ -1,8 +1,8 @@
-import Alert from '../models/Alert';
-import Alerts from '../models/Alerts';
 import { IAlerts } from '../interfaces/IAlerts';
 import { Conditions, IAlert } from '../interfaces/IAlert';
 import { ITransaction, Status } from '../interfaces/ITransaction';
+import Alert from '../models/Alert';
+import Alerts from '../models/Alerts';
 import Transaction from '../models/Transaction';
 
 class AlertService {

@@ -1,12 +1,9 @@
 import { Request, Response } from 'express';
-
+import { ICategory } from '../interfaces/ICategory';
+import { Status } from '../interfaces/ITransaction';
 import User from '../models/User';
 import Category from '../models/Category';
 import Transaction from '../models/Transaction';
-
-import { ICategory } from '../interfaces/ICategory';
-import { Status } from '../interfaces/ITransaction';
-
 import AlertService from '../services/AlertService';
 
 class TransactionController {
