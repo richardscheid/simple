@@ -38,10 +38,10 @@ class AlertService {
       target: alert.target,
       amount: transaction.amount,
       condition: alert.condition,
+      status: Status.Onalert,
       alert: alert._id,
       category: alert?.category?._id,
-      transaction: transaction._id,
-      status: Status.Onalert
+      transaction: transaction._id
     });
   }
 
