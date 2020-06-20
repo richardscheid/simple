@@ -6,6 +6,11 @@ const TransactionSchema = new Schema({
   order: { type: Number, required: true },
   amount: { type: Number, required: true },
   status: { type: Number, required: true },
+  company: { type: String, required: true },
+  items: [{
+    name: { type: String },
+    price: { type: Number }
+  }],
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
