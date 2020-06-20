@@ -7,6 +7,11 @@ export interface ITransaction extends Document {
   order: string,
   amount: number,
   status: number,
+  company: string
+  items: [{
+    name: string,
+    price: number
+  }],
   category?: ICategory
 }
 
