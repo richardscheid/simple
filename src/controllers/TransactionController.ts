@@ -14,7 +14,7 @@ class TransactionController {
   }
 
   public async create (req:Request, res:Response): Promise<Response> {
-    const { amount, place, order, items } = req.body;
+    const { amount, place, order, company, items } = req.body;
     const { user_id, category_name } = req.headers;
 
     const user = await User.findById(user_id).lean();
@@ -27,10 +27,11 @@ class TransactionController {
       place,
       order,
       amount,
-      items,
+      company,
       status: Status.Unverified,
       user: user._id,
-      category: category._id
+      category: category._id,
+      items
     });
 
     AlertService.process(transaction);
