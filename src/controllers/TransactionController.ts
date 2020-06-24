@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
 import { ICategory } from '../interfaces/ICategory';
-import { Status } from '../interfaces/ITransaction';
 import User from '../models/User';
 import Category from '../models/Category';
-import Transaction from '../models/Transaction';
 import AlertService from '../services/AlertService';
+import TransactionFactory from '../factory/TransactionFactory';
+import TransactionService from '../services/TransactionService';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
-    const transaction = await Transaction.find();
+    const transactions = await TransactionService.findAll();
 
-    return res.json(transaction);
+    return res.json(transactions);
   }
 
   public async create (req:Request, res:Response): Promise<Response> {
@@ -23,16 +23,9 @@ class TransactionController {
     const category = await Category.findOne(<ICategory>{ name: category_name }).lean();
     if (!category) return res.status(400).json({ error: 'Category does not exists!' });
 
-    const transaction = await Transaction.create({
-      place,
-      order,
-      amount,
-      company,
-      status: Status.Unverified,
-      user: user._id,
-      category: category._id,
-      items
-    });
+    const trn = TransactionFactory.build(amount, place, order, company, items, user, category);
+
+    const transaction = await TransactionService.create(trn);
 
     AlertService.process(transaction);
 
