@@ -3,7 +3,7 @@ import { ICategory } from '../interfaces/ICategory';
 import User from '../models/User';
 import Category from '../models/Category';
 import AlertService from '../services/AlertService';
-import TransactionFactory from '../factory/TransactionFactory';
+import FTransaction from '../factory/FTransaction';
 import TransactionService from '../services/TransactionService';
 
 class TransactionController {
@@ -23,7 +23,7 @@ class TransactionController {
     const category = await Category.findOne(<ICategory>{ name: category_name }).lean();
     if (!category) return res.status(400).json({ error: 'Category does not exists!' });
 
-    const trn = TransactionFactory.build(amount, place, order, company, items, user, category);
+    const trn = FTransaction.build(amount, place, order, company, items, user, category);
 
     const transaction = await TransactionService.create(trn);
 

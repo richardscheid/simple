@@ -1,7 +1,7 @@
 import Transaction from '../models/Transaction';
 import { Status, ITransaction } from '../interfaces/ITransaction';
 
-class TransactionFactory {
+class FTransaction {
   public build (amount, place, order, company, items, user, category): ITransaction {
     const trn = new Transaction();
     trn.place = place;
@@ -17,4 +17,4 @@ class TransactionFactory {
   }
 }
 
-export default new TransactionFactory();
+export default new FTransaction();
