@@ -4,11 +4,11 @@ import User from '../models/User';
 import Category from '../models/Category';
 import AlertService from '../services/AlertService';
 import FTransaction from '../factory/FTransaction';
-import TransactionService from '../services/TransactionService';
+import STransaction from '../services/STransaction';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
-    const transactions = await TransactionService.findAll();
+    const transactions = await STransaction.findAll();
 
     return res.json(transactions);
   }
@@ -25,7 +25,7 @@ class TransactionController {
 
     const trn = FTransaction.build(amount, place, order, company, items, user, category);
 
-    const transaction = await TransactionService.create(trn);
+    const transaction = await STransaction.create(trn);
 
     AlertService.process(transaction);
 
