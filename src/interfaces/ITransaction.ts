@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
 import { ICategory } from './ICategory';
+import { IUser } from './IUser';
 
 export interface ITransaction extends Document {
   _id: string,
@@ -12,6 +13,7 @@ export interface ITransaction extends Document {
     name: string,
     price: number
   }],
+  user: IUser,
   category?: ICategory
 }
 
