@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "removeComments": true,
-    "preserveConstEnums": true,
     "strictNullChecks": true,
+    "preserveConstEnums": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "paths": {
       "@models/*": ["models/*"],
