@@ -9,6 +9,7 @@
       "@factory/*": ["factory/*"],
       "@services/*": ["services/*"],
       "@interfaces/*": ["interfaces/*"],
+      "@controllers/*": ["controllers/*"],
     }
   }
 }

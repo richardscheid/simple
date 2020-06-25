@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import UserController from './controllers/UserController';
-import AlertController from './controllers/AlertController';
-import AlertsController from './controllers/AlertsController';
-import CategoryController from './controllers/CategoryController';
-import TransactionController from './controllers/TransactionController';
+import UserController from '@controllers/UserController';
+import AlertController from '@controllers/AlertController';
+import AlertsController from '@controllers/AlertsController';
+import CategoryController from '@controllers/CategoryController';
+import TransactionController from '@controllers/TransactionController';
 
 const routes = Router();
 
