@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "baseUrl": "src",
+    "paths": {
+      "@models/*": ["models/*"],
+      "@factory/*": ["factory/*"],
+      "@services/*": ["services/*"],
+      "@interfaces/*": ["interfaces/*"],
+    }
+  }
+}
