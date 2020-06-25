@@ -1,7 +1,7 @@
 import Transaction from '../models/Transaction';
 import { ITransaction } from '../interfaces/ITransaction';
 
-class STransaction {
+class TransactionService {
   async findAll () {
     return await Transaction.find();
   }
@@ -15,4 +15,4 @@ class STransaction {
   }
 }
 
-export default new STransaction();
+export default new TransactionService();
