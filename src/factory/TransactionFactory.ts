@@ -1,5 +1,5 @@
-import Transaction from '../models/Transaction';
-import { Status, ITransaction } from '../interfaces/ITransaction';
+import Transaction from '@models/Transaction';
+import { Status, ITransaction } from '@interfaces/ITransaction';
 
 class TransactionFactory {
   public build (amount, place, order, company, items, user, category): ITransaction {
@@ -12,7 +12,6 @@ class TransactionFactory {
     trn.user = user._id;
     trn.category = category._id;
     trn.status = Status.Unverified;
-
     return trn;
   }
 }

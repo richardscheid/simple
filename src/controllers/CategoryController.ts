@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Category from '../models/Category';
+import Category from '@models/Category';
 
 class CategoryController {
   public async all (req: Request, res:Response):Promise<Response> {
