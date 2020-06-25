@@ -1,10 +1,9 @@
 import cors from 'cors';
-import dotenv from 'dotenv';
 import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 
-dotenv.config();
+import { MONGODB_URI } from '@utils/secrets';
 
 class App {
   public express: express.Application;
@@ -23,7 +22,7 @@ class App {
   }
 
   private database (): void {
-    mongoose.connect(process.env.DB_URL, {
+    mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false
