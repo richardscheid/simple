@@ -1,17 +1,23 @@
 {
   "compilerOptions": {
+    "target": "ES6",
+    "outDir": "dist",
+    "rootDir": "./src",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
     "removeComments": true,
+    "esModuleInterop": true,
     "strictNullChecks": true,
     "preserveConstEnums": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "paths": {
-      "@utils/*": ["utils/*"],
       "@models/*": ["models/*"],
       "@factory/*": ["factory/*"],
       "@services/*": ["services/*"],
       "@interfaces/*": ["interfaces/*"],
-      "@controllers/*": ["controllers/*"],
+      "@controllers/*": ["controllers/*"]
     }
   }
 }
