@@ -30,13 +30,24 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.15"
+    "mongoose": "^5.9.15",
+    "winston": "^3.3.3"
   },
   "_moduleAliases": {
-    "@models": ["dist/models"],
-    "@factory": ["dist/factory"],
-    "@services": ["dist/services"],
-    "@interfaces": ["dist/interfaces"],
-    "@controllers": ["dist/controllers"]
+    "@models": [
+      "dist/models"
+    ],
+    "@factory": [
+      "dist/factory"
+    ],
+    "@services": [
+      "dist/services"
+    ],
+    "@interfaces": [
+      "dist/interfaces"
+    ],
+    "@controllers": [
+      "dist/controllers"
+    ]
   }
 }
