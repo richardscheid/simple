@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import Alert from '@models/Alert';
-import Category from '@models/Category';
-import { ICategory } from '@interfaces/ICategory';
+import Alert from '../models/Alert';
+import Category from '../models/Category';
+import { ICategory } from '../interfaces/ICategory';
 
 class AlertController {
   public async all (req: Request, res:Response):Promise<Response> {

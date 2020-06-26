@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { ITransaction } from '@interfaces/ITransaction';
+import { ITransaction } from '../interfaces/ITransaction';
 
 const TransactionSchema = new Schema({
   place: { type: String, required: true },

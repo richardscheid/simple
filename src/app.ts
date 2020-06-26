@@ -3,7 +3,7 @@ import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import { MONGODB_URI } from '@utils/secrets';
+import { MONGODB_URI } from './utils/secrets';
 
 class App {
   public express: express.Application;

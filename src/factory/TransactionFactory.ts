@@ -1,5 +1,5 @@
-import Transaction from '@models/Transaction';
-import { Status, ITransaction } from '@interfaces/ITransaction';
+import Transaction from '../models/Transaction';
+import { Status, ITransaction } from '../interfaces/ITransaction';
 
 class TransactionFactory {
   public build (amount, place, order, company, items, user, category): ITransaction {
