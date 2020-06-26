@@ -6,12 +6,12 @@ class UserService {
     return await User.find();
   }
 
-  async findById (id:string):Promise<IUser | null> {
-    return await User.findById(id).lean();
+  async findById (id:string, callback):Promise<IUser | null> {
+    return await User.findById(id, callback).lean();
   }
 
-  async findOne (email:string): Promise<IUser | null> {
-    return await User.findOne(<IUser>{ email: email.toLowerCase() }).lean();
+  async findOne (email:string, callback): Promise<IUser | null> {
+    return await User.findOne(<IUser>{ email: email.toLowerCase() }, callback).lean();
   }
 
   async create (user:IUser): Promise<IUser> {
