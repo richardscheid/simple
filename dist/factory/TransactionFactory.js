@@ -12,7 +12,6 @@ class TransactionFactory {
     trn.user = user._id;
     trn.category = category._id;
     trn.status = _ITransaction.Status.Unverified;
-
     return trn;
   }
 }

@@ -1,10 +1,9 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
-var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
 var _routes = require('./routes'); var _routes2 = _interopRequireDefault(_routes);
 var _express = require('express'); var _express2 = _interopRequireDefault(_express);
 var _mongoose = require('mongoose'); var _mongoose2 = _interopRequireDefault(_mongoose);
 
-_dotenv2.default.config();
+var _secrets = require('./utils/secrets');
 
 class App {
   
@@ -23,7 +22,7 @@ class App {
   }
 
    database () {
-    _mongoose2.default.connect(process.env.DB_URL, {
+    _mongoose2.default.connect(_secrets.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false
