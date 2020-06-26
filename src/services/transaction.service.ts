@@ -1,5 +1,5 @@
 import Transaction from '../models/Transaction';
-import { ITransaction } from '../interfaces/ITransaction';
+import { ITransaction } from '../interfaces/transaction.interface';
 
 class TransactionService {
   async findAll () {

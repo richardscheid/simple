@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { ICategory } from '../interfaces/ICategory';
+import { ICategory } from '../interfaces/category.interface';
 
 import User from '../models/User';
 import Category from '../models/Category';
-import AlertService from '../services/AlertService';
-import TransactionFactory from '../factory/TransactionFactory';
-import TransactionService from '../services/TransactionService';
+import AlertService from '../services/alert.service';
+import TransactionFactory from '../factory/transaction.factory';
+import TransactionService from '../services/transaction.service';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {

@@ -1,6 +1,6 @@
-import { IAlerts } from '../interfaces/IAlerts';
-import { Conditions, IAlert } from '../interfaces/IAlert';
-import { ITransaction, Status } from '../interfaces/ITransaction';
+import { IAlerts } from '../interfaces/alerts.interface';
+import { Conditions, IAlert } from '../interfaces/alert.interface';
+import { ITransaction, Status } from '../interfaces/transaction.interface';
 import Alert from '../models/Alert';
 import Alerts from '../models/Alerts';
 import Transaction from '../models/Transaction';
