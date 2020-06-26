@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { ICategory } from '../interfaces/category.interface';
 
-import User from '../models/User';
 import Category from '../models/Category';
+import UserService from '../services/user.service';
 import AlertService from '../services/alert.service';
 import TransactionFactory from '../factory/transaction.factory';
 import TransactionService from '../services/transaction.service';
@@ -18,7 +18,7 @@ class TransactionController {
     const { amount, place, order, company, items } = req.body;
     const { user_id, category_name } = req.headers;
 
-    const user = await User.findById(user_id).lean();
+    const user = await UserService.findById(user_id as string);
     if (!user) return res.status(400).json({ error: 'User does not exists!' });
 
     const category = await Category.findOne(<ICategory>{ name: category_name }).lean();

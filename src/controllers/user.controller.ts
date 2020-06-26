@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
-import User from '../models/User';
+import UserService from '../services/user.service';
 
 class UserController {
   public async all (req: Request, res:Response):Promise<Response> {
-    const users = await User.find();
+    const users = await UserService.all();
 
     return res.json(users);
   }
 
   public async create (req:Request, res:Response): Promise<Response> {
-    const user = await User.create(req.body);
+    const user = await UserService.create(req.body);
 
     return res.json(user);
   }
