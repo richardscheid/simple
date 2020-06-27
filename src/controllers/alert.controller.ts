@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Alert from '../models/Alert';
 import Category from '../models/Category';
 import { ICategory } from '../interfaces/category.interface';
+import { AlertBuilder } from '../builder/alert.builder';
 
 class AlertController {
   public async all (req: Request, res:Response):Promise<Response> {
@@ -20,12 +21,12 @@ class AlertController {
       if (!category) return res.status(400).json({ error: 'Category does not exists!' });
     }
 
-    const alert = await Alert.create({
-      name,
-      target,
-      condition,
-      category: category._id
-    });
+    const alert = await Alert.create(new AlertBuilder()
+      .name(name)
+      .target(target)
+      .condition(condition)
+      .cagetory(category)
+      .build());
 
     return res.json(alert);
   }
