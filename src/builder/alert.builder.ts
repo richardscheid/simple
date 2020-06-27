@@ -19,7 +19,7 @@ export class AlertBuilder {
     return this;
   }
 
-  cagetory (category?:ICategory): AlertBuilder {
+  cagetory (category:ICategory | null): AlertBuilder {
     if (category) this._alert.category = category;
     return this;
   }

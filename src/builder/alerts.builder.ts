@@ -1,5 +1,5 @@
-import { IAlerts } from '../interfaces/alerts.interface';
 import { IAlert } from '../interfaces/alert.interface';
+import { IAlerts } from '../interfaces/alerts.interface';
 import { ITransaction } from '../interfaces/transaction.interface';
 
 export class AlertsBuilder {
