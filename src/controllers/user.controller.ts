@@ -3,7 +3,7 @@ import UserService from '../services/user.service';
 
 class UserController {
   public async all (req: Request, res:Response):Promise<Response> {
-    const users = await UserService.all();
+    const users = await UserService.findAll();
 
     return res.json(users);
   }
