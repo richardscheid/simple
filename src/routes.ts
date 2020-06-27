@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { isAuthenticated } from './config/passport';
 
 import AuthController from './controllers/auth.controller';
 import UserController from './controllers/user.controller';
@@ -6,8 +7,6 @@ import AlertController from './controllers/alert.controller';
 import AlertsController from './controllers/alerts.controller';
 import CategoryController from './controllers/category.controller';
 import TransactionController from './controllers/transaction.controller';
-
-import { isAuthenticated } from './config/passport';
 
 const routes = Router();
 
