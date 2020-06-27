@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
-import Alert from '../models/Alert';
-import Category from '../models/Category';
-import { ICategory } from '../interfaces/category.interface';
 import { AlertBuilder } from '../builder/alert.builder';
+import { ICategory } from '../interfaces/category.interface';
+
+import Alert from '../models/Alert';
+import CategoryService from '../services/category.service';
 
 class AlertController {
   public async all (req: Request, res:Response):Promise<Response> {
@@ -15,9 +16,9 @@ class AlertController {
     const { name, target, condition } = req.body;
     const { category_id } = req.headers;
 
-    let category : ICategory;
+    let category : ICategory | null;
     if (category_id) {
-      category = await Category.findById(category_id);
+      category = await CategoryService.findById(category_id as string);
       if (!category) return res.status(400).json({ error: 'Category does not exists!' });
     }
 
