@@ -9,12 +9,14 @@ export interface ITransaction extends Document {
   amount: number,
   status: number,
   company: string
-  items: [{
-    name: string,
-    price: number
-  }],
+  items: [Items],
   user: IUser,
   category: ICategory
+}
+
+export interface Items {
+  name: string,
+  price: number
 }
 
 export enum Status {

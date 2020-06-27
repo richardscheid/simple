@@ -4,8 +4,9 @@ import { ICategory } from '../interfaces/category.interface';
 import Category from '../models/Category';
 import UserService from '../services/user.service';
 import AlertsService from '../services/alerts.service';
-import TransactionFactory from '../factory/transaction.factory';
 import TransactionService from '../services/transaction.service';
+import { TransactionBuilder } from '../builder/transaction.builder';
+import { Status } from '../interfaces/transaction.interface';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
@@ -21,12 +22,20 @@ class TransactionController {
     const user = await UserService.findById(user_id as string);
     if (!user) return res.status(400).json({ error: 'User does not exists!' });
 
-    const category = await Category.findOne(<ICategory>{ name: category_name }).lean();
+    const category = await Category.findOne(<ICategory>{ name: category_name });
     if (!category) return res.status(400).json({ error: 'Category does not exists!' });
 
-    const trn = TransactionFactory.build(amount, place, order, company, items, user, category);
-
-    const transaction = await TransactionService.create(trn);
+    const transaction = await TransactionService.create(new TransactionBuilder()
+      .place(place)
+      .items(items)
+      .order(order)
+      .amount(amount)
+      .company(company)
+      .user(user)
+      .category(category)
+      .status(Status.Unverified)
+      .build()
+    );
 
     AlertsService.process(transaction);
 
