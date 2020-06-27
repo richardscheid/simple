@@ -14,7 +14,7 @@ export interface ITransaction extends Document {
     price: number
   }],
   user: IUser,
-  category?: ICategory
+  category: ICategory
 }
 
 export enum Status {

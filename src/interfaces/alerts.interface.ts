@@ -1,5 +1,6 @@
 import { Document } from 'mongoose';
-import { ICategory } from './category.interface';
+import { IAlert } from './alert.interface';
+import { ITransaction } from './transaction.interface';
 
 export interface IAlerts extends Document {
   _id: number,
@@ -8,5 +9,6 @@ export interface IAlerts extends Document {
   amount: number,
   status: number,
   condition: number,
-  category?: ICategory
+  alert: IAlert,
+  transaction: ITransaction
 }
