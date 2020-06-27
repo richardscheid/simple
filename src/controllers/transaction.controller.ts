@@ -3,7 +3,7 @@ import { ICategory } from '../interfaces/category.interface';
 
 import Category from '../models/Category';
 import UserService from '../services/user.service';
-import AlertService from '../services/alert.service';
+import AlertsService from '../services/alerts.service';
 import TransactionFactory from '../factory/transaction.factory';
 import TransactionService from '../services/transaction.service';
 
@@ -28,7 +28,7 @@ class TransactionController {
 
     const transaction = await TransactionService.create(trn);
 
-    AlertService.process(transaction);
+    AlertsService.process(transaction);
 
     return res.json(transaction);
   }
