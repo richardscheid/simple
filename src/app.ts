@@ -2,8 +2,10 @@ import cors from 'cors';
 import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
+import passport from 'passport';
+import session from 'express-session';
 
-import { MONGODB_URI } from './utils/secrets';
+import { MONGODB_URI, SESSION_SECRET } from './utils/secrets';
 
 class App {
   public express: express.Application;
@@ -17,8 +19,15 @@ class App {
   }
 
   private middlewares (): void {
-    this.express.use(express.json());
     this.express.use(cors());
+    this.express.use(express.json());
+    this.express.use(passport.initialize());
+    this.express.use(passport.session());
+    this.express.use(session({
+      resave: true,
+      saveUninitialized: true,
+      secret: SESSION_SECRET
+    }));
   }
 
   private database (): void {
