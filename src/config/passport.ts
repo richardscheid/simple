@@ -28,14 +28,14 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
   });
 }));
 
-export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+export const isAuthenticated = (req: Request, res: Response, next: NextFunction):void => {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect('/login');
 };
 
-export const isAuthorized = (req: Request, res: Response, next: NextFunction) => {
+export const isAuthorized = (req: Request, res: Response, next: NextFunction):void => {
   const provider = req.path.split('/').slice(-1)[0];
 
   const user = req.user as IUser;
