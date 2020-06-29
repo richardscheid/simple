@@ -11,7 +11,7 @@ class UserService {
   }
 
   async findOne (email:string, callback?): Promise<IUser | null> {
-    return await User.findOne(<IUser>{ email: email.toLowerCase() }, callback).lean();
+    return await User.findOne(<IUser>{ email: email.toLowerCase() }, callback);
   }
 
   async create (user:IUser): Promise<IUser> {
