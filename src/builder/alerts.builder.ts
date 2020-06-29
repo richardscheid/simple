@@ -1,9 +1,9 @@
-import { IAlert } from '../interfaces/alert.interface';
 import { IAlerts } from '../interfaces/alerts.interface';
+import { IAlertDocument } from '../interfaces/alert.interface';
 import { ITransaction } from '../interfaces/transaction.interface';
 
 export class AlertsBuilder {
-  private readonly _alerts: IAlerts;
+  private readonly _alerts: IAlerts = {} as IAlerts;
 
   name (name:string): AlertsBuilder {
     this._alerts.name = name;
@@ -30,7 +30,7 @@ export class AlertsBuilder {
     return this;
   }
 
-  alert (alert:IAlert): AlertsBuilder {
+  alert (alert:IAlertDocument): AlertsBuilder {
     this._alerts.alert = alert;
     return this;
   }

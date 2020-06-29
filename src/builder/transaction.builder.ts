@@ -3,7 +3,7 @@ import { ICategory } from '../interfaces/category.interface';
 import { ITransaction, Items } from '../interfaces/transaction.interface';
 
 export class TransactionBuilder {
-  private readonly _transaction: ITransaction;
+  private readonly _transaction: ITransaction = {} as ITransaction;
 
   place (place: string): TransactionBuilder {
     this._transaction.place = place;
