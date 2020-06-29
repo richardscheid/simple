@@ -7,8 +7,8 @@ import { Request, Response, NextFunction } from 'express';
 
 const LocalStrategy = passportLocal.Strategy;
 
-passport.serializeUser<any, any>((user, done) => {
-  done(undefined, user.id);
+passport.serializeUser<IUser, any>((user, done) => {
+  done(undefined, user._id);
 });
 
 passport.deserializeUser((id:string, done) => {
@@ -19,17 +19,12 @@ passport.deserializeUser((id:string, done) => {
 
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
   UserService.findOne(email, (err, user: IUser) => {
-    if (err) { return done(err); }
-    if (!user) {
-      return done(undefined, false, { message: `Email ${email} not found.` });
-    }
-    user.comparePassword(password, (err: Error, isMatch: boolean) => {
-      if (err) { return done(err); }
-      if (isMatch) {
-        return done(undefined, user);
-      }
-      return done(undefined, false, { message: 'Invalid email or password.' });
-    });
+    if (err) throw err;
+
+    if (!user) { return done(undefined, false, { message: `Email ${email} not found.` }); }
+    if (!user.validatePassword(password)) { return done(undefined, false, { message: 'Invalid email or password.' }); }
+
+    return done(null, user);
   });
 }));
 
