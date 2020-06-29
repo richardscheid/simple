@@ -7,11 +7,6 @@ const AlertsSchema = new (0, _mongoose.Schema)({
   amount: { type: Number, required: true },
   status: { type: Number, required: true },
   condition: { type: Number, required: true },
-  category: {
-    type: _mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
-    required: false
-  },
   alert: {
     type: _mongoose.Schema.Types.ObjectId,
     ref: 'Alert',
