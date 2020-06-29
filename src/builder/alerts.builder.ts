@@ -1,5 +1,5 @@
+import { IAlert } from '../interfaces/alert.interface';
 import { IAlerts } from '../interfaces/alerts.interface';
-import { IAlertDocument } from '../interfaces/alert.interface';
 import { ITransaction } from '../interfaces/transaction.interface';
 
 export class AlertsBuilder {
@@ -30,7 +30,7 @@ export class AlertsBuilder {
     return this;
   }
 
-  alert (alert:IAlertDocument): AlertsBuilder {
+  alert (alert:IAlert): AlertsBuilder {
     this._alerts.alert = alert;
     return this;
   }

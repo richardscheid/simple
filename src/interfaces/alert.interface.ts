@@ -1,14 +1,8 @@
 import { Document } from 'mongoose';
 import { ICategory } from './category.interface';
 
-export interface IAlertDocument extends Document {
-  name: string,
-  target: number,
-  condition: number,
-  category?: ICategory
-}
-
-export interface IAlert {
+export interface IAlert extends Document {
+  _id: string,
   name: string,
   target: number,
   condition: number,

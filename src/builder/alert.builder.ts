@@ -1,8 +1,8 @@
-import { IAlertDocument } from '../interfaces/alert.interface';
+import { IAlert } from '../interfaces/alert.interface';
 import { ICategory } from '../interfaces/category.interface';
 
 export class AlertBuilder {
-  private readonly _alert : IAlertDocument = {} as IAlertDocument;
+  private readonly _alert : IAlert = {} as IAlert;
 
   name (name:string): AlertBuilder {
     this._alert.name = name;
@@ -24,7 +24,7 @@ export class AlertBuilder {
     return this;
   }
 
-  build (): IAlertDocument {
+  build (): IAlert {
     return this._alert;
   }
 }
