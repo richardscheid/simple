@@ -24,10 +24,10 @@ class AlertService {
       }
     }
 
-    if (alertsId) this.update(alertsId, transaction);
+    if (alertsId) this.update(transaction);
   }
 
-  async update (alertsId:number[], transaction:ITransaction):Promise<void> {
+  async update (transaction:ITransaction):Promise<void> {
     const filter = <ITransaction>{ _id: transaction._id };
     const update = <ITransaction>{ status: Status.Onalert };
 
