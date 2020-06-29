@@ -4,6 +4,10 @@ import { ICategory } from '../interfaces/category.interface';
 export class AlertBuilder {
   private readonly _alert : IAlert;
 
+  constructor () {
+    this._alert = { name: '', target: 0, condition: 0 };
+  }
+
   name (name:string): AlertBuilder {
     this._alert.name = name;
     return this;
