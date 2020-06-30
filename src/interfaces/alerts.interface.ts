@@ -3,7 +3,7 @@ import { IAlert } from './alert.interface';
 import { ITransaction } from './transaction.interface';
 
 export interface IAlerts extends Document {
-  _id: number,
+  _id: string,
   name: string,
   target: number,
   amount: number,
