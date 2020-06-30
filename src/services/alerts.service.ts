@@ -12,7 +12,7 @@ class AlertService {
     const alerts = await Alert.find().populate('category');
 
     const amount = transaction.amount;
-    const alertsId : number[] = [];
+    const alertsId : string[] = [];
 
     for (const alert of alerts) {
       const onAlert: boolean = this.verify(amount, alert.target, alert.condition);
