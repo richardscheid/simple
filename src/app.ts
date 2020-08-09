@@ -19,7 +19,13 @@ class App {
   }
 
   private middlewares (): void {
-    this.express.use(cors());
+    this.express.use(
+      cors({
+        origin: "http://localhost:3000",
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        credentials: true
+      })
+    );
     this.express.use(express.json());
     this.express.use(passport.initialize());
     this.express.use(passport.session());
