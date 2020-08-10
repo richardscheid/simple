@@ -4,6 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import mongo from "connect-mongo";
+import bodyParser from "body-parser";
 import session from 'express-session';
 
 import { MONGODB_URI, SESSION_SECRET } from './utils/secrets';
@@ -21,6 +22,8 @@ class App {
   }
 
   private middlewares (): void {
+    this.express.use(bodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: true }));
     this.express.use(
       cors({
         origin: "http://localhost:3000",
