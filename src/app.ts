@@ -3,11 +3,13 @@ import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import mongo from "connect-mongo";
 import session from 'express-session';
 
 import { MONGODB_URI, SESSION_SECRET } from './utils/secrets';
 
 class App {
+  public MongoStore = mongo(session);
   public express: express.Application;
 
   public constructor () {
@@ -32,7 +34,11 @@ class App {
     this.express.use(session({
       resave: true,
       saveUninitialized: true,
-      secret: SESSION_SECRET
+      secret: SESSION_SECRET,
+      store: new this.MongoStore({
+          url: MONGODB_URI,
+          autoReconnect: true
+      })  
     }));
   }
 
