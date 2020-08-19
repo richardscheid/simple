@@ -21,8 +21,9 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
   UserService.findOne(email, (err, user: IUser) => {
     if (err) throw err;
 
-    if (!user) { return done(undefined, false, { message: `Email ${email} not found.` }); }
-    if (!user.validatePassword(password)) { return done(undefined, false, { message: 'Invalid email or password.' }); }
+    if (!user) { return done(null, false, { message: 'Invalid email or password.' }); }
+
+    if (!user.validatePassword(password)) { return done(null, false, { message: 'Invalid email or password.' }); }
 
     return done(null, user);
   });

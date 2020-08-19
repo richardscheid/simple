@@ -3,6 +3,7 @@ import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import flash from 'express-flash';
 import mongo from 'connect-mongo';
 import bodyParser from 'body-parser';
 import session from 'express-session';
@@ -34,6 +35,7 @@ class App {
     this.express.use(express.json());
     this.express.use(passport.initialize());
     this.express.use(passport.session());
+    this.express.use(flash());
     this.express.use(session({
       resave: true,
       saveUninitialized: true,
