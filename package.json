@@ -6,7 +6,7 @@
   "author": "richardscheid <rscheid@live.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports"
   },
   "devDependencies": {
@@ -26,6 +26,8 @@
     "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^2.0.4",
     "sucrase": "^3.15.0",
+    "ts-node-dev": "^1.0.0-pre.58",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.9.3"
   },
   "dependencies": {
