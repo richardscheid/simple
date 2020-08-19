@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Status } from '../interfaces/transaction.interface';
-import { TransactionBuilder } from '../builder/transaction.builder';
+import { TransactionBuilder } from '../builders/transaction.builder';
 
 import UserService from '../services/user.service';
 import AlertsService from '../services/alerts.service';

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AlertBuilder } from '../builder/alert.builder';
+import { AlertBuilder } from '../builders/alert.builder';
 import { ICategory } from '../interfaces/category.interface';
 
 import Alert from '../models/Alert';
