@@ -7,6 +7,7 @@ import flash from 'express-flash';
 import mongo from 'connect-mongo';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import limiter from 'express-rate-limit';
 
 import { MONGODB_URI, SESSION_SECRET } from './utils/secrets';
 
@@ -32,6 +33,7 @@ class App {
         credentials: true
       })
     );
+    this.express.use(limiter());
     this.express.use(express.json());
     this.express.use(passport.initialize());
     this.express.use(passport.session());
