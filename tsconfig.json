@@ -14,7 +14,7 @@
     "baseUrl": "src",
     "paths": {
       "@models/*": ["models/*"],
-      "@factory/*": ["factory/*"],
+      "@builders/*": ["builders/*"],
       "@services/*": ["services/*"],
       "@interfaces/*": ["interfaces/*"],
       "@controllers/*": ["controllers/*"]
