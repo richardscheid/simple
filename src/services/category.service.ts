@@ -1,5 +1,5 @@
-import Category from '../models/Category';
-import { ICategory } from '../interfaces/category.interface';
+import Category from '@models/Category';
+import { ICategory } from '@interfaces/category.interface';
 
 class CategoryService {
   async findAll ():Promise<ICategory[]> {

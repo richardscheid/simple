@@ -1,5 +1,5 @@
-import User from '../models/User';
-import { IUser } from '../interfaces/user.interface';
+import User from '@models/User';
+import { IUser } from '@interfaces/user.interface';
 
 class UserService {
   async findAll ():Promise<IUser[]> {

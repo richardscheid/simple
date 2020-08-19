@@ -1,4 +1,4 @@
-import { IUser } from '../interfaces/user.interface';
+import { IUser } from '@interfaces/user.interface';
 import { Request, Response, NextFunction } from 'express';
 
 import passport from 'passport';

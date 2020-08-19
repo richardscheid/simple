@@ -1,5 +1,5 @@
-import { IAlert } from '../interfaces/alert.interface';
-import { ICategory } from '../interfaces/category.interface';
+import { IAlert } from '@interfaces/alert.interface';
+import { ICategory } from '@interfaces/category.interface';
 
 export class AlertBuilder {
   private readonly _alert : IAlert = {} as IAlert;

@@ -1,8 +1,8 @@
 import passport from 'passport';
 import passportLocal from 'passport-local';
-import UserService from '../services/user.service';
+import UserService from '@services/user.service';
 
-import { IUser } from '../interfaces/user.interface';
+import { IUser } from '@interfaces/user.interface';
 import { Request, Response, NextFunction } from 'express';
 
 const LocalStrategy = passportLocal.Strategy;

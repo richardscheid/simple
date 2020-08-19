@@ -1,11 +1,11 @@
-import { IAlerts } from '../interfaces/alerts.interface';
-import { AlertsBuilder } from '../builders/alerts.builder';
-import { Conditions, IAlert } from '../interfaces/alert.interface';
-import { ITransaction, Status } from '../interfaces/transaction.interface';
+import { IAlerts } from '@interfaces/alerts.interface';
+import { AlertsBuilder } from '@builders/alerts.builder';
+import { Conditions, IAlert } from '@interfaces/alert.interface';
+import { ITransaction, Status } from '@interfaces/transaction.interface';
 
-import Alert from '../models/Alert';
-import Alerts from '../models/Alerts';
-import Transaction from '../models/Transaction';
+import Alert from '@models/Alert';
+import Alerts from '@models/Alerts';
+import Transaction from '@models/Transaction';
 
 class AlertService {
   async process (transaction: ITransaction): Promise<void> {

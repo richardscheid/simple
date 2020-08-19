@@ -1,6 +1,6 @@
-import { IUser } from '../interfaces/user.interface';
-import { ICategory } from '../interfaces/category.interface';
-import { ITransaction, Items } from '../interfaces/transaction.interface';
+import { IUser } from '@interfaces/user.interface';
+import { ICategory } from '@interfaces/category.interface';
+import { ITransaction, Items } from '@interfaces/transaction.interface';
 
 export class TransactionBuilder {
   private readonly _transaction: ITransaction = {} as ITransaction;

@@ -3,8 +3,8 @@ import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
-import mongo from "connect-mongo";
-import bodyParser from "body-parser";
+import mongo from 'connect-mongo';
+import bodyParser from 'body-parser';
 import session from 'express-session';
 
 import { MONGODB_URI, SESSION_SECRET } from './utils/secrets';
@@ -26,8 +26,8 @@ class App {
     this.express.use(bodyParser.urlencoded({ extended: true }));
     this.express.use(
       cors({
-        origin: "http://localhost:3000",
-        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        origin: 'http://localhost:3000',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true
       })
     );
@@ -39,9 +39,9 @@ class App {
       saveUninitialized: true,
       secret: SESSION_SECRET,
       store: new this.MongoStore({
-          url: MONGODB_URI,
-          autoReconnect: true
-      })  
+        url: MONGODB_URI,
+        autoReconnect: true
+      })
     }));
   }
 
