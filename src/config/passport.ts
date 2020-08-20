@@ -33,7 +33,7 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
   if (req.isAuthenticated()) {
     return next();
   }
-  res.status(401).send();
+  res.status(401).end();
 };
 
 export const isAuthorized = (req: Request, res: Response, next: NextFunction):void => {
