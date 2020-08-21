@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "paths": {
+      "@utils/*": ["utils/*"],
       "@models/*": ["models/*"],
       "@builders/*": ["builders/*"],
       "@services/*": ["services/*"],
