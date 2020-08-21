@@ -9,7 +9,7 @@ const prod : boolean = ENVIRONMENT === 'production';
 
 const URI = prod ? process.env.DB_URI : process.env.DB_URI_LOCAL;
 
-const SECRET = process.env.SESSION_SECRET;
+const SECRET = process.env.JWT_SECRET;
 
 if (!URI) {
   if (prod) {
@@ -21,9 +21,9 @@ if (!URI) {
 }
 
 if (!SECRET) {
-  logger.error('No client secret. Set SESSION_SECRET environment variable.');
+  logger.error('No jwt secret. Set JWT_SECRET environment variable.');
   process.exit(1);
 }
 
 export const MONGODB_URI : string = URI;
-export const SESSION_SECRET : string = SECRET;
+export const JWT_SECRET : string = SECRET;
