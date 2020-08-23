@@ -1,18 +1,16 @@
 import cors from 'cors';
+import helmet from 'helmet';
 import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import flash from 'express-flash';
-import mongo from 'connect-mongo';
-import bodyParser from 'body-parser';
-import session from 'express-session';
+import compression from 'compression';
 import limiter from 'express-rate-limit';
 
-import { MONGODB_URI, SESSION_SECRET } from './utils/secrets';
+import { MONGODB_URI } from './utils/secrets';
 
 class App {
-  public MongoStore = mongo(session);
   public express: express.Application;
 
   public constructor () {
@@ -24,8 +22,13 @@ class App {
   }
 
   private middlewares (): void {
-    this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(flash());
+    this.express.use(helmet());
+    this.express.use(limiter());
+    this.express.use(compression());
+    this.express.use(express.json());
+    this.express.use(express.urlencoded({ extended: false }));
+    this.express.use(passport.initialize());
     this.express.use(
       cors({
         origin: 'http://localhost:3000',
@@ -33,20 +36,6 @@ class App {
         credentials: true
       })
     );
-    this.express.use(limiter());
-    this.express.use(express.json());
-    this.express.use(passport.initialize());
-    this.express.use(passport.session());
-    this.express.use(flash());
-    this.express.use(session({
-      resave: true,
-      saveUninitialized: true,
-      secret: SESSION_SECRET,
-      store: new this.MongoStore({
-        url: MONGODB_URI,
-        autoReconnect: true
-      })
-    }));
   }
 
   private database (): void {
