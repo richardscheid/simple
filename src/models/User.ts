@@ -5,8 +5,7 @@ import { IUser } from '@interfaces/user.interface';
 const UserSchema = new Schema({
   email: { type: String, required: true, unique: true, index: true, lowercase: true },
   username: { type: String, required: true, index: true },
-  password: { type: String },
-  tokens: { type: Array }
+  password: { type: String }
 }, {
   timestamps: true
 });
