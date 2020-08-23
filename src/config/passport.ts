@@ -1,48 +1,39 @@
 import passport from 'passport';
+import passportJwt from 'passport-jwt';
 import passportLocal from 'passport-local';
 import UserService from '@services/user.service';
 
+import { JWT_SECRET } from '@utils/secrets';
 import { IUser } from '@interfaces/user.interface';
-import { Request, Response, NextFunction } from 'express';
 
+const JwtStrategy = passportJwt.Strategy;
+const ExtractJwt = passportJwt.ExtractJwt;
 const LocalStrategy = passportLocal.Strategy;
 
-passport.serializeUser<IUser, any>((user, done) => {
-  done(undefined, user._id);
-});
+passport.use('login', new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+  await UserService.findOne(email.toLowerCase(), (err, user: IUser) => {
+    if (err) throw done(err, false);
 
-passport.deserializeUser((id:string, done) => {
-  UserService.findById(id, (err, user) => {
-    done(err, user);
-  });
-});
+    if (!user) return done(null, false, { message: 'Invalid email or password.' });
 
-passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-  UserService.findOne(email, (err, user: IUser) => {
-    if (err) throw err;
-
-    if (!user) { return done(null, false, { message: 'Invalid email or password.' }); }
-
-    if (!user.validatePassword(password)) { return done(null, false, { message: 'Invalid email or password.' }); }
+    if (!user.validatePassword(password)) return done(null, false, { message: 'Invalid email or password.' });
 
     return done(null, user);
   });
 }));
 
-export const isAuthenticated = (req: Request, res: Response, next: NextFunction):void => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.status(401).end();
+const opts = {
+  secretOrKey: JWT_SECRET,
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 };
 
-export const isAuthorized = (req: Request, res: Response, next: NextFunction):void => {
-  const provider = req.path.split('/').slice(-1)[0];
+passport.use(new JwtStrategy(opts, async (payload, done) => {
+  const email = payload.sub;
+  await UserService.findOne(email, (err, user: IUser) => {
+    if (err) throw done(err, false);
 
-  const user = req.user as IUser;
-  if (user.tokens.find(token => token.kind === provider)) {
-    next();
-  } else {
-    res.redirect(`/auth/${provider}`);
-  }
-};
+    if (!user) return done(null, false, { message: 'Token not found' });
+
+    return done(null, user);
+  });
+}));
