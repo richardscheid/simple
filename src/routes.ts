@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { isAuthenticated } from './config/passport';
 
 import AuthController from '@controllers/auth.controller';
 import UserController from '@controllers/user.controller';
@@ -13,18 +12,18 @@ const routes = Router();
 routes.post('/login', AuthController.login);
 routes.post('/logout', AuthController.logout);
 
-routes.get('/users', isAuthenticated, UserController.all);
-routes.post('/users', isAuthenticated, UserController.create);
+routes.get('/users', AuthController.authenticate, UserController.all);
+routes.post('/users', AuthController.authenticate, UserController.create);
 
-routes.get('/alert', isAuthenticated, AlertController.all);
-routes.post('/alert', isAuthenticated, AlertController.create);
+routes.get('/alert', AuthController.authenticate, AlertController.all);
+routes.post('/alert', AuthController.authenticate, AlertController.create);
 
-routes.get('/alerts', isAuthenticated, AlertsController.all);
+routes.get('/alerts', AuthController.authenticate, AlertsController.all);
 
-routes.get('/categories', isAuthenticated, CategoryController.all);
-routes.post('/categories', isAuthenticated, CategoryController.create);
+routes.get('/categories', AuthController.authenticate, CategoryController.all);
+routes.post('/categories', AuthController.authenticate, CategoryController.create);
 
-routes.get('/transactions', isAuthenticated, TransactionController.all);
-routes.post('/transactions', isAuthenticated, TransactionController.create);
+routes.get('/transactions', AuthController.authenticate, TransactionController.all);
+routes.post('/transactions', AuthController.authenticate, TransactionController.create);
 
 export default routes;
