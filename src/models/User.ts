@@ -13,9 +13,7 @@ const UserSchema = new Schema({
 UserSchema.pre('save', function save (next) {
   const user = this as IUser;
 
-  if (!user.isModified('password')) {
-    return next();
-  }
+  if (!user.isModified('password')) { return next(); }
 
   user.password = bcrypt.hashSync(user.password, 10);
   next();
@@ -24,5 +22,12 @@ UserSchema.pre('save', function save (next) {
 UserSchema.methods.validatePassword = function (candidatePassword: string) : boolean {
   return bcrypt.compareSync(candidatePassword, this.password);
 };
+
+UserSchema.set('toJSON', {
+  transform: function (doc, ret) {
+    delete ret.password;
+    return ret;
+  }
+});
 
 export default model<IUser>('User', UserSchema);
