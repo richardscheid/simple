@@ -48,11 +48,14 @@
     "winston": "^3.3.3"
   },
   "_moduleAliases": {
+    "@utils": [
+      "dist/utils"
+    ],
     "@models": [
       "dist/models"
     ],
-    "@factory": [
-      "dist/factory"
+    "@builders": [
+      "dist/builders"
     ],
     "@services": [
       "dist/services"
