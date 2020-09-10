@@ -9,6 +9,8 @@ import TransactionController from '@controllers/transaction.controller';
 
 const routes = Router();
 
+routes.post('/auth', AuthController.authenticate);
+
 routes.post('/login', AuthController.login);
 routes.post('/logout', AuthController.logout);
 
