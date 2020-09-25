@@ -14,7 +14,7 @@ passport.use('login', new LocalStrategy({ usernameField: 'email' }, async (email
   await UserService.findOne(email.toLowerCase(), (err, user: IUser) => {
     if (err) throw done(err, false);
 
-    if (!user) return done(null, false, { message: 'Invalid email or password.' });
+    if (!user) return done(null, false, { message: 'E-mail or password not found.' });
 
     if (!user.validatePassword(password)) return done(null, false, { message: 'Invalid email or password.' });
 
