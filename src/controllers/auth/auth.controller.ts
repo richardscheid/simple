@@ -2,7 +2,7 @@ import { JWT_SECRET } from '@utils/secrets';
 import { IUser } from '@interfaces/user.interface';
 import { Request, Response, NextFunction } from 'express';
 
-import '../config/passport';
+import '../../config/passport';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
 
@@ -31,7 +31,7 @@ class AuthController {
     passport.authenticate('jwt', { session: false })(req, res, next);
   }
 
-  authorize (req: Request, res:Response, next: NextFunction) {
+  authorize (req: Request, res:Response) {
     let token = req.headers.authorization;
 
     if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
