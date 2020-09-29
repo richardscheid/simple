@@ -1,13 +1,14 @@
 import cors from 'cors';
 import helmet from 'helmet';
-import routes from './routes';
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import flash from 'express-flash';
 import compression from 'compression';
 import limiter from 'express-rate-limit';
+import { errors } from 'celebrate';
 
+import routes from './routes';
 import { MONGODB_URI } from './utils/secrets';
 
 class App {
@@ -24,6 +25,7 @@ class App {
   private middlewares (): void {
     this.express.use(flash());
     this.express.use(helmet());
+    this.express.use(errors());
     this.express.use(limiter());
     this.express.use(compression());
     this.express.use(express.json());
