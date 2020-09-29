@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
-import AuthController from '@controllers/auth.controller';
-import UserController from '@controllers/user.controller';
-import AlertController from '@controllers/alert.controller';
-import AlertsController from '@controllers/alerts.controller';
-import CategoryController from '@controllers/category.controller';
-import TransactionController from '@controllers/transaction.controller';
+import AuthController from '@controllers/auth/auth.controller';
+import UserController from '@controllers/user/user.controller';
+import AlertController from '@controllers/alert/alert.controller';
+import AlertsController from '@controllers/alerts/alerts.controller';
+import CategoryController from '@controllers/category/category.controller';
+import TransactionController from '@controllers/transaction/transaction.controller';
 
 const routes = Router();
 
