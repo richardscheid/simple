@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { celebrate, Segments, Joi } from 'celebrate';
 
 import AuthController from '@controllers/auth.controller';
 import UserController from '@controllers/user.controller';
@@ -15,7 +16,17 @@ routes.post('/logout', AuthController.logout);
 routes.post('/auth', AuthController.authorize);
 
 routes.get('/users', AuthController.authenticate, UserController.all);
-routes.post('/users', AuthController.authenticate, UserController.create);
+
+routes.post(
+  '/users',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      username: Joi.string().required(),
+      email: Joi.string().required()
+    })
+  }),
+  AuthController.authenticate, UserController.create
+);
 
 routes.get('/alert', AuthController.authenticate, AlertController.all);
 routes.post('/alert', AuthController.authenticate, AlertController.create);
