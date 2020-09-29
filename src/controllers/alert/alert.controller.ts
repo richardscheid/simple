@@ -3,7 +3,7 @@ import { ICategory } from '@interfaces/category/category.interface';
 import { AlertBuilder } from '@builders/alert/alert.builder';
 
 import Alert from '@models/alert/alert';
-import CategoryService from '@services/category.service';
+import CategoryService from '@services/category/category.service';
 
 class AlertController {
   public async all (req: Request, res: Response):Promise<Response> {

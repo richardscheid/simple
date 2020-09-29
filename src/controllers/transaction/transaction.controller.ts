@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import { Status } from '@interfaces/transaction/transaction.interface';
 import { TransactionBuilder } from '@builders/transaction/transaction.builder';
 
-import UserService from '@services/user.service';
-import AlertsService from '@services/alerts.service';
-import CategoryService from '@services/category.service';
-import TransactionService from '@services/transaction.service';
+import UserService from '@services/user/user.service';
+import AlertsService from '@services/alerts/alerts.service';
+import CategoryService from '@services/category/category.service';
+import TransactionService from '@services/transaction/transaction.service';
 
 class TransactionController {
   public async all (req:Request, res:Response): Promise<Response> {
