@@ -1,8 +1,8 @@
 import { Document } from 'mongoose';
 
 export interface IUser extends Document {
-  name: string,
   email: string,
+  username: string,
   password: string,
   validatePassword (candidatePassword:string): boolean
 }
