@@ -1,4 +1,4 @@
-import Category from '@models/Category';
+import Category from '@models/category/category';
 import { ICategory } from '@interfaces/category/category.interface';
 
 class CategoryService {

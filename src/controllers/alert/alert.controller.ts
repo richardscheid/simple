@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ICategory } from '@interfaces/category/category.interface';
 import { AlertBuilder } from '@builders/alert/alert.builder';
 
-import Alert from '@models/Alert';
+import Alert from '@models/alert/alert';
 import CategoryService from '@services/category.service';
 
 class AlertController {

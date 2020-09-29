@@ -1,4 +1,4 @@
-import Transaction from '@models/Transaction';
+import Transaction from '@models/transaction/transaction';
 import { ITransaction } from '@interfaces/transaction/transaction.interface';
 
 class TransactionService {

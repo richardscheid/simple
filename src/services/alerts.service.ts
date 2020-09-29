@@ -3,9 +3,9 @@ import { AlertsBuilder } from '@builders/alerts/alerts.builder';
 import { Conditions, IAlert } from '@interfaces/alert/alert.interface';
 import { ITransaction, Status } from '@interfaces/transaction/transaction.interface';
 
-import Alert from '@models/Alert';
-import Alerts from '@models/Alerts';
-import Transaction from '@models/Transaction';
+import Alert from '@models/alert/alert';
+import Alerts from '@models/alerts/Alerts';
+import Transaction from '@models/transaction/transaction';
 
 class AlertService {
   async process (transaction: ITransaction): Promise<void> {

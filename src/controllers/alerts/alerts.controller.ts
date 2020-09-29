@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Alerts from '@models/Alerts';
+import Alerts from '@models/alerts/Alerts';
 
 class AlertController {
   public async all (req: Request, res:Response):Promise<Response> {
