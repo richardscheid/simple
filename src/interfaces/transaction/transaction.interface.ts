@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
-import { IUser } from './user.interface';
-import { ICategory } from './category.interface';
+import { IUser } from '../user/user.interface';
+import { ICategory } from '../category/category.interface';
 
 export interface ITransaction extends Document {
   _id: string,

@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { ICategory } from './category.interface';
+import { ICategory } from '../category/category.interface';
 
 export interface IAlert extends Document {
   _id: string,

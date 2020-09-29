@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
-import { IAlert } from './alert.interface';
-import { ITransaction } from './transaction.interface';
+import { IAlert } from '../alert/alert.interface';
+import { ITransaction } from '../transaction/transaction.interface';
 
 export interface IAlerts extends Document {
   _id: string,
