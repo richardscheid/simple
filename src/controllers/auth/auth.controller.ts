@@ -1,5 +1,5 @@
 import { JWT_SECRET } from '@utils/secrets';
-import { IUser } from '@interfaces/user.interface';
+import { IUser } from '@interfaces/user/user.interface';
 import { Request, Response, NextFunction } from 'express';
 
 import '../../config/passport';

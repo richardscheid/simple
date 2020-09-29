@@ -4,7 +4,7 @@ import passportLocal from 'passport-local';
 import UserService from '@services/user.service';
 
 import { JWT_SECRET } from '@utils/secrets';
-import { IUser } from '@interfaces/user.interface';
+import { IUser } from '@interfaces/user/user.interface';
 
 const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;

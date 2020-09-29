@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IAlerts } from '@interfaces/alerts.interface';
+import { IAlerts } from '@interfaces/alerts/alerts.interface';
 
 const AlertsSchema = new Schema({
   name: { type: String, required: true },
