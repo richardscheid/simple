@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { AlertBuilder } from '@builders/alert.builder';
 import { ICategory } from '@interfaces/category.interface';
+import { AlertBuilder } from '@builders/alert/alert.builder';
 
 import Alert from '@models/Alert';
 import CategoryService from '@services/category.service';

@@ -1,5 +1,5 @@
 import { IAlerts } from '@interfaces/alerts.interface';
-import { AlertsBuilder } from '@builders/alerts.builder';
+import { AlertsBuilder } from '@builders/alerts/alerts.builder';
 import { Conditions, IAlert } from '@interfaces/alert.interface';
 import { ITransaction, Status } from '@interfaces/transaction.interface';
 
