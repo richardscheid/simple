@@ -1,0 +1,29 @@
+import { Router } from 'express';
+import { celebrate, Segments, Joi } from 'celebrate';
+
+import AuthController from '@controllers/auth/auth.controller';
+import UserController from '@controllers/user/user.controller';
+
+class UserRoutes {
+  public routes = Router();
+
+  constructor () {
+    this.router();
+  }
+
+  router ():void {
+    this.routes.get('/', AuthController.authenticate, UserController.all);
+
+    this.routes.post('/',
+      celebrate({
+        [Segments.BODY]: Joi.object().keys({
+          username: Joi.string().required(),
+          email: Joi.string().required()
+        })
+      }),
+      AuthController.authenticate, UserController.create
+    );
+  }
+}
+
+export default new UserRoutes().routes;
