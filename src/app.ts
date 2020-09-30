@@ -8,7 +8,7 @@ import compression from 'compression';
 import limiter from 'express-rate-limit';
 import { errors } from 'celebrate';
 
-import routes from './routes';
+import routes from './routes/routes';
 import { MONGODB_URI } from './utils/secrets';
 
 class App {
