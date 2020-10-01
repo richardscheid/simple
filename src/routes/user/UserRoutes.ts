@@ -11,18 +11,21 @@ class UserRoutes {
     this.router();
   }
 
-  router ():void {
+  router (): void {
     this.routes.get('/', AuthController.authenticate, UserController.all);
 
-    this.routes.post('/',
-      celebrate({
-        [Segments.BODY]: Joi.object().keys({
-          username: Joi.string().required(),
-          email: Joi.string().required()
-        })
-      }),
-      AuthController.authenticate, UserController.create
-    );
+    this.routes.get('/:id/details', celebrate({
+      [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.string().required()
+      })
+    }), AuthController.authenticate, UserController.findById);
+
+    this.routes.post('/', celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        username: Joi.string().required(),
+        email: Joi.string().required()
+      })
+    }), AuthController.authenticate, UserController.create);
   }
 }
 
