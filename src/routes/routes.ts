@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import AuthRoutes from 'routes/auth/auth.routes';
-import UserRoutes from 'routes/user/UserRoutes';
+import UserRoutes from 'routes/user/user.routes';
 import AlertRoutes from './alert/alert.routes';
 import AlertsRoutes from './alerts/alerts.routes';
-import CategoryRoutes from './category/CategoryRoutes';
-import TransactionRoutes from './transaction/TransactionRoutes';
+import CategoryRoutes from './category/category.routes';
+import TransactionRoutes from './transaction/transaction.routes';
 
 const routes = Router();
 
