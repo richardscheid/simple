@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import AuthRoutes from 'routes/auth/AuthRoutes';
 import UserRoutes from 'routes/user/UserRoutes';
-import AlertRoutes from './alert/AlertRoutes';
+import AlertRoutes from './alert/alert.routes';
 import AlertsRoutes from './alerts/AlertsRoutes';
 import CategoryRoutes from './category/CategoryRoutes';
 import TransactionRoutes from './transaction/TransactionRoutes';
