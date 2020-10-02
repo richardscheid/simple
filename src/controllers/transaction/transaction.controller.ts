@@ -14,6 +14,14 @@ class TransactionController {
     return res.json(transactions);
   }
 
+  async findById (req:Request, res:Response): Promise<Response> {
+    const { id } = req.params;
+
+    const transactions = await TransactionService.findById(id);
+
+    return res.json(transactions);
+  }
+
   public async create (req:Request, res:Response): Promise<Response> {
     const { amount, place, order, company, items } = req.body;
     const { user_id, category_name } = req.headers;
