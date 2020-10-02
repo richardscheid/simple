@@ -24,7 +24,12 @@ class TransactionRoutes {
         order: Joi.number().integer().required(),
         amount: Joi.number().positive().required(),
         company: Joi.string().required(),
-        items: Joi.array().required()
+        items: Joi.array().min(1).items(
+          Joi.object({
+            name: Joi.string().required(),
+            price: Joi.number().positive().required()
+          })
+        ).required()
       })
     })
     , AuthController.authenticate, TransactionController.create);
