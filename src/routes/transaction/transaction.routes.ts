@@ -37,8 +37,7 @@ class TransactionRoutes {
           })
         ).required()
       })
-    })
-    , AuthController.authenticate, TransactionController.create);
+    }), AuthController.authenticate, TransactionController.create);
   }
 }
 
