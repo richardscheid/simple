@@ -6,8 +6,8 @@ class TransactionService {
     return await Transaction.find();
   }
 
-  async findOne (place:string) {
-    return await Transaction.findOne(<ITransaction>{ place });
+  async findById (_id:string) {
+    return await Transaction.findById(<ITransaction>{ _id });
   }
 
   async create (transaction:ITransaction) {
