@@ -8,7 +8,7 @@ import CategoryService from '@services/category/category.service';
 import TransactionService from '@services/transaction/transaction.service';
 
 class TransactionController {
-  public async all (req:Request, res:Response): Promise<Response> {
+  async all (req:Request, res:Response): Promise<Response> {
     const transactions = await TransactionService.findAll();
 
     return res.json(transactions);
@@ -22,7 +22,7 @@ class TransactionController {
     return res.json(transactions);
   }
 
-  public async create (req:Request, res:Response): Promise<Response> {
+  async create (req:Request, res:Response): Promise<Response> {
     const { amount, place, order, company, items } = req.body;
     const { user_id, category_name } = req.headers;
 
@@ -32,16 +32,17 @@ class TransactionController {
     const category = await CategoryService.findOne(category_name as string);
     if (!category) return res.status(400).json({ error: 'Category does not exists!' });
 
-    const transaction = await TransactionService.create(new TransactionBuilder()
-      .place(place)
-      .items(items)
-      .order(order)
-      .amount(amount)
-      .company(company)
-      .user(user)
-      .category(category)
-      .status(Status.Unverified)
-      .build()
+    const transaction = await TransactionService.create(
+      new TransactionBuilder()
+        .place(place)
+        .items(items)
+        .order(order)
+        .amount(amount)
+        .company(company)
+        .user(user)
+        .category(category)
+        .status(Status.Unverified)
+        .build()
     );
 
     AlertsService.process(transaction);
