@@ -22,7 +22,7 @@ class TransactionRoutes {
       [Segments.BODY]: Joi.object().keys({
         place: Joi.string().required(),
         order: Joi.number().integer().required(),
-        amount: Joi.number().required(),
+        amount: Joi.number().positive().required(),
         company: Joi.string().required(),
         items: Joi.array().required()
       })
