@@ -46,10 +46,10 @@ class App {
       .use(i18nextMiddleware.LanguageDetector)
       .init({
         backend: {
-          loadPath: path.resolve(__dirname, '/../resources/locales/{{lng}}/{{ns}}.json')
+          loadPath: path.join(__dirname, '/../resources/locales/{{lng}}/{{ns}}.json')
         },
         fallbackLng: 'en',
-        preload: ['en', 'es']
+        preload: ['en', 'es', 'pt']
       });
 
     this.express.use(i18nextMiddleware.handle(i18next));
