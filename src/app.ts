@@ -9,7 +9,7 @@ import flash from 'express-flash'
 import compression from 'compression'
 import limiter from 'express-rate-limit'
 import Backend from 'i18next-fs-backend'
-import i18n from 'i18next-http-middleware'
+import i18nHttp from 'i18next-http-middleware'
 import { errors } from 'celebrate'
 
 import { MONGODB_URI } from './utils/secrets'
@@ -42,16 +42,17 @@ class App {
   private i18n (): void {
     i18next
       .use(Backend)
-      .use(i18n.LanguageDetector)
       .init({
+        debug: true,
         backend: {
-          loadPath: path.join(__dirname, '/../resources/locales/{{lng}}/translation.json')
+          loadPath: path.join(__dirname, '/resources/locales/{{lng}}/{{ns}}.json')
         },
-        fallbackLng: 'pt',
-        preload: ['en', 'es', 'pt']
+        lng: 'en',
+        fallbackLng: 'en',
+        preload: ['en', 'pt', 'es']
       })
 
-    this.express.use(i18n.handle(i18next))
+    this.express.use(i18nHttp.handle(i18next))
   }
 
   private cors (): void {
