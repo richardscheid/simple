@@ -1,17 +1,19 @@
-import cors from 'cors'
-import path from 'path'
-import helmet from 'helmet'
-import express from 'express'
-import i18next from 'i18next'
-import mongoose from 'mongoose'
-import passport from 'passport'
-import flash from 'express-flash'
-import compression from 'compression'
+import i18nHttp from 'i18next-http-middleware'
 import limiter from 'express-rate-limit'
 import Backend from 'i18next-fs-backend'
-import i18nHttp from 'i18next-http-middleware'
+import compression from 'compression'
+import flash from 'express-flash'
+import mongoose from 'mongoose'
+import passport from 'passport'
+import express from 'express'
+import i18next from 'i18next'
+import helmet from 'helmet'
+import cors from 'cors'
+import path from 'path'
+
 import { errors } from 'celebrate'
 
+import ExceptionHandler from '@resources/exceptions/exception.handler'
 import { MONGODB_URI } from './utils/secrets'
 import routes from './routes/routes'
 
@@ -43,7 +45,6 @@ class App {
     i18next
       .use(Backend)
       .init({
-        debug: true,
         backend: {
           loadPath: path.join(__dirname, '/resources/locales/{{lng}}/{{ns}}.json')
         },
@@ -67,14 +68,19 @@ class App {
 
   private database (): void {
     mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false
+      useFindAndModify: false,
+      useNewUrlParser: true
     })
   }
 
   private routes (): void {
     this.express.use(routes)
+    this.routesExceptionHandler()
+  }
+
+  private routesExceptionHandler (): void {
+    this.express.use(ExceptionHandler.handle)
   }
 }
 
