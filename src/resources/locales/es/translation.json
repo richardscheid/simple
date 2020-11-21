@@ -1,7 +1,20 @@
 {
   "error": {
+    "internal": "Não é você! Somos nós, estamos com alguns problemas",
+    "auth": {
+      "token": {
+        "failed": "A autenticação falhou. Por favor, verifique o seu token",
+        "notprovided": "Deve fornecer um token para autenticação",
+        "format": "Formato do token não é válido",
+        "notvalid": "Token não é válido"
+      },
+      "login": {
+        "notvalid": "Senha ou email incorretos",
+        "failed": "A autenticação falhou. Por favor, verifique seu email e senha"
+      }
+    },
     "notfound": {
-      "user": "Usuário não encontrado!"
+      "user": "Usuário não encontrado"
     }
   }
 }

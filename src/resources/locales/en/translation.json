@@ -1,7 +1,20 @@
 {
   "error": {
+    "internal": "It's not you! It's us, we are having some problems",
+    "auth": {
+      "token": {
+        "failed": "Authentication failed. Please check your token",
+        "notprovided": "Must provide a token to authenticate",
+        "format": "Token format is not valid",
+        "notvalid": "Token is not valid"
+      },
+      "login": {
+        "notvalid": "Incorrect email or password",
+        "failed": "Authentication failed. Please check your email and password"
+      }
+    },
     "notfound": {
-      "user": "User not found!"
+      "user": "User was not found"
     }
   }
 }
