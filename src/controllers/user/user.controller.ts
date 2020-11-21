@@ -1,25 +1,33 @@
+import Exception from '@resources/exceptions/exception'
 import UserService from '@services/user/user.service'
-import { Request, Response } from 'express'
 import i18next from 'i18next'
 
+import { HttpStatusCode } from '@resources/codes/http.statuscode'
+import { Request, Response, NextFunction } from 'express'
+
 class UserController {
-  public async all (req: Request, res: Response): Promise<Response> {
+
+  async all (req: Request, res: Response): Promise<Response> {
     const users = await UserService.findAll()
 
     return res.json(users)
   }
 
-  public async findById (req: Request, res:Response): Promise<Response> {
-    const { id } = req.params
+  async findById (req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params
 
-    const users = await UserService.findById(id as string)
+      const users = await UserService.findById(id)
 
-    if (!users) return res.status(400).send(i18next.t('error.notfound.user'))
+      if (!users) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.notfound.user'))
 
-    return res.json(users)
+      return res.json(users)
+    } catch (err) {
+      next(err)
+    }
   }
 
-  public async create (req: Request, res: Response): Promise<Response> {
+  async create (req: Request, res: Response): Promise<Response> {
     const user = await UserService.create(req.body)
 
     return res.json(user)
