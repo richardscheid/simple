@@ -17,6 +17,7 @@
       "@models/*": ["models/*"],
       "@builders/*": ["builders/*"],
       "@services/*": ["services/*"],
+      "@resources/*": ["resources/*"],
       "@interfaces/*": ["interfaces/*"],
       "@controllers/*": ["controllers/*"]
     }
