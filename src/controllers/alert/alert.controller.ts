@@ -16,7 +16,7 @@ class AlertController {
     const { name, target, condition } = req.body
     const { category_id } = req.headers
 
-    const category = await this.findCategory(String(category_id))
+    const category = await CategoryService.findById(String(category_id))
 
     if (!category) return res.status(400).json({ error: 'Category does not exists!' })
 
@@ -29,10 +29,6 @@ class AlertController {
         .build())
 
     return res.json(alert)
-  }
-
-  private async findCategory (id: string) {
-    return await CategoryService.findById(id)
   }
 }
 

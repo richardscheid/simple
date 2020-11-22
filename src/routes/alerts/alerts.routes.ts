@@ -12,7 +12,7 @@ class AlertsRoutes {
   }
 
   router (): void {
-    this.routes.get('/', AuthController.authenticate, AlertsController.all)
+    this.routes.get('/', AuthController.authenticate, AlertsController.findAll)
   }
 }
 

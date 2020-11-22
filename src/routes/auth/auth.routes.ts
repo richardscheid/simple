@@ -4,7 +4,7 @@ import AuthController from '@controllers/auth/auth.controller'
 
 class AuthRoutes {
 
-  public routes = Router();\
+  public routes = Router()
 
   constructor () {
     this.router()
