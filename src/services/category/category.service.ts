@@ -3,15 +3,15 @@ import Category from '@models/category/category'
 
 class CategoryService {
 
-  async findAll ():Promise<ICategory[]> {
+  async findAll (): Promise<ICategory[]> {
     return await Category.find()
   }
 
-  async findById (id: string):Promise<ICategory | null> {
-    return await Category.findById(id)
+  async findById (_id: string) {
+    return await Category.findById(<ICategory>{ _id })
   }
 
-  async findOne (name: string): Promise<ICategory | null> {
+  async findOne (name: string) {
     return await Category.findOne(<ICategory>{ name })
   }
 
