@@ -13,7 +13,7 @@ class AlertRoutes {
   }
 
   router (): void {
-    this.routes.get('/', AuthController.authenticate, AlertController.findAll)
+    this.routes.get('/', AuthController.authenticate, asyncHandler(AlertController.findAll))
     this.routes.post('/', AuthController.authenticate, asyncHandler(AlertController.create))
   }
 }

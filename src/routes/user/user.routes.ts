@@ -14,7 +14,7 @@ class UserRoutes {
   }
 
   router (): void {
-    this.routes.get('/', AuthController.authenticate, UserController.findAll)
+    this.routes.get('/', AuthController.authenticate, asyncHandler(UserController.findAll))
 
     this.routes.get('/:id/details',
       celebrate({

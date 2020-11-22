@@ -14,7 +14,7 @@ class TransactionRoutes {
   }
 
   router (): void {
-    this.routes.get('/', AuthController.authenticate, TransactionController.findAll)
+    this.routes.get('/', AuthController.authenticate, asyncHandler(TransactionController.findAll))
 
     this.routes.get('/:id/details',
       celebrate({
