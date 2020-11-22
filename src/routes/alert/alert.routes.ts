@@ -1,3 +1,4 @@
+import asyncHandler from 'express-async-handler'
 import { Router } from 'express'
 
 import AlertController from '@controllers/alert/alert.controller'
@@ -12,8 +13,8 @@ class AlertRoutes {
   }
 
   router (): void {
-    this.routes.get('/', AuthController.authenticate, AlertController.all)
-    this.routes.post('/', AuthController.authenticate, AlertController.create)
+    this.routes.get('/', AuthController.authenticate, AlertController.findAll)
+    this.routes.post('/', AuthController.authenticate, asyncHandler(AlertController.create))
   }
 }
 
