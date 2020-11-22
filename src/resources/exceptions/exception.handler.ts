@@ -11,11 +11,11 @@ class ExceptionHandler {
 
     const code = err.code || HttpStatusCode.INTERNAL_SERVER
     const status = err.status || HttpStatus.type(HttpStatusCode.INTERNAL_SERVER)
-    const message = err.message || i18next.t('error.internal')
+    const message = (code === HttpStatusCode.INTERNAL_SERVER) ? i18next.t('error.internal') : err.message
 
     res.status(code).json({ code, status, message })
 
-    // next(err)
+    next(err)
   }
 }
 
