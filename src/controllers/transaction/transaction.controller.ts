@@ -1,11 +1,14 @@
 import { TransactionBuilder } from '@builders/transaction/transaction.builder'
 import { Status } from '@interfaces/transaction/transaction.interface'
+import { HttpStatusCode } from '@resources/codes/http.statuscode'
 import { Request, Response } from 'express'
+import i18next from 'i18next'
 
 import TransactionService from '@services/transaction/transaction.service'
 import CategoryService from '@services/category/category.service'
 import AlertsService from '@services/alerts/alerts.service'
 import UserService from '@services/user/user.service'
+import Exception from '@resources/exceptions/exception'
 
 class TransactionController {
 
@@ -18,9 +21,11 @@ class TransactionController {
   async findById (req: Request, res: Response): Promise<Response> {
     const { id } = req.params
 
-    const transactions = await TransactionService.findById(id)
+    const transaction = await TransactionService.findById(id)
 
-    return res.json(transactions)
+    if (!transaction) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.transaction.notfound'))
+
+    return res.json(transaction)
   }
 
   async create (req: Request, res: Response): Promise<Response> {
@@ -28,10 +33,10 @@ class TransactionController {
     const { user_id, category_name } = req.headers
 
     const user = await UserService.findById(user_id as string)
-    if (!user) return res.status(400).json({ error: 'User does not exists!' })
+    if (!user) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.user.notfound'))
 
     const category = await CategoryService.findOne(category_name as string)
-    if (!category) return res.status(400).json({ error: 'Category does not exists!' })
+    if (!category) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.category.notfound'))
 
     const transaction = await TransactionService.create(
       new TransactionBuilder()
