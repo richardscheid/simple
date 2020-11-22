@@ -1,24 +1,25 @@
-import { Router } from 'express';
-import { celebrate, Segments, Joi } from 'celebrate';
+import { Router } from 'express'
+import { celebrate, Segments, Joi } from 'celebrate'
 
-import AuthController from '@controllers/auth/auth.controller';
-import TransactionController from '@controllers/transaction/transaction.controller';
+import AuthController from '@controllers/auth/auth.controller'
+import TransactionController from '@controllers/transaction/transaction.controller'
 
 class TransactionRoutes {
+
   public routes = Router();
 
   constructor () {
-    this.router();
+    this.router()
   }
 
   router ():void {
-    this.routes.get('/', AuthController.authenticate, TransactionController.all);
+    this.routes.get('/', AuthController.authenticate, TransactionController.all)
 
     this.routes.get('/:id/details', celebrate({
       [Segments.PARAMS]: Joi.object().keys({
         id: Joi.string().required()
       })
-    }), AuthController.authenticate, TransactionController.findById);
+    }), AuthController.authenticate, TransactionController.findById)
 
     this.routes.post('/', celebrate({
       [Segments.HEADERS]: Joi.object({
@@ -37,8 +38,8 @@ class TransactionRoutes {
           })
         ).required()
       })
-    }), AuthController.authenticate, TransactionController.create);
+    }), AuthController.authenticate, TransactionController.create)
   }
 }
 
-export default new TransactionRoutes().routes;
+export default new TransactionRoutes().routes
