@@ -16,6 +16,13 @@
     "user": {
       "notfound": "User was not found",
       "alreadyexists": "A user already exists with this email"
+    },
+    "category": {
+      "notfound": "Category was not found",
+      "alreadyexists": "A category already exists with this name"
+    },
+    "transaction": {
+      "notfound": "Transaction was not found"
     }
   }
 }

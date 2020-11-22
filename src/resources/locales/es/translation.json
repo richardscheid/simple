@@ -16,6 +16,13 @@
     "user": {
       "notfound": "Usuário não encontrato",
       "alreadyexists": "Email informado já está sendo utilizado"
+    },
+    "category": {
+      "notfound": "Category não encontrada",
+      "alreadyexists": "Categoria informada já existe, tente outro nome"
+    },
+    "transaction": {
+      "notfound": "Transação não encontrada"
     }
   }
 }
