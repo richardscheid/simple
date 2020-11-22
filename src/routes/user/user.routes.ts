@@ -16,18 +16,24 @@ class UserRoutes {
   router (): void {
     this.routes.get('/', AuthController.authenticate, UserController.all)
 
-    this.routes.get('/:id/details', celebrate({
-      [Segments.PARAMS]: Joi.object().keys({
-        id: Joi.string().required()
-      })
-    }), AuthController.authenticate, asyncHandler(UserController.findById))
+    this.routes.get('/:id/details',
+      celebrate({
+        [Segments.PARAMS]: Joi.object().keys({
+          id: Joi.string().required()
+        })
+      }),
+      AuthController.authenticate,
+      asyncHandler(UserController.findById))
 
-    this.routes.post('/', celebrate({
-      [Segments.BODY]: Joi.object().keys({
-        username: Joi.string().required(),
-        email: Joi.string().required()
-      })
-    }), AuthController.authenticate, asyncHandler(UserController.create))
+    this.routes.post('/',
+      celebrate({
+        [Segments.BODY]: Joi.object().keys({
+          username: Joi.string().required(),
+          email: Joi.string().required()
+        })
+      }),
+      AuthController.authenticate,
+      asyncHandler(UserController.create))
   }
 }
 

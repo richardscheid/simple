@@ -3,13 +3,14 @@ import { Router } from 'express'
 import AuthController from '@controllers/auth/auth.controller'
 
 class AuthRoutes {
-  public routes = Router();
+
+  public routes = Router();\
 
   constructor () {
     this.router()
   }
 
-  router ():void {
+  router (): void {
     this.routes.post('/', AuthController.authorize)
     this.routes.post('/login', AuthController.login)
     this.routes.post('/logout', AuthController.logout)

@@ -1,19 +1,20 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-import AuthController from '@controllers/auth/auth.controller';
-import AlertController from '@controllers/alert/alert.controller';
+import AlertController from '@controllers/alert/alert.controller'
+import AuthController from '@controllers/auth/auth.controller'
 
 class AlertRoutes {
+
   public routes = Router();
 
   constructor () {
-    this.router();
+    this.router()
   }
 
-  router ():void {
-    this.routes.get('/', AuthController.authenticate, AlertController.all);
-    this.routes.post('/', AuthController.authenticate, AlertController.create);
+  router (): void {
+    this.routes.get('/', AuthController.authenticate, AlertController.all)
+    this.routes.post('/', AuthController.authenticate, AlertController.create)
   }
 }
 
-export default new AlertRoutes().routes;
+export default new AlertRoutes().routes
