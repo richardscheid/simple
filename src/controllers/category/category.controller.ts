@@ -1,18 +1,19 @@
-import { Request, Response } from 'express';
-import CategoryService from '@services/category/category.service';
+import { Request, Response } from 'express'
+import CategoryService from '@services/category/category.service'
 
 class CategoryController {
-  public async all (req: Request, res:Response):Promise<Response> {
-    const categories = await CategoryService.findAll();
 
-    return res.json(categories);
+  public async all (req: Request, res: Response): Promise<Response> {
+    const categories = await CategoryService.findAll()
+
+    return res.json(categories)
   }
 
-  public async create (req:Request, res:Response):Promise<Response> {
-    const category = await CategoryService.create(req.body);
+  public async create (req: Request, res: Response): Promise<Response> {
+    const category = await CategoryService.create(req.body)
 
-    return res.json(category);
+    return res.json(category)
   }
 }
 
-export default new CategoryController();
+export default new CategoryController()
