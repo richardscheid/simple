@@ -25,7 +25,14 @@ class CategoryRoutes {
       AuthController.authenticate,
       asyncHandler(CategoryController.findById))
 
-    this.routes.post('/', AuthController.authenticate, asyncHandler(CategoryController.create))
+    this.routes.post('/',
+      celebrate({
+        [Segments.BODY]: Joi.object().keys({
+          name: Joi.string().required()
+        })
+      }),
+      AuthController.authenticate,
+      asyncHandler(CategoryController.create))
   }
 }
 
