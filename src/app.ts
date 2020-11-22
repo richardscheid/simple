@@ -31,7 +31,6 @@ class App {
   private middlewares (): void {
     this.express.use(flash())
     this.express.use(helmet())
-    this.express.use(errors())
     this.express.use(limiter())
     this.express.use(compression())
     this.express.use(express.json())
@@ -76,6 +75,7 @@ class App {
 
   private routes (): void {
     this.express.use(routes)
+    this.express.use(errors())
     this.routesExceptionHandler()
   }
 

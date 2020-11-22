@@ -10,7 +10,7 @@ export enum HttpStatusCode {
 }
 
 export namespace HttpStatus {
-  export function type (code: HttpStatusCode): string {
+  export function error (code: HttpStatusCode): string {
     return HttpStatusCode[code]
   }
 }
