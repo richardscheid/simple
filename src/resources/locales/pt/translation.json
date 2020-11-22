@@ -13,8 +13,9 @@
         "failed": "A autenticação falhou. Por favor, verifique seu email e senha"
       }
     },
-    "notfound": {
-      "user": "Usuário não encontrado"
+    "user": {
+      "notfound": "Usuário não encontrato",
+      "alreadyexists": "Email informado já está sendo utilizado"
     }
   }
 }
