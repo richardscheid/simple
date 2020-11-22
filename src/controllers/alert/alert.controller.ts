@@ -8,13 +8,13 @@ import i18next from 'i18next'
 
 class AlertController {
 
-  public async findAll (req: Request, res: Response): Promise<Response> {
+  async findAll (req: Request, res: Response): Promise<Response> {
     const alerts = await Alert.find()
 
     return res.json(alerts)
   }
 
-  public async create (req: Request, res: Response): Promise<Response> {
+  async create (req: Request, res: Response): Promise<Response> {
     const { name, target, condition } = req.body
     const { category_id } = req.headers
 

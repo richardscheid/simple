@@ -6,7 +6,7 @@ import i18next from 'i18next'
 
 class CategoryController {
 
-  public async findAll (req: Request, res: Response): Promise<Response> {
+  async findAll (req: Request, res: Response): Promise<Response> {
     const categories = await CategoryService.findAll()
 
     return res.json(categories)
@@ -22,7 +22,7 @@ class CategoryController {
     return res.json(category)
   }
 
-  public async create (req: Request, res: Response): Promise<Response> {
+  async create (req: Request, res: Response): Promise<Response> {
     const category = await CategoryService.create(req.body)
 
     return res.json(category)
