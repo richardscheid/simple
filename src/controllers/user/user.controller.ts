@@ -7,7 +7,7 @@ import { Request, Response } from 'express'
 
 class UserController {
 
-  async all (req: Request, res: Response): Promise<Response> {
+  async findAll (req: Request, res: Response): Promise<Response> {
     const users = await UserService.findAll()
 
     return res.json(users)
