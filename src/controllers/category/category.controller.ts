@@ -23,6 +23,12 @@ class CategoryController {
   }
 
   async create (req: Request, res: Response): Promise<Response> {
+    const { name } = req.body
+
+    const exists = await CategoryService.findOne(name)
+
+    if (exists) throw new Exception(HttpStatusCode.ALREADY_EXISTS, i18next.t('error.category.alreadyexists'))
+
     const category = await CategoryService.create(req.body)
 
     return res.json(category)
