@@ -1,19 +1,20 @@
-import { Router } from 'express';
+import { Router } from 'express'
+import asyncHandler from 'express-async-handler'
 
-import AuthController from '@controllers/auth/auth.controller';
-import CategoryController from '@controllers/category/category.controller';
+import CategoryController from '@controllers/category/category.controller'
+import AuthController from '@controllers/auth/auth.controller'
 
 class CategoryRoutes {
   public routes = Router();
 
   constructor () {
-    this.router();
+    this.router()
   }
 
   router ():void {
-    this.routes.get('/', AuthController.authenticate, CategoryController.all);
-    this.routes.post('/', AuthController.authenticate, CategoryController.create);
+    this.routes.get('/', AuthController.authenticate, asyncHandler(CategoryController.all))
+    this.routes.post('/', AuthController.authenticate, asyncHandler(CategoryController.create))
   }
 }
 
-export default new CategoryRoutes().routes;
+export default new CategoryRoutes().routes
