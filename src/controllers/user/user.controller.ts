@@ -13,13 +13,13 @@ class UserController {
     return res.json(users)
   }
 
-  async findById (req: Request, res: Response, next: NextFunction) {
+  async findById (req: Request, res: Response, next: NextFunction): Promise<Response | undefined> {
     try {
       const { id } = req.params
 
       const users = await UserService.findById(id)
 
-      if (!users) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.notfound.user'))
+      if (!users) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.user.notfound'))
 
       return res.json(users)
     } catch (err) {
@@ -27,10 +27,22 @@ class UserController {
     }
   }
 
-  async create (req: Request, res: Response): Promise<Response> {
-    const user = await UserService.create(req.body)
+  async create (req: Request, res: Response, next: NextFunction): Promise<Response | undefined> {
+    try {
 
-    return res.json(user)
+      const { email } = req.body
+
+      const exists = await UserService.findOne(email)
+
+      if (exists) throw new Exception(HttpStatusCode.ALREADY_EXISTS, i18next.t('error.user.alreadyexists'))
+
+      const user = await UserService.create(req.body)
+
+      return res.json(user)
+
+    } catch (err) {
+      next(err)
+    }
   }
 }
 
