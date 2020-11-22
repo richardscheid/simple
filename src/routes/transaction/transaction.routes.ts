@@ -1,8 +1,9 @@
-import { Router } from 'express'
+import asyncHandler from 'express-async-handler'
 import { celebrate, Segments, Joi } from 'celebrate'
+import { Router } from 'express'
 
-import AuthController from '@controllers/auth/auth.controller'
 import TransactionController from '@controllers/transaction/transaction.controller'
+import AuthController from '@controllers/auth/auth.controller'
 
 class TransactionRoutes {
 
@@ -19,7 +20,7 @@ class TransactionRoutes {
       [Segments.PARAMS]: Joi.object().keys({
         id: Joi.string().required()
       })
-    }), AuthController.authenticate, TransactionController.findById)
+    }), AuthController.authenticate, asyncHandler(TransactionController.findById))
 
     this.routes.post('/', celebrate({
       [Segments.HEADERS]: Joi.object({
@@ -38,7 +39,7 @@ class TransactionRoutes {
           })
         ).required()
       })
-    }), AuthController.authenticate, TransactionController.create)
+    }), AuthController.authenticate, asyncHandler(TransactionController.create))
   }
 }
 

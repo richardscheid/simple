@@ -1,36 +1,37 @@
-import { Request, Response } from 'express';
-import { Status } from '@interfaces/transaction/transaction.interface';
-import { TransactionBuilder } from '@builders/transaction/transaction.builder';
+import { TransactionBuilder } from '@builders/transaction/transaction.builder'
+import { Status } from '@interfaces/transaction/transaction.interface'
+import { Request, Response } from 'express'
 
-import UserService from '@services/user/user.service';
-import AlertsService from '@services/alerts/alerts.service';
-import CategoryService from '@services/category/category.service';
-import TransactionService from '@services/transaction/transaction.service';
+import TransactionService from '@services/transaction/transaction.service'
+import CategoryService from '@services/category/category.service'
+import AlertsService from '@services/alerts/alerts.service'
+import UserService from '@services/user/user.service'
 
 class TransactionController {
-  async all (req:Request, res:Response): Promise<Response> {
-    const transactions = await TransactionService.findAll();
 
-    return res.json(transactions);
+  async all (req: Request, res: Response): Promise<Response> {
+    const transactions = await TransactionService.findAll()
+
+    return res.json(transactions)
   }
 
-  async findById (req:Request, res:Response): Promise<Response> {
-    const { id } = req.params;
+  async findById (req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
 
-    const transactions = await TransactionService.findById(id);
+    const transactions = await TransactionService.findById(id)
 
-    return res.json(transactions);
+    return res.json(transactions)
   }
 
-  async create (req:Request, res:Response): Promise<Response> {
-    const { amount, place, order, company, items } = req.body;
-    const { user_id, category_name } = req.headers;
+  async create (req: Request, res: Response): Promise<Response> {
+    const { amount, place, order, company, items } = req.body
+    const { user_id, category_name } = req.headers
 
-    const user = await UserService.findById(user_id as string);
-    if (!user) return res.status(400).json({ error: 'User does not exists!' });
+    const user = await UserService.findById(user_id as string)
+    if (!user) return res.status(400).json({ error: 'User does not exists!' })
 
-    const category = await CategoryService.findOne(category_name as string);
-    if (!category) return res.status(400).json({ error: 'Category does not exists!' });
+    const category = await CategoryService.findOne(category_name as string)
+    if (!category) return res.status(400).json({ error: 'Category does not exists!' })
 
     const transaction = await TransactionService.create(
       new TransactionBuilder()
@@ -43,12 +44,12 @@ class TransactionController {
         .category(category)
         .status(Status.Unverified)
         .build()
-    );
+    )
 
-    AlertsService.process(transaction);
+    AlertsService.process(transaction)
 
-    return res.json(transaction);
+    return res.json(transaction)
   }
 }
 
-export default new TransactionController();
+export default new TransactionController()
