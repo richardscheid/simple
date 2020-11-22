@@ -1,9 +1,8 @@
-import { Document } from 'mongoose';
-import { IUser } from '../user/user.interface';
-import { ICategory } from '../category/category.interface';
+import { ICategory } from '../category/category.interface'
+import { IUser } from '../user/user.interface'
+import { Document } from 'mongoose'
 
 export interface ITransaction extends Document {
-  _id: string,
   place: string,
   order: string,
   amount: number,
