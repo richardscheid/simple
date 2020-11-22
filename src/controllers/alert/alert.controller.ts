@@ -1,8 +1,10 @@
-import { AlertBuilder } from '@builders/alert/alert.builder'
-import { Request, Response } from 'express'
-
+import { HttpStatusCode } from '@resources/codes/http.statuscode'
 import CategoryService from '@services/category/category.service'
+import { AlertBuilder } from '@builders/alert/alert.builder'
+import Exception from '@resources/exceptions/exception'
+import { Request, Response } from 'express'
 import Alert from '@models/alert/alert'
+import i18next from 'i18next'
 
 class AlertController {
 
@@ -18,7 +20,7 @@ class AlertController {
 
     const category = await CategoryService.findById(String(category_id))
 
-    if (!category) return res.status(400).json({ error: 'Category does not exists!' })
+    if (!category) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.category.notfound'))
 
     const alert = await Alert.create(
       new AlertBuilder()
