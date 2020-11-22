@@ -14,7 +14,7 @@ class TransactionRoutes {
   }
 
   router ():void {
-    this.routes.get('/', AuthController.authenticate, TransactionController.all)
+    this.routes.get('/', AuthController.authenticate, TransactionController.findAll)
 
     this.routes.get('/:id/details', celebrate({
       [Segments.PARAMS]: Joi.object().keys({

@@ -7,12 +7,12 @@ import i18next from 'i18next'
 import TransactionService from '@services/transaction/transaction.service'
 import CategoryService from '@services/category/category.service'
 import AlertsService from '@services/alerts/alerts.service'
-import UserService from '@services/user/user.service'
 import Exception from '@resources/exceptions/exception'
+import UserService from '@services/user/user.service'
 
 class TransactionController {
 
-  async all (req: Request, res: Response): Promise<Response> {
+  async findAll (req: Request, res: Response): Promise<Response> {
     const transactions = await TransactionService.findAll()
 
     return res.json(transactions)

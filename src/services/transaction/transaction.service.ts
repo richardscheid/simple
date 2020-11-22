@@ -3,7 +3,7 @@ import Transaction from '@models/transaction/transaction'
 
 class TransactionService {
 
-  async findAll () {
+  async findAll (): Promise<ITransaction[]> {
     return await Transaction.find()
   }
 
