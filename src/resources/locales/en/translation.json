@@ -23,6 +23,10 @@
     },
     "transaction": {
       "notfound": "Transaction was not found"
+    },
+    "bank": {
+      "notfound": "Bank was not found",
+      "alreadyexists": "There is already a bank with this code"
     }
   }
 }
