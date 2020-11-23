@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { IAlerts } from '@interfaces/alerts/alerts.interface';
+import { Schema, model } from 'mongoose'
+import { IAlerts } from '@interfaces/alerts/alerts.interface'
 
 const AlertsSchema = new Schema({
   name: { type: String, required: true },
@@ -19,6 +19,6 @@ const AlertsSchema = new Schema({
   }
 }, {
   timestamps: true
-});
+})
 
-export default model<IAlerts>('Alerts', AlertsSchema, 'alerts');
+export default model<IAlerts>('Alerts', AlertsSchema, 'alerts')

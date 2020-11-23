@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { ITransaction } from '@interfaces/transaction/transaction.interface';
+import { Schema, model } from 'mongoose'
+import { ITransaction } from '@interfaces/transaction/transaction.interface'
 
 const TransactionSchema = new Schema({
   place: { type: String, required: true },
@@ -23,6 +23,6 @@ const TransactionSchema = new Schema({
   }
 }, {
   timestamps: true
-});
+})
 
-export default model<ITransaction>('Transaction', TransactionSchema);
+export default model<ITransaction>('Transaction', TransactionSchema)
