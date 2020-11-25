@@ -1,9 +1,12 @@
 import Exception from '@resources/exceptions/exception'
 import BankService from '@services/bank/bank.service'
 import i18next from 'i18next'
+import R from 'ramda'
 
 import { HttpStatusCode } from '@resources/codes/http.statuscode'
 import { Request, Response } from 'express'
+import { IBank } from '../../interfaces/bank/bank.interface'
+import { BankBuilder } from '../../builders/bank/bank.builder'
 
 class BankController {
 
@@ -24,15 +27,15 @@ class BankController {
   }
 
   async create (req: Request, res: Response): Promise<Response> {
-    const { code } = req.body
+    const { ...banks } = req.body
 
-    const exists = await BankService.findByCode(code)
+    R.forEachObjIndexed(bank => {
+      const data : IBank = (new BankBuilder().code(bank.code).name(bank.name).document(bank.document).build())
 
-    if (exists) throw new Exception(HttpStatusCode.ALREADY_EXISTS, i18next.t('error.bank.alreadyexists'))
+      BankService.create(data)
+    }, banks)
 
-    const bank = await BankService.create(req.body)
-
-    return res.json(bank)
+    return res.status(HttpStatusCode.OK).send()
   }
 }
 
