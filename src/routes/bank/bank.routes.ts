@@ -27,9 +27,10 @@ class BankRoutes {
 
     this.routes.post('/',
       celebrate({
-        [Segments.BODY]: Joi.object().keys({
-          code: Joi.number().integer().positive().required(),
-          name: Joi.string().required()
+        [Segments.BODY]: Joi.array().items({
+          code: Joi.string().required(),
+          name: Joi.string().required(),
+          document: Joi.string()
         })
       }),
       AuthController.authenticate,
