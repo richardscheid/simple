@@ -1,5 +1,5 @@
+import { IBank } from '@interfaces/bank/bank.interface'
 import Bank from '@models/bank/bank'
-import { IBank } from '../../interfaces/bank/bank.interface'
 
 class BankService {
 
@@ -8,11 +8,11 @@ class BankService {
   }
 
   async findByCode (code: string) {
-    return await Bank.findById(<IBank>{ code })
+    return await Bank.findOne(<IBank>{ code })
   }
 
-  async create (bank: IBank): Promise<IBank> {
-    return await Bank.create(bank)
+  create (bank: IBank): Promise<IBank> {
+    return Bank.create(bank)
   }
 }
 
