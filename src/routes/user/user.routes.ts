@@ -27,12 +27,20 @@ class UserRoutes {
 
     this.routes.post('/',
       celebrate({
+        [Segments.HEADERS]: Joi.object({
+          bank_id: Joi.string()
+        }).unknown(),
         [Segments.BODY]: Joi.object().keys({
+          email: Joi.string().required(),
           username: Joi.string().required(),
-          email: Joi.string().required()
+          password: Joi.string().required(),
+          document: Joi.string(),
+          account: Joi.object({
+            identifier: Joi.string(),
+            agency: Joi.string()
+          })
         })
       }),
-      AuthController.authenticate,
       asyncHandler(UserController.create))
   }
 }
