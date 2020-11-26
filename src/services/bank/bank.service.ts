@@ -7,6 +7,10 @@ class BankService {
     return await Bank.find()
   }
 
+  async findById (_id: string) {
+    return await Bank.findOne(<IBank>{ _id })
+  }
+
   async findByCode (code: string) {
     return await Bank.findOne(<IBank>{ code })
   }
