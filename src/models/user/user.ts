@@ -5,7 +5,16 @@ import { IUser } from '@interfaces/user/user.interface'
 const UserSchema = new Schema({
   email: { type: String, required: true, unique: true, index: true, lowercase: true },
   username: { type: String, required: true, index: true },
-  password: { type: String }
+  password: { type: String },
+  document: { type: String },
+  account: [{
+    identifier: { type: String },
+    agency: { type: String },
+    bank: {
+      type: Schema.Types.ObjectId,
+      ref: 'Bank'
+    }
+  }]
 }, {
   timestamps: true
 })
