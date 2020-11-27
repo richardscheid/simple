@@ -1,7 +1,8 @@
-import { IUser, IAccount } from '@interfaces/user/user.interface'
+import { IUser } from '@interfaces/user/user.interface'
 import { IBank } from '../../interfaces/bank/bank.interface'
 
 export class UserBuilder {
+
   private readonly _user: IUser = {} as IUser;
 
   email (email: string): UserBuilder {
@@ -24,9 +25,18 @@ export class UserBuilder {
     return this
   }
 
-  account (account: IAccount, bank: IBank): UserBuilder {
-    account.bank = bank
-    this._user.account = account
+  identifier (identifier: string): UserBuilder {
+    this._user.identifier = identifier
+    return this
+  }
+
+  agency (agency: string): UserBuilder {
+    this._user.agency = agency
+    return this
+  }
+
+  bank (bank: IBank): UserBuilder {
+    this._user.bank = bank
     return this
   }
 
