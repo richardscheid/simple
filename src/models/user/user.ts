@@ -7,14 +7,12 @@ const UserSchema = new Schema({
   username: { type: String, required: true, index: true },
   password: { type: String },
   document: { type: String },
-  account: [{
-    identifier: { type: String },
-    agency: { type: String },
-    bank: {
-      type: Schema.Types.ObjectId,
-      ref: 'Bank'
-    }
-  }]
+  identifier: { type: String },
+  agency: { type: String },
+  bank: {
+    type: Schema.Types.ObjectId,
+    ref: 'Bank'
+  }
 }, {
   timestamps: true
 })
