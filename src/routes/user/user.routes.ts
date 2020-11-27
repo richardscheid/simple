@@ -35,10 +35,8 @@ class UserRoutes {
           username: Joi.string().required(),
           password: Joi.string().required(),
           document: Joi.string(),
-          account: Joi.object({
-            identifier: Joi.string(),
-            agency: Joi.string()
-          })
+          identifier: Joi.string(),
+          agency: Joi.string()
         })
       }),
       asyncHandler(UserController.create))
