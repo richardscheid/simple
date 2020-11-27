@@ -5,7 +5,6 @@ import i18next from 'i18next'
 
 import { HttpStatusCode } from '@resources/codes/http.statuscode'
 import { Request, Response } from 'express'
-import { IBank } from '../../interfaces/bank/bank.interface'
 import { UserBuilder } from '../../builders/user/user.builder'
 
 class UserController {
@@ -27,19 +26,16 @@ class UserController {
   }
 
   async create (req: Request, res: Response): Promise<Response> {
-    const { email } = req.body
+    const { email, username, password, document, identifier, agency } = req.body
+    const { bank_id } = req.headers
 
     const exists = await UserService.findOne(email)
 
     if (exists) throw new Exception(HttpStatusCode.ALREADY_EXISTS, i18next.t('error.user.alreadyexists'))
 
-    const { bank_id } = req.headers
-
     const bank = await BankService.findById(bank_id as string)
 
     if (!bank) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.bank.notfound'))
-
-    const { username, password, document, account } = req.body
 
     const user = await UserService.create(
       new UserBuilder()
@@ -47,7 +43,9 @@ class UserController {
         .username(username)
         .password(password)
         .document(document)
-        .account(account, bank)
+        .identifier(identifier)
+        .agency(agency)
+        .bank(bank)
         .build()
     )
 
