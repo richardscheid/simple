@@ -9,7 +9,9 @@ import CategoryService from '@services/category/category.service'
 import AlertsService from '@services/alerts/alerts.service'
 import Exception from '@resources/exceptions/exception'
 import UserService from '@services/user/user.service'
+import Container, { Service } from 'typedi'
 
+@Service()
 class TransactionController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
@@ -57,4 +59,4 @@ class TransactionController {
   }
 }
 
-export default new TransactionController()
+export default Container.get(TransactionController)
