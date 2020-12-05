@@ -1,15 +1,23 @@
 import Exception from '@resources/exceptions/exception'
-import UserService from '@services/user/user.service'
 import BankService from '@services/bank/bank.service'
 import i18next from 'i18next'
 
 import { HttpStatusCode } from '@resources/codes/http.statuscode'
+import { UserBuilder } from '@builders/user/user.builder'
+import UserService from '@services/user/user.service'
+import Container, { Service } from 'typedi'
 import { Request, Response } from 'express'
-import { UserBuilder } from '../../builders/user/user.builder'
 
+@Service()
 class UserController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
+    const users = await UserService.findAll()
+
+    return res.json(users)
+  }
+
+  async find (req: Request, res: Response): Promise<Response> {
     const users = await UserService.findAll()
 
     return res.json(users)
@@ -53,4 +61,4 @@ class UserController {
   }
 }
 
-export default new UserController()
+export default Container.get(UserController)
