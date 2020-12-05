@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import i18nHttp from 'i18next-http-middleware'
 import limiter from 'express-rate-limit'
 import Backend from 'i18next-fs-backend'
@@ -10,7 +11,6 @@ import i18next from 'i18next'
 import helmet from 'helmet'
 import cors from 'cors'
 import path from 'path'
-
 import { errors } from 'celebrate'
 
 import ExceptionHandler from '@resources/exceptions/exception.handler'

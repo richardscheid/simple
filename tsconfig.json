@@ -11,15 +11,34 @@
     "strictNullChecks": true,
     "preserveConstEnums": true,
     "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "baseUrl": "src",
     "paths": {
-      "@utils/*": ["utils/*"],
-      "@models/*": ["models/*"],
-      "@builders/*": ["builders/*"],
-      "@services/*": ["services/*"],
-      "@resources/*": ["resources/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@controllers/*": ["controllers/*"]
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@models/*": [
+        "models/*"
+      ],
+      "@builders/*": [
+        "builders/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@gateways/*": [
+        "gateways/*"
+      ],
+      "@resources/*": [
+        "resources/*"
+      ],
+      "@interfaces/*": [
+        "interfaces/*"
+      ],
+      "@controllers/*": [
+        "controllers/*"
+      ]
     }
   }
 }
