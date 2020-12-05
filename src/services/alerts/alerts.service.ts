@@ -6,7 +6,9 @@ import { IAlerts } from '@interfaces/alerts/alerts.interface'
 import Transaction from '@models/transaction/transaction'
 import Alerts from '@models/alerts/Alerts'
 import Alert from '@models/alert/alert'
+import Container, { Service } from 'typedi'
 
+@Service()
 class AlertService {
 
   async process (transaction: ITransaction): Promise<void> {
@@ -70,4 +72,4 @@ class AlertService {
   }
 }
 
-export default new AlertService()
+export default Container.get(AlertService)
