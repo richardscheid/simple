@@ -1,15 +1,17 @@
 import { HttpStatusCode } from '@resources/codes/http.statuscode'
 import CategoryService from '@services/category/category.service'
 import { AlertBuilder } from '@builders/alert/alert.builder'
+import AlertService from '@services/alert/alert.service'
 import Exception from '@resources/exceptions/exception'
 import { Request, Response } from 'express'
-import Alert from '@models/alert/alert'
+import Container, { Service } from 'typedi'
 import i18next from 'i18next'
 
+@Service()
 class AlertController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
-    const alerts = await Alert.find()
+    const alerts = await AlertService.findAll()
 
     return res.json(alerts)
   }
@@ -22,7 +24,7 @@ class AlertController {
 
     if (!category) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.category.notfound'))
 
-    const alert = await Alert.create(
+    const alert = await AlertService.create(
       new AlertBuilder()
         .name(name)
         .target(target)
@@ -34,4 +36,4 @@ class AlertController {
   }
 }
 
-export default new AlertController()
+export default Container.get(AlertController)
