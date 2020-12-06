@@ -1,12 +1,12 @@
 import { ITransaction, Status } from '@interfaces/transaction/transaction.interface'
 import { Conditions, IAlert } from '@interfaces/alert/alert.interface'
-import { AlertsBuilder } from '@builders/alerts/alerts.builder'
-import { IAlerts } from '@interfaces/alerts/alerts.interface'
+import { NotificationBuilder } from '@builders/notification/notification.builder'
+import { INotification } from '@interfaces/notification/notification.interface'
 
+import Notification from '@models/notification/notification'
 import Transaction from '@models/transaction/transaction'
-import Alerts from '@models/alerts/Alerts'
-import Alert from '@models/alert/alert'
 import Container, { Service } from 'typedi'
+import Alert from '@models/alert/alert'
 
 @Service()
 class AlertService {
@@ -37,8 +37,8 @@ class AlertService {
     await Transaction.findByIdAndUpdate(filter, update)
   }
 
-  async create (alert: IAlert, transaction: ITransaction): Promise<IAlerts> {
-    return await Alerts.create(new AlertsBuilder()
+  async create (alert: IAlert, transaction: ITransaction): Promise<INotification> {
+    return await Notification.create(new NotificationBuilder()
       .name(alert.name)
       .target(alert.target)
       .amount(transaction.amount)

@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
-import Alerts from '@models/alerts/Alerts'
+import Notification from '@models/notification/notification'
 
 class AlertController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
-    const alerts = await Alerts.find()
+    const notifications = await Notification.find()
 
-    return res.json(alerts)
+    return res.json(notifications)
   }
 }
 

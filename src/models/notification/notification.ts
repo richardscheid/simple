@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
-import { IAlerts } from '@interfaces/alerts/alerts.interface'
+import { INotification } from '@interfaces/notification/notification.interface'
 
-const AlertsSchema = new Schema({
+const NotificationSchema = new Schema({
   name: { type: String, required: true },
   target: { type: Number, required: true },
   amount: { type: Number, required: true },
@@ -21,4 +21,4 @@ const AlertsSchema = new Schema({
   timestamps: true
 })
 
-export default model<IAlerts>('Alerts', AlertsSchema, 'alerts')
+export default model<INotification>('Notification', NotificationSchema, 'notifications')
