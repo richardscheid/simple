@@ -4,7 +4,9 @@ import { Router } from 'express'
 
 import TransactionController from '@controllers/transaction/transaction.controller'
 import AuthController from '@controllers/auth/auth.controller'
+import Container, { Service } from 'typedi'
 
+@Service()
 class TransactionRoutes {
 
   public routes = Router();
@@ -49,4 +51,4 @@ class TransactionRoutes {
   }
 }
 
-export default new TransactionRoutes().routes
+export default Container.get(TransactionRoutes).routes

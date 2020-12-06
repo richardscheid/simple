@@ -4,7 +4,9 @@ import { Router } from 'express'
 
 import AlertController from '@controllers/alert/alert.controller'
 import AuthController from '@controllers/auth/auth.controller'
+import Container, { Service } from 'typedi'
 
+@Service()
 class AlertRoutes {
 
   public routes = Router();
@@ -32,4 +34,4 @@ class AlertRoutes {
   }
 }
 
-export default new AlertRoutes().routes
+export default Container.get(AlertRoutes).routes

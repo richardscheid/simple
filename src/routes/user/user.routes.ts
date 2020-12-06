@@ -4,7 +4,9 @@ import asyncHandler from 'express-async-handler'
 
 import AuthController from '@controllers/auth/auth.controller'
 import UserController from '@controllers/user/user.controller'
+import Container, { Service } from 'typedi'
 
+@Service()
 class UserRoutes {
 
   public routes = Router()
@@ -43,4 +45,4 @@ class UserRoutes {
   }
 }
 
-export default new UserRoutes().routes
+export default Container.get(UserRoutes).routes

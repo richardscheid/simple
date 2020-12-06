@@ -1,7 +1,9 @@
 import { Router } from 'express'
 
 import AuthController from '@controllers/auth/auth.controller'
+import Container, { Service } from 'typedi'
 
+@Service()
 class AuthRoutes {
 
   public routes = Router()
@@ -17,4 +19,4 @@ class AuthRoutes {
   }
 }
 
-export default new AuthRoutes().routes
+export default Container.get(AuthRoutes).routes

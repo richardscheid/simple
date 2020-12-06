@@ -3,7 +3,9 @@ import { Router } from 'express'
 
 import NotificationController from '@controllers/notification/notification.controller'
 import AuthController from '@controllers/auth/auth.controller'
+import Container, { Service } from 'typedi'
 
+@Service()
 class NotificationRoutes {
 
   public routes = Router()
@@ -17,4 +19,4 @@ class NotificationRoutes {
   }
 }
 
-export default new NotificationRoutes().routes
+export default Container.get(NotificationRoutes).routes

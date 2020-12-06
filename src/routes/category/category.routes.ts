@@ -4,7 +4,9 @@ import { Router } from 'express'
 
 import CategoryController from '@controllers/category/category.controller'
 import AuthController from '@controllers/auth/auth.controller'
+import Container, { Service } from 'typedi'
 
+@Service()
 class CategoryRoutes {
 
   public routes = Router()
@@ -36,4 +38,4 @@ class CategoryRoutes {
   }
 }
 
-export default new CategoryRoutes().routes
+export default Container.get(CategoryRoutes).routes
