@@ -1,13 +1,15 @@
+import NotificationGateway from '@gateways/notification/notification.gateway'
 import { Request, Response } from 'express'
-import Notification from '@models/notification/notification'
+import Container, { Service } from 'typedi'
 
-class AlertController {
+@Service()
+class NotificationController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
-    const notifications = await Notification.find()
+    const notifications = await NotificationGateway.findAll()
 
     return res.json(notifications)
   }
 }
 
-export default new AlertController()
+export default Container.get(NotificationController)

@@ -3,8 +3,8 @@ import { Conditions, IAlert } from '@interfaces/alert/alert.interface'
 import { NotificationBuilder } from '@builders/notification/notification.builder'
 import { INotification } from '@interfaces/notification/notification.interface'
 
-import Notification from '@models/notification/notification'
-import Transaction from '@models/transaction/transaction'
+import NotificationGateway from '@gateways/notification/notification.gateway'
+import TransactionGateway from '@gateways/transaction/transaction.gateway'
 import Container, { Service } from 'typedi'
 import Alert from '@models/alert/alert'
 
@@ -12,12 +12,12 @@ import Alert from '@models/alert/alert'
 class NotificationService {
 
   async process (transaction: ITransaction): Promise<void> {
-    const notifications = await Alert.find().populate('category')
+    const alerts = await Alert.find().populate('category')
 
     const amount = transaction.amount
     const notifyId : string[] = []
 
-    for (const notify of notifications) {
+    for (const notify of alerts) {
       const onAlert: boolean = this.verify(amount, notify.target, notify.condition)
 
       if (onAlert) {
@@ -34,11 +34,11 @@ class NotificationService {
     const filter = <ITransaction>{ _id: transaction._id }
     const update = <ITransaction>{ status: Status.Onalert }
 
-    await Transaction.findByIdAndUpdate(filter, update)
+    await TransactionGateway.findByIdAndUpdate(filter, update)
   }
 
   async create (alert: IAlert, transaction: ITransaction): Promise<INotification> {
-    return await Notification.create(new NotificationBuilder()
+    return await NotificationGateway.create(new NotificationBuilder()
       .name(alert.name)
       .target(alert.target)
       .amount(transaction.amount)
