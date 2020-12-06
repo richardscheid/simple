@@ -9,25 +9,25 @@ import Container, { Service } from 'typedi'
 import Alert from '@models/alert/alert'
 
 @Service()
-class AlertService {
+class NotificationService {
 
   async process (transaction: ITransaction): Promise<void> {
-    const alerts = await Alert.find().populate('category')
+    const notifications = await Alert.find().populate('category')
 
     const amount = transaction.amount
-    const alertsId : string[] = []
+    const notifyId : string[] = []
 
-    for (const alert of alerts) {
-      const onAlert: boolean = this.verify(amount, alert.target, alert.condition)
+    for (const notify of notifications) {
+      const onAlert: boolean = this.verify(amount, notify.target, notify.condition)
 
       if (onAlert) {
-        const result = this.create(alert, transaction)
+        const result = this.create(notify, transaction)
 
-        if (result) alertsId.push((await result)._id)
+        if (result) notifyId.push((await result)._id)
       }
     }
 
-    if (alertsId) this.update(transaction)
+    if (notifyId) this.update(transaction)
   }
 
   async update (transaction: ITransaction): Promise<void> {
@@ -72,4 +72,4 @@ class AlertService {
   }
 }
 
-export default Container.get(AlertService)
+export default Container.get(NotificationService)

@@ -3,44 +3,44 @@ import { INotification } from '@interfaces/notification/notification.interface'
 import { ITransaction } from '@interfaces/transaction/transaction.interface'
 
 export class NotificationBuilder {
-  private readonly _alerts: INotification = {} as INotification;
+  private readonly _notifications: INotification = {} as INotification;
 
   name (name: string): NotificationBuilder {
-    this._alerts.name = name
+    this._notifications.name = name
     return this
   }
 
   target (target: number): NotificationBuilder {
-    this._alerts.target = target
+    this._notifications.target = target
     return this
   }
 
   amount (amount: number): NotificationBuilder {
-    this._alerts.amount = amount
+    this._notifications.amount = amount
     return this
   }
 
   status (status: number): NotificationBuilder {
-    this._alerts.status = status
+    this._notifications.status = status
     return this
   }
 
   condition (condition: number): NotificationBuilder {
-    this._alerts.condition = condition
+    this._notifications.condition = condition
     return this
   }
 
   alert (alert: IAlert): NotificationBuilder {
-    this._alerts.alert = alert
+    this._notifications.alert = alert
     return this
   }
 
   transaction (transaction: ITransaction): NotificationBuilder {
-    this._alerts.transaction = transaction
+    this._notifications.transaction = transaction
     return this
   }
 
   build (): INotification {
-    return this._alerts
+    return this._notifications
   }
 }
