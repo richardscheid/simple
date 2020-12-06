@@ -14,6 +14,10 @@ class TransactionGateway implements ITransactionGateway {
     return await Transaction.findById(<ITransaction>{ _id })
   }
 
+  async findByIdAndUpdate (filter: ITransaction, update: ITransaction) {
+    return await Transaction.findByIdAndUpdate(filter, update)
+  }
+
   async create (transaction: ITransaction): Promise<ITransaction> {
     return await Transaction.create(transaction)
   }
