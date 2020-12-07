@@ -15,9 +15,11 @@ class TransactionService {
   }
 
   async create (transaction: ITransaction) {
-    NotificationService.process(transaction)
+    const response = await TransactionGateway.create(transaction)
 
-    return await TransactionGateway.create(transaction)
+    await NotificationService.process(response)
+
+    return response
   }
 }
 
