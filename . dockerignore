@@ -1,0 +1,9 @@
+#Folders
+node_modules
+dist
+logs
+
+#Files
+npm-debug.log
+debug.log
+.vscode
