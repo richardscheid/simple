@@ -8,6 +8,7 @@ export interface ITransaction extends Document {
   status: number,
   total: number,
   coo: number,
+  date: Date,
   texts: [string]
   items: [Items],
   user: IUser,

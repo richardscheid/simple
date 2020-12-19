@@ -38,6 +38,7 @@ class TransactionRoutes {
           image: Joi.string(),
           total: Joi.number().positive().required(),
           coo: Joi.number().integer().required(),
+          date: Joi.date().required(),
           texts: Joi.array().min(1).items(Joi.string()).required(),
           items: Joi.array().min(1).items(
             Joi.object({

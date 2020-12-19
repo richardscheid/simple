@@ -30,6 +30,11 @@ export class TransactionBuilder {
     return this
   }
 
+  date (date: Date): TransactionBuilder {
+    this._transaction.date = date
+    return this
+  }
+
   texts (texts: [string]): TransactionBuilder {
     this._transaction.texts = texts
     return this

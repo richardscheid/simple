@@ -7,6 +7,7 @@ const TransactionSchema = new Schema({
   status: { type: Number, required: true },
   total: { type: Number, required: true },
   coo: { type: Number, required: true },
+  date: { type: Date, required: true },
   texts: [{
     type: String,
     required: true
