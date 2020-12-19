@@ -28,7 +28,8 @@ class AuthController {
 
           return res.json({
             token,
-            auth: true
+            auth: true,
+            type: 'Bearer'
           })
         })
       } catch (err) {
