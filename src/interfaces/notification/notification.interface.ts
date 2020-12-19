@@ -6,7 +6,7 @@ export interface INotification extends Document {
   _id: string,
   name: string,
   target: number,
-  amount: number,
+  value: number,
   status: number,
   condition: number,
   alert: IAlert,

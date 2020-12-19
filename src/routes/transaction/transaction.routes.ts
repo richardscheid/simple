@@ -31,17 +31,19 @@ class TransactionRoutes {
       celebrate({
         [Segments.HEADERS]: Joi.object({
           user_id: Joi.string().required(),
-          category_name: Joi.string().required()
+          category_name: Joi.string()
         }).unknown(),
         [Segments.BODY]: Joi.object().keys({
-          place: Joi.string().required(),
-          order: Joi.number().integer().required(),
-          amount: Joi.number().positive().required(),
-          company: Joi.string().required(),
+          identifier: Joi.string().required(),
+          image: Joi.string(),
+          total: Joi.number().positive().required(),
+          coo: Joi.number().integer().required(),
+          texts: Joi.array().min(1).items(Joi.string()).required(),
           items: Joi.array().min(1).items(
             Joi.object({
               name: Joi.string().required(),
-              price: Joi.number().positive().required()
+              value: Joi.number().positive().required(),
+              unit: Joi.number().positive().required()
             })
           ).required()
         })

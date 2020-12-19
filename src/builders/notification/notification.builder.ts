@@ -15,8 +15,8 @@ export class NotificationBuilder {
     return this
   }
 
-  amount (amount: number): NotificationBuilder {
-    this._notifications.amount = amount
+  value (value: number): NotificationBuilder {
+    this._notifications.value = value
     return this
   }
 

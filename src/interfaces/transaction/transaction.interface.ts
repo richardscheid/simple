@@ -3,11 +3,12 @@ import { IUser } from '../user/user.interface'
 import { Document } from 'mongoose'
 
 export interface ITransaction extends Document {
-  place: string,
-  order: string,
-  amount: number,
+  identifier: string
+  image: string,
   status: number,
-  company: string
+  total: number,
+  coo: number,
+  texts: [string]
   items: [Items],
   user: IUser,
   category: ICategory
@@ -15,7 +16,8 @@ export interface ITransaction extends Document {
 
 export interface Items {
   name: string,
-  price: number
+  value: number,
+  unit: number
 }
 
 export enum Status {

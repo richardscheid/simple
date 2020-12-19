@@ -14,11 +14,11 @@ class NotificationService {
   async process (transaction: ITransaction): Promise<void> {
     const alerts = await Alert.find().populate('category')
 
-    const amount = transaction.amount
+    const value = transaction.total
     const notifyId : string[] = []
 
     for (const notify of alerts) {
-      const onAlert: boolean = this.verify(amount, notify.target, notify.condition)
+      const onAlert: boolean = this.verify(value, notify.target, notify.condition)
 
       if (onAlert) {
         const result = this.create(notify, transaction)
@@ -41,7 +41,7 @@ class NotificationService {
     return await NotificationGateway.create(new NotificationBuilder()
       .name(alert.name)
       .target(alert.target)
-      .amount(transaction.amount)
+      .value(transaction.total)
       .condition(alert.condition)
       .status(Status.Onalert)
       .alert(alert)
@@ -50,22 +50,22 @@ class NotificationService {
     )
   }
 
-  public verify (amount: number, target: number, condition: number): boolean {
+  public verify (value: number, target: number, condition: number): boolean {
     switch (condition) {
       case Conditions.GreaterThan:
-        return amount > target
+        return value > target
 
       case Conditions.GreaterThanEquals:
-        return amount >= target
+        return value >= target
 
       case Conditions.EqualsTo:
-        return amount === target
+        return value === target
 
       case Conditions.LessThanEquals:
-        return amount <= target
+        return value <= target
 
       case Conditions.LessThan:
-        return amount < target
+        return value < target
     }
 
     return false

@@ -2,14 +2,19 @@ import { Schema, model } from 'mongoose'
 import { ITransaction } from '@interfaces/transaction/transaction.interface'
 
 const TransactionSchema = new Schema({
-  place: { type: String, required: true },
-  order: { type: Number, required: true },
-  amount: { type: Number, required: true },
+  identifier: { type: String, required: true },
+  image: { type: String, required: false },
   status: { type: Number, required: true },
-  company: { type: String, required: true },
+  total: { type: Number, required: true },
+  coo: { type: Number, required: true },
+  texts: [{
+    type: String,
+    required: true
+  }],
   items: [{
     name: { type: String },
-    price: { type: Number }
+    value: { type: Number },
+    unit: { type: Number }
   }],
   user: {
     type: Schema.Types.ObjectId,
@@ -19,7 +24,7 @@ const TransactionSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
-    required: true
+    required: false
   }
 }, {
   timestamps: true

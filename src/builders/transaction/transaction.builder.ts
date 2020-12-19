@@ -5,33 +5,38 @@ import { ITransaction, Items } from '@interfaces/transaction/transaction.interfa
 export class TransactionBuilder {
   private readonly _transaction: ITransaction = {} as ITransaction;
 
-  place (place: string): TransactionBuilder {
-    this._transaction.place = place
+  identifier (identifier: string): TransactionBuilder {
+    this._transaction.identifier = identifier
     return this
   }
 
-  order (order: string): TransactionBuilder {
-    this._transaction.order = order
-    return this
-  }
-
-  items (items: [Items]): TransactionBuilder {
-    this._transaction.items = items
-    return this
-  }
-
-  amount (amount: number): TransactionBuilder {
-    this._transaction.amount = amount
-    return this
-  }
-
-  company (company: string): TransactionBuilder {
-    this._transaction.company = company
+  image (image: string): TransactionBuilder {
+    this._transaction.image = image
     return this
   }
 
   status (status: number): TransactionBuilder {
     this._transaction.status = status
+    return this
+  }
+
+  total (total: number): TransactionBuilder {
+    this._transaction.total = total
+    return this
+  }
+
+  coo (coo: number): TransactionBuilder {
+    this._transaction.coo = coo
+    return this
+  }
+
+  texts (texts: [string]): TransactionBuilder {
+    this._transaction.texts = texts
+    return this
+  }
+
+  items (items: [Items]): TransactionBuilder {
+    this._transaction.items = items
     return this
   }
 

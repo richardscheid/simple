@@ -4,7 +4,7 @@ import { INotification } from '@interfaces/notification/notification.interface'
 const NotificationSchema = new Schema({
   name: { type: String, required: true },
   target: { type: Number, required: true },
-  amount: { type: Number, required: true },
+  value: { type: Number, required: true },
   status: { type: Number, required: true },
   condition: { type: Number, required: true },
   alert: {

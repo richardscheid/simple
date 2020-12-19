@@ -30,7 +30,7 @@ class TransactionController {
   }
 
   async create (req: Request, res: Response): Promise<Response> {
-    const { amount, place, order, company, items } = req.body
+    const { total, identifier, coo, image, texts, items } = req.body
     const { user_id, category_name } = req.headers
 
     const user = await UserService.findById(user_id as string)
@@ -41,14 +41,15 @@ class TransactionController {
 
     const transaction = await TransactionService.create(
       new TransactionBuilder()
-        .place(place)
-        .items(items)
-        .order(order)
-        .amount(amount)
-        .company(company)
-        .user(user)
-        .category(category)
         .status(Status.Unverified)
+        .identifier(identifier)
+        .image(image)
+        .total(total)
+        .coo(coo)
+        .texts(texts)
+        .items(items)
+        .category(category)
+        .user(user)
         .build()
     )
 
