@@ -1,7 +1,8 @@
-import { ITransactionGateway } from './transaction.gateway.interface'
 import { ITransaction } from '@interfaces/transaction/transaction.interface'
+import { ITransactionGateway } from './transaction.gateway.interface'
 import Transaction from '@models/transaction/transaction'
 import Container, { Service } from 'typedi'
+import { IUser } from '../../interfaces/user/user.interface'
 
 @Service()
 class TransactionGateway implements ITransactionGateway {
@@ -12,6 +13,11 @@ class TransactionGateway implements ITransactionGateway {
 
   async findById (_id: string): Promise<ITransaction | null> {
     return await Transaction.findById(<ITransaction>{ _id })
+  }
+
+  async findTransactionsByUserId (_id: string): Promise<ITransaction[] | null> {
+    const filter = <ITransaction>{ user: <IUser>{ _id } }
+    return await Transaction.find(filter)
   }
 
   async findByIdAndUpdate (filter: ITransaction, update: ITransaction) {

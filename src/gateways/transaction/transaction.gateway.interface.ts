@@ -6,6 +6,8 @@ export interface ITransactionGateway {
 
   findById (_id: string): Promise<ITransaction | null>
 
+  findTransactionsByUserId (_id: string): Promise<ITransaction[] | null>
+
   findByIdAndUpdate (filter: ITransaction, update: ITransaction)
 
   create (transaction: ITransaction): Promise<ITransaction>

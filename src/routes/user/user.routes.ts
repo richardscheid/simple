@@ -18,6 +18,15 @@ class UserRoutes {
   router (): void {
     this.routes.get('/', AuthController.authenticate, asyncHandler(UserController.findAll))
 
+    this.routes.get('/:id/transactions',
+      celebrate({
+        [Segments.PARAMS]: Joi.object().keys({
+          id: Joi.string().required()
+        })
+      }),
+      AuthController.authenticate,
+      asyncHandler(UserController.findTransactions))
+
     this.routes.get('/:id/details',
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
