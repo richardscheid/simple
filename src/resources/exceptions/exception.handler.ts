@@ -9,11 +9,11 @@ class ExceptionHandler {
   handle (err: BaseException, req: Request, res: Response, next: NextFunction): void {
     logger.error('Error: ', err)
 
-    const statusCode = err.statusCode || HttpStatusCode.INTERNAL_SERVER
+    const status = err.statusCode || HttpStatusCode.INTERNAL_SERVER
     const error = err.error || HttpStatus.error(HttpStatusCode.INTERNAL_SERVER)
-    const message = (statusCode === HttpStatusCode.INTERNAL_SERVER) ? i18next.t('error.internal') : err.message
+    const message = (status === HttpStatusCode.INTERNAL_SERVER) ? i18next.t('error.internal') : err.message
 
-    res.status(statusCode).json({ statusCode, error, message })
+    res.status(status).json({ status, error, message })
   }
 }
 
