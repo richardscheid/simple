@@ -9,7 +9,7 @@ import Container, { Service } from 'typedi'
 @Service()
 class TransactionRoutes {
 
-  public routes = Router();
+  public routes = Router()
 
   constructor () {
     this.router()
