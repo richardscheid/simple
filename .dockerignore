@@ -2,8 +2,9 @@
 node_modules
 dist
 logs
+uploads
 
 #Files
-npm-debug.log
-debug.log
+.env
 .vscode
+debug.log

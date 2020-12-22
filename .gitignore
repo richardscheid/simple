@@ -1,9 +1,10 @@
 #Folders
-node_modules/
-dist/
-logs/
+node_modules
+dist
+logs
+uploads
 
 #Files
 .env
-.vscode/
+.vscode
 debug.log
