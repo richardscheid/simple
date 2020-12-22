@@ -31,4 +31,8 @@ const TransactionSchema = new Schema({
   timestamps: true
 })
 
+TransactionSchema.virtual('image_url').get(function () {
+  return `${process.env.URL}/uploads/${this.image}`
+})
+
 export default model<ITransaction>('Transaction', TransactionSchema)

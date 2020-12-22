@@ -30,8 +30,9 @@ class TransactionController {
   }
 
   async create (req: Request, res: Response): Promise<Response> {
-    const { total, identifier, coo, image, texts, items, date } = req.body
+    const { total, identifier, coo, texts, items, date } = req.body
     const { user_id, category_name } = req.headers
+    const { filename } = req.file
 
     const user = await UserService.findById(user_id as string)
     if (!user) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.user.notfound'))
@@ -43,7 +44,7 @@ class TransactionController {
       new TransactionBuilder()
         .status(Status.Unverified)
         .identifier(identifier)
-        .image(image)
+        .image(filename)
         .total(total)
         .coo(coo)
         .date(date)
