@@ -5,14 +5,16 @@ dotenv.config()
 
 export const ENVIRONMENT = process.env.NODE_ENV
 
-const prod : boolean = ENVIRONMENT === 'PROD'
+const PROD : boolean = ENVIRONMENT === 'PROD'
 
-const URI = prod ? process.env.DB_URI : process.env.DB_URI_LOCAL
+const URI = PROD ? process.env.DB_URI : process.env.DB_URI_LOCAL
 
 const SECRET = process.env.JWT_SECRET
 
+const PORT = process.env.PORT
+
 if (!URI) {
-  if (prod) {
+  if (PROD) {
     logger.error('No mongo connection string. Set DB_URI environment variable.')
   } else {
     logger.error('No mongo connection string. Set DB_URI_LOCAL environment variable.')
@@ -25,5 +27,11 @@ if (!SECRET) {
   process.exit(1)
 }
 
+if (!PORT) {
+  logger.error('No port found. Set PORT environment variable.')
+  process.exit(1)
+}
+
 export const MONGODB_URI : string = URI
 export const JWT_SECRET : string = SECRET
+export const URL = PROD ? process.env.URL : `http://localhost:${PORT}`
