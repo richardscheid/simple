@@ -1,6 +1,6 @@
 import { ITransaction } from '@interfaces/transaction/transaction.interface'
-import TransactionGateway from '@gateways/transaction/transaction.gateway'
 import NotificationService from '@services/notification/notification.service'
+import TransactionGateway from '@gateways/transaction/transaction.gateway'
 import Container, { Service } from 'typedi'
 import multer from 'multer'
 
