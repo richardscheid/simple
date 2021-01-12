@@ -1,10 +1,11 @@
-import asyncHandler from 'express-async-handler'
 import { celebrate, Segments, Joi } from 'celebrate'
+import asyncHandler from 'express-async-handler'
+import Container, { Service } from 'typedi'
 import { Router } from 'express'
 
 import TransactionController from '@controllers/transaction/transaction.controller'
 import AuthController from '@controllers/auth/auth.controller'
-import Container, { Service } from 'typedi'
+import { upload } from '@resources/uploads/upload'
 
 @Service()
 class TransactionRoutes {
@@ -28,6 +29,7 @@ class TransactionRoutes {
       asyncHandler(TransactionController.findById))
 
     this.routes.post('/',
+      upload.single('image'),
       celebrate({
         [Segments.HEADERS]: Joi.object({
           user_id: Joi.string().required(),
