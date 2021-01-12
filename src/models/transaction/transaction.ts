@@ -32,7 +32,7 @@ const TransactionSchema = new Schema({
 })
 
 TransactionSchema.virtual('image_url').get(function () {
-  return `${process.env.URL}/uploads/${this.image}`
+  return `${process.env.URL}/files/${this.image}`
 })
 
 export default model<ITransaction>('Transaction', TransactionSchema)
