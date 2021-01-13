@@ -4,7 +4,7 @@ import path from 'path'
 
 export const upload = multer({
   storage: multer.diskStorage({
-    destination: path.resolve(__dirname, '..', '..', 'files'),
+    destination: path.resolve(__dirname, '..', '..', '..', 'files'),
     filename (req, file, callback) {
       const ext = path.extname(file.originalname)
       const name = uuidv1()
