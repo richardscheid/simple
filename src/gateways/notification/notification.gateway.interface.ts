@@ -5,4 +5,7 @@ export interface INotificationGateway {
   findAll (): Promise<INotification[]>
 
   create (notification: INotification): Promise<INotification>
+
+  getNotificationById (_id: string): Promise<INotification | null>
+
 }
