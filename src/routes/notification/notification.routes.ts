@@ -19,12 +19,12 @@ class NotificationRoutes {
     this.routes.get('/', AuthController.authenticate, asyncHandler(NotificationController.findAll))
 
     this.routes.get('/:userid/details',
+      AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
           id: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(NotificationController.findById))
   }
 }
