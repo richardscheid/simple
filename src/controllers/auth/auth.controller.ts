@@ -23,13 +23,14 @@ class AuthController {
         req.logIn(user, { session: false }, (err) => {
           if (err) return next(err)
 
-          const payload = { sub: user.email }
+          const payload = { email: user.email }
           const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' })
 
           return res.json({
             token,
             auth: true,
-            type: 'Bearer'
+            type: 'Bearer',
+            user: { id: user._id, name: user.username, email: user.email }
           })
         })
       } catch (err) {
