@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler'
+import { celebrate, Segments, Joi } from 'celebrate'
 import { Router } from 'express'
 
 import NotificationController from '@controllers/notification/notification.controller'
@@ -16,6 +17,15 @@ class NotificationRoutes {
 
   router (): void {
     this.routes.get('/', AuthController.authenticate, asyncHandler(NotificationController.findAll))
+
+    this.routes.get('/:userid/details',
+      celebrate({
+        [Segments.PARAMS]: Joi.object().keys({
+          id: Joi.string().required()
+        })
+      }),
+      AuthController.authenticate,
+      asyncHandler(NotificationController.findById))
   }
 }
 
