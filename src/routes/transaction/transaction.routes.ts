@@ -29,6 +29,7 @@ class TransactionRoutes {
       asyncHandler(TransactionController.findById))
 
     this.routes.post('/',
+      AuthController.authenticate,
       upload.single('image'),
       celebrate({
         [Segments.HEADERS]: Joi.object({
@@ -51,7 +52,6 @@ class TransactionRoutes {
           ).required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(TransactionController.create))
   }
 }
