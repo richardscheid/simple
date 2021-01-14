@@ -7,7 +7,7 @@ import Notification from '@models/notification/notification'
 class NotificationGateway implements INotificationGateway {
 
   async findAll (): Promise<INotification[]> {
-    return await Notification.find()
+    return await Notification.find().populate('transaction')
   }
 
   async create (notification: INotification): Promise<INotification> {
@@ -15,7 +15,7 @@ class NotificationGateway implements INotificationGateway {
   }
 
   async findById (_id: string): Promise<INotification | null> {
-    return await Notification.findById(_id)
+    return await Notification.findById(_id).populate('transaction')
   }
 }
 
