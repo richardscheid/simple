@@ -23,7 +23,7 @@ class AuthController {
         req.logIn(user, { session: false }, (err) => {
           if (err) return next(err)
 
-          const payload = { email: user.email }
+          const payload = { sub: user.email }
           const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' })
 
           return res.json({
