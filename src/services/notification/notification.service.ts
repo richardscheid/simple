@@ -11,6 +11,10 @@ import Alert from '@models/alert/alert'
 @Service()
 class NotificationService {
 
+  async findAll (): Promise<INotification[]> {
+    return await NotificationGateway.findAll()
+  }
+
   async findById (_id: string): Promise<INotification | null> {
     return await NotificationGateway.findById(_id)
   }

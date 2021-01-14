@@ -1,4 +1,3 @@
-import NotificationGateway from '@gateways/notification/notification.gateway'
 import NotificationService from '@services/notification/notification.service'
 import { Request, Response } from 'express'
 import Container, { Service } from 'typedi'
@@ -7,7 +6,7 @@ import Container, { Service } from 'typedi'
 class NotificationController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
-    const notifications = await NotificationGateway.findAll()
+    const notifications = await NotificationService.findAll()
 
     return res.json(notifications)
   }
