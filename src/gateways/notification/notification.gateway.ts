@@ -14,7 +14,7 @@ class NotificationGateway implements INotificationGateway {
     return await Notification.create(notification)
   }
 
-  async getNotificationById (_id: string): Promise<INotification | null> {
+  async findById (_id: string): Promise<INotification | null> {
     return await Notification.findById(_id)
   }
 }

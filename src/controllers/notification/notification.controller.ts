@@ -15,7 +15,7 @@ class NotificationController {
   async findById (req: Request, res: Response): Promise<Response> {
     const { id } = req.params
 
-    const notifications = await NotificationService.getNotificationById(id)
+    const notifications = await NotificationService.findById(id)
 
     return res.json(notifications)
   }
