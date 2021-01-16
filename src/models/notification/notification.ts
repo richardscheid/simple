@@ -16,6 +16,11 @@ const NotificationSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Transaction',
     required: true
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, {
   timestamps: true
