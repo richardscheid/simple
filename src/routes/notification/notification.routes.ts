@@ -25,7 +25,7 @@ class NotificationRoutes {
           userid: Joi.string().required()
         })
       }),
-      asyncHandler(NotificationController.findById))
+      asyncHandler(NotificationController.findByUserId))
   }
 }
 
