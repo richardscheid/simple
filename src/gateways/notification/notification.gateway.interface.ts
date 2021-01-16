@@ -6,6 +6,6 @@ export interface INotificationGateway {
 
   create (notification: INotification): Promise<INotification>
 
-  findById (_id: string): Promise<INotification | null>
+  findById (userid: string): Promise<INotification[]>
 
 }
