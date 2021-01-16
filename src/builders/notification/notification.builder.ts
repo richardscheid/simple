@@ -1,6 +1,7 @@
-import { IAlert } from '@interfaces/alert/alert.interface'
 import { INotification } from '@interfaces/notification/notification.interface'
 import { ITransaction } from '@interfaces/transaction/transaction.interface'
+import { IAlert } from '@interfaces/alert/alert.interface'
+import { IUser } from '@interfaces/user/user.interface'
 
 export class NotificationBuilder {
   private readonly _notifications: INotification = {} as INotification;
@@ -37,6 +38,11 @@ export class NotificationBuilder {
 
   transaction (transaction: ITransaction): NotificationBuilder {
     this._notifications.transaction = transaction
+    return this
+  }
+
+  user (user: IUser): NotificationBuilder {
+    this._notifications.user = user
     return this
   }
 
