@@ -5,7 +5,7 @@ import { IUser } from '@interfaces/user/user.interface'
 const UserSchema = new Schema({
   email: { type: String, required: true, unique: true, index: true, lowercase: true },
   username: { type: String, required: true, index: true },
-  password: { type: String },
+  password: { type: String, required: true, minlength: 6, maxlength: 128 },
   document: { type: String },
   identifier: { type: String },
   agency: { type: String },
@@ -27,7 +27,8 @@ UserSchema.pre('save', function save (next) {
 })
 
 UserSchema.methods.validatePassword = function (candidatePassword: string) : boolean {
-  return bcrypt.compareSync(candidatePassword, this.password)
+  const user = this as IUser
+  return bcrypt.compareSync(candidatePassword, user.password)
 }
 
 UserSchema.set('toJSON', {
