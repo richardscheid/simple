@@ -15,7 +15,7 @@ class NotificationGateway implements INotificationGateway {
     return await Notification.create(notification)
   }
 
-  async findById (userid: string): Promise<INotification[]> {
+  async findByUserId (userid: string): Promise<INotification[]> {
     const filter = <IUser>{ _id: userid }
     return await Notification.find({ user: filter }).populate('transaction')
   }
