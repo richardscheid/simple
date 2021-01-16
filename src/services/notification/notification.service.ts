@@ -15,8 +15,8 @@ class NotificationService {
     return await NotificationGateway.findAll()
   }
 
-  async findById (_id: string): Promise<INotification | null> {
-    return await NotificationGateway.findById(_id)
+  async findById (userid: string): Promise<INotification[]> {
+    return await NotificationGateway.findById(userid)
   }
 
   async process (transaction: ITransaction): Promise<void> {
