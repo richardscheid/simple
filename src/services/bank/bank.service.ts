@@ -8,11 +8,11 @@ class BankService {
   }
 
   async findById (_id: string) {
-    return await Bank.findOne(<IBank>{ _id })
+    return await Bank.findOne({ _id })
   }
 
   async findByCode (code: string) {
-    return await Bank.findOne(<IBank>{ code })
+    return await Bank.findOne({ code })
   }
 
   create (bank: IBank): Promise<IBank> {
