@@ -16,7 +16,8 @@ class UserGateway implements IUserGateway {
   }
 
   async getUserByEmail (email: string, callback?): Promise<IUser | null> {
-    return await User.findOne(<IUser>{ email: email.toLowerCase() }, callback)
+    const filter = { email: email.toLowerCase() }
+    return await User.findOne(filter, callback)
   }
 
   async create (user: IUser): Promise<IUser> {

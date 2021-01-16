@@ -11,11 +11,11 @@ class CategoryGateway implements ICategoryGateway {
   }
 
   async findById (_id: string): Promise<ICategory | null> {
-    return await Category.findById(<ICategory>{ _id })
+    return await Category.findById({ _id })
   }
 
   async findOne (name: string): Promise<ICategory | null> {
-    return await Category.findOne(<ICategory>{ name })
+    return await Category.findOne({ name })
   }
 
   async create (category: ICategory): Promise<ICategory> {
