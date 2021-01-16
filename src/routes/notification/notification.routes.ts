@@ -22,7 +22,7 @@ class NotificationRoutes {
       AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
-          id: Joi.string().required()
+          userid: Joi.string().required()
         })
       }),
       asyncHandler(NotificationController.findById))
