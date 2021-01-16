@@ -52,8 +52,9 @@ class NotificationService {
       .value(transaction.total)
       .condition(alert.condition)
       .status(Status.Onalert)
-      .alert(alert)
       .transaction(transaction)
+      .user(transaction.user)
+      .alert(alert)
       .build()
     )
   }
