@@ -1,4 +1,4 @@
-import { INotification } from '../../interfaces/notification/notification.interface'
+import { INotification } from '@interfaces/notification/notification.interface'
 
 export interface INotificationGateway {
 

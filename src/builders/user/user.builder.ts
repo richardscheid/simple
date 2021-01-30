@@ -1,5 +1,5 @@
 import { IUser } from '@interfaces/user/user.interface'
-import { IBank } from '../../interfaces/bank/bank.interface'
+import { IBank } from '@interfaces/bank/bank.interface'
 
 export class UserBuilder {
 

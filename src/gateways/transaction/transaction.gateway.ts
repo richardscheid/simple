@@ -2,7 +2,7 @@ import { ITransaction } from '@interfaces/transaction/transaction.interface'
 import { ITransactionGateway } from './transaction.gateway.interface'
 import Transaction from '@models/transaction/transaction'
 import Container, { Service } from 'typedi'
-import { IUser } from '../../interfaces/user/user.interface'
+import { IUser } from '@interfaces/user/user.interface'
 
 @Service()
 class TransactionGateway implements ITransactionGateway {

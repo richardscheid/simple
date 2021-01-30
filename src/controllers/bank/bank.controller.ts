@@ -5,8 +5,8 @@ import R from 'ramda'
 
 import { HttpStatusCode } from '@resources/codes/http.statuscode'
 import { Request, Response } from 'express'
-import { IBank } from '../../interfaces/bank/bank.interface'
-import { BankBuilder } from '../../builders/bank/bank.builder'
+import { IBank } from '@interfaces/bank/bank.interface'
+import { BankBuilder } from '@builders/bank/bank.builder'
 
 class BankController {
 
