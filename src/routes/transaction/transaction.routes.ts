@@ -30,7 +30,6 @@ class TransactionRoutes {
 
     this.routes.post('/',
       AuthController.authenticate,
-      upload.single('image'),
       celebrate({
         [Segments.HEADERS]: Joi.object({
           user_id: Joi.string().required(),
@@ -38,7 +37,6 @@ class TransactionRoutes {
         }).unknown(),
         [Segments.BODY]: Joi.object().keys({
           identifier: Joi.string().required(),
-          image: Joi.string(),
           total: Joi.number().positive().required(),
           coo: Joi.number().integer().required(),
           date: Joi.date().required(),
@@ -53,6 +51,16 @@ class TransactionRoutes {
         })
       }),
       asyncHandler(TransactionController.create))
+
+    this.routes.post('/uploads',
+      AuthController.authenticate,
+      upload.single('image'),
+      celebrate({
+        [Segments.BODY]: Joi.object().keys({
+          transaction_id: Joi.string().required()
+        })
+      }),
+      asyncHandler(TransactionController.upload))
   }
 }
 
