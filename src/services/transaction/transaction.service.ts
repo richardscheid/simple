@@ -21,6 +21,11 @@ class TransactionService {
 
     return response
   }
+
+  async upload (filename: string, transaction: ITransaction): Promise<ITransaction> {
+    transaction.image = filename
+    return await TransactionGateway.upload(transaction)
+  }
 }
 
 export default Container.get(TransactionService)
