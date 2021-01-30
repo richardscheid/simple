@@ -25,7 +25,16 @@ class UserRoutes {
         })
       }),
       AuthController.authenticate,
-      asyncHandler(UserController.findTransactions))
+      asyncHandler(UserController.findTransactionByUserId))
+
+    this.routes.get('/:id/notifications',
+      AuthController.authenticate,
+      celebrate({
+        [Segments.PARAMS]: Joi.object().keys({
+          id: Joi.string().required()
+        })
+      }),
+      asyncHandler(UserController.findNotificationByUserId))
 
     this.routes.get('/:id/details',
       celebrate({
