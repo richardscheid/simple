@@ -33,14 +33,22 @@ class UserController {
     return res.json(users)
   }
 
-  async findTransactions (req: Request, res: Response): Promise<Response> {
+  async findTransactionByUserId (req: Request, res: Response): Promise<Response> {
     const { id } = req.params
 
-    const transactions = await UserService.findTransactionsByUserId(id)
+    const transactions = await UserService.findTransactionByUserId(id)
 
     if (!transactions) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.transaction.notfound'))
 
     return res.json(transactions)
+  }
+
+  async findNotificationByUserId (req: Request, res: Response): Promise<Response> {
+    const { id } = req.params
+
+    const notifications = await UserService.findNotificationByUserId(id)
+
+    return res.json(notifications)
   }
 
   async create (req: Request, res: Response): Promise<Response> {

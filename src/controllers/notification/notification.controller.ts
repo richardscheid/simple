@@ -10,14 +10,6 @@ class NotificationController {
 
     return res.json(notifications)
   }
-
-  async findByUserId (req: Request, res: Response): Promise<Response> {
-    const { userid } = req.params
-
-    const notifications = await NotificationService.findByUserId(userid)
-
-    return res.json(notifications)
-  }
 }
 
 export default Container.get(NotificationController)
