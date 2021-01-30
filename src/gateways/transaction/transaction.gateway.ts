@@ -27,6 +27,11 @@ class TransactionGateway implements ITransactionGateway {
   async create (transaction: ITransaction): Promise<ITransaction> {
     return await Transaction.create(transaction)
   }
+
+  async upload (transaction: ITransaction): Promise<ITransaction> {
+    const filter = { _id: transaction._id }
+    return await Transaction.updateOne(filter, transaction)
+  }
 }
 
 export default Container.get(TransactionGateway)
