@@ -16,28 +16,22 @@
     "baseUrl": "src",
     "paths": {
       "@utils/*": [
-        "utils/*"
+        "application/config/utils/*"
       ],
-      "@models/*": [
-        "models/*"
+      "@domain/*": [
+        "domain/*"
       ],
-      "@builders/*": [
-        "builders/*"
+      "@auth/*": [
+        "application/auth/utils/*"
       ],
       "@services/*": [
         "services/*"
       ],
-      "@gateways/*": [
-        "gateways/*"
-      ],
       "@resources/*": [
         "resources/*"
       ],
-      "@interfaces/*": [
-        "interfaces/*"
-      ],
       "@controllers/*": [
-        "controllers/*"
+        "application/controllers/*"
       ]
     }
   }
