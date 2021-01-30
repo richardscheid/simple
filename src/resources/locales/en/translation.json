@@ -27,6 +27,9 @@
     "bank": {
       "notfound": "Bank was not found",
       "alreadyexists": "There is already a bank with this code"
+    },
+    "image": {
+      "required": "Photo file is required"
     }
   }
 }

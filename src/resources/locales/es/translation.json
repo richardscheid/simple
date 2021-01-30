@@ -27,6 +27,9 @@
     "bank": {
       "notfound": "Banco não encontrado",
       "alreadyexists": "Banco informado já existe, tente outro nome"
+    },
+    "image": {
+      "required": "Foto é obrigatório"
     }
   }
 }
