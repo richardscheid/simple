@@ -1,8 +1,8 @@
 import Container, { Service } from 'typedi'
 import { INotification } from '@interfaces/notification/notification.interface'
 import { INotificationGateway } from './notification.gateway.interface'
-import Notification from '@models/notification/notification'
 import { IUser } from '@interfaces/user/user.interface'
+import Notification from '@models/notification/notification'
 
 @Service()
 class NotificationGateway implements INotificationGateway {

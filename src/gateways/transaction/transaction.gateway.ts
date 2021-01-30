@@ -15,7 +15,7 @@ class TransactionGateway implements ITransactionGateway {
     return await Transaction.findById(<ITransaction>{ _id })
   }
 
-  async findTransactionsByUserId (_id: string): Promise<ITransaction[] | null> {
+  async findByUserId (_id: string): Promise<ITransaction[] | null> {
     const filter = <IUser>{ _id }
     return await Transaction.find({ user: filter })
   }
