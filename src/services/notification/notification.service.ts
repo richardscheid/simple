@@ -15,10 +15,6 @@ class NotificationService {
     return await NotificationGateway.findAll()
   }
 
-  async findByUserId (userid: string): Promise<INotification[]> {
-    return await NotificationGateway.findByUserId(userid)
-  }
-
   async process (transaction: ITransaction): Promise<void> {
     const alerts = await Alert.find().populate('category')
 
