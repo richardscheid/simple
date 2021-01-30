@@ -32,7 +32,6 @@ class TransactionController {
   async create (req: Request, res: Response): Promise<Response> {
     const { total, identifier, coo, texts, items, date } = req.body
     const { user_id, category_name } = req.headers
-    const { filename } = req.file || {}
 
     const user = await UserService.findById(user_id as string)
     if (!user) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.user.notfound'))
@@ -44,7 +43,6 @@ class TransactionController {
       new TransactionBuilder()
         .status(Status.Unverified)
         .identifier(identifier)
-        .image(filename)
         .total(total)
         .coo(coo)
         .date(date)
@@ -54,6 +52,23 @@ class TransactionController {
         .user(user)
         .build()
     )
+
+    return res.json(transaction)
+  }
+
+  async upload (req: Request, res: Response): Promise<Response> {
+    const { transaction_id } = req.body
+    const file = req?.file
+
+    if (!file) throw new Exception(HttpStatusCode.BAD_REQUEST, i18next.t('error.image.required'))
+
+    const transaction = await TransactionService.findById(transaction_id)
+
+    if (!transaction) throw new Exception(HttpStatusCode.NOT_FOUND, i18next.t('error.transaction.notfound'))
+
+    const { filename } = file
+
+    await TransactionService.upload(filename, transaction)
 
     return res.json(transaction)
   }
