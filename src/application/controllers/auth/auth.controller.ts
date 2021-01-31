@@ -9,7 +9,7 @@ import i18next from 'i18next'
 import { HttpStatusCode } from '@config/codes/http.statuscode'
 import Exception from '@config/exceptions/exception'
 
-import '../../config/passport'
+import '@resources/auth/passport'
 
 class AuthController {
 
