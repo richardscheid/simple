@@ -1,6 +1,6 @@
-import CategoryService from '@services/category/category.service'
-import { HttpStatusCode } from '@resources/codes/http.statuscode'
-import Exception from '@resources/exceptions/exception'
+import CategoryService from '@domain/category/category.service'
+import { HttpStatusCode } from '@config/codes/http.statuscode'
+import Exception from '@config/exceptions/exception'
 import { Request, Response } from 'express'
 import i18next from 'i18next'
 
