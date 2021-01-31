@@ -13,8 +13,8 @@ import cors from 'cors'
 import path from 'path'
 import { errors } from 'celebrate'
 
-import ExceptionHandler from '@resources/exceptions/exception.handler'
-import { MONGODB_URI } from './utils/secrets'
+import ExceptionHandler from '@config/exceptions/exception.handler'
+import { MONGODB_URI } from '@config/environments/environments'
 import routes from './routes/routes'
 
 class App {
@@ -46,7 +46,7 @@ class App {
       .use(Backend)
       .init({
         backend: {
-          loadPath: path.join(__dirname, '/resources/locales/{{lng}}/{{ns}}.json')
+          loadPath: path.join(__dirname, '/config/locales/{{lng}}/{{ns}}.json')
         },
         lng: 'en',
         fallbackLng: 'en',
