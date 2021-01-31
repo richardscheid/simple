@@ -1,4 +1,4 @@
-import NotificationService from 'domain/notification/notification.service'
+import NotificationService from '@domain/notification/notification.service'
 import { Request, Response } from 'express'
 import Container, { Service } from 'typedi'
 
