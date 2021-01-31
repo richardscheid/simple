@@ -3,18 +3,18 @@ import { ITransaction } from '@domain/transaction/interfaces/transaction.interfa
 import { IUser } from '@domain/user/interfaces/user.interface'
 import NotificationGateway from '@resources/notification/notification.repository.db'
 import TransactionGateway from '@resources/transaction/transaction.repository.db'
-import UserGateway from '@gateways/user/user.gateway'
+import UserRepositoryDb from '@resources/user/user.repository.db'
 import Container, { Service } from 'typedi'
 
 @Service()
 class UserService {
 
   async findAll (): Promise<IUser[]> {
-    return await UserGateway.getUsers()
+    return await UserRepositoryDb.getUsers()
   }
 
   async findById (_id: string): Promise<IUser | null> {
-    return await UserGateway.getUserById(_id)
+    return await UserRepositoryDb.getUserById(_id)
   }
 
   async findTransactionByUserId (_id: string): Promise<ITransaction[] | null> {
@@ -26,11 +26,11 @@ class UserService {
   }
 
   async findOne (email: string, callback?): Promise<IUser | null> {
-    return await UserGateway.getUserByEmail(email, callback)
+    return await UserRepositoryDb.getUserByEmail(email, callback)
   }
 
   async create (user: IUser): Promise<IUser> {
-    return await UserGateway.create(user)
+    return await UserRepositoryDb.create(user)
   }
 }
 
