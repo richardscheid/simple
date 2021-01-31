@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 import { IUser } from '@domain/user/interfaces/user.interface'
-import { JWT_SECRET } from '@utils/secrets'
+import { JWT_SECRET } from '@config/environments/environments'
 
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import i18next from 'i18next'
 
-import { HttpStatusCode } from '@resources/codes/http.statuscode'
-import Exception from '@resources/exceptions/exception'
+import { HttpStatusCode } from '@config/codes/http.statuscode'
+import Exception from '@config/exceptions/exception'
 
 import '../../config/passport'
 

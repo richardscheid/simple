@@ -2,7 +2,7 @@ import passport from 'passport'
 import passportJwt from 'passport-jwt'
 import passportLocal from 'passport-local'
 
-import { JWT_SECRET } from '@resources/utils/secrets'
+import { JWT_SECRET } from '@config/environments/environments'
 import { IUser } from '@domain/user/interfaces/user.interface'
 import UserRepositoryDb from '@resources/user/user.repository.db'
 

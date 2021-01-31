@@ -1,5 +1,5 @@
 import winston from 'winston'
-import { ENVIRONMENT } from './secrets'
+import { ENVIRONMENT } from '@config/environments/environments'
 
 const formatter = winston.format.combine(
   winston.format.colorize(),
