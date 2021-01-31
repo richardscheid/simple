@@ -3,9 +3,9 @@ import { Router } from 'express'
 import NotificationRoutes from './notification/notification.routes'
 import TransactionRoutes from './transaction/transaction.routes'
 import CategoryRoutes from './category/category.routes'
-import AuthRoutes from 'routes/auth/auth.routes'
-import UserRoutes from 'routes/user/user.routes'
 import AlertRoutes from './alert/alert.routes'
+import AuthRoutes from './auth/auth.routes'
+import UserRoutes from './user/user.routes'
 import BankRoutes from './bank/bank.routes'
 
 const routes = Router()
