@@ -1,5 +1,5 @@
 import AlertRepositoryDb from '@resources/alert/alert.repository.db'
-import { IAlert } from 'domain/alert/interfaces/alert.interface'
+import { IAlert } from '@domain/alert/interfaces/alert.interface'
 import Container, { Service } from 'typedi'
 
 @Service()
