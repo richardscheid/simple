@@ -1,9 +1,9 @@
-import Exception from '@resources/exceptions/exception'
+import Exception from '@config/exceptions/exception'
 import BankService from 'domain/bank/bank.service'
 import i18next from 'i18next'
 import R from 'ramda'
 
-import { HttpStatusCode } from '@resources/codes/http.statuscode'
+import { HttpStatusCode } from '@config/codes/http.statuscode'
 import { Request, Response } from 'express'
 import { IBank } from 'domain/bank/interfaces/bank.interface'
 import { BankBuilder } from 'domain/bank/builders/bank.builder'
