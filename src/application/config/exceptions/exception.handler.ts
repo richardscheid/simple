@@ -1,7 +1,7 @@
-import { HttpStatus, HttpStatusCode } from '../codes/http.statuscode'
+import { HttpStatus, HttpStatusCode } from '@config/codes/http.statuscode'
 import { Response, Request, NextFunction } from 'express'
 import BaseException from './exception.base'
-import { logger } from '@utils/logger'
+import { logger } from '@resources/utils/logger'
 import i18next from 'i18next'
 
 class ExceptionHandler {

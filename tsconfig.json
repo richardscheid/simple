@@ -15,17 +15,11 @@
     "experimentalDecorators": true,
     "baseUrl": "src",
     "paths": {
-      "@utils/*": [
-        "application/config/utils/*"
+      "@config/*": [
+        "application/config/*"
       ],
       "@domain/*": [
         "domain/*"
-      ],
-      "@auth/*": [
-        "application/auth/utils/*"
-      ],
-      "@services/*": [
-        "services/*"
       ],
       "@resources/*": [
         "resources/*"
