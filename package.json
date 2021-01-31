@@ -6,8 +6,8 @@
   "author": "richardscheid <rscheid@live.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register src/server.ts",
-    "debug": "ts-node-dev --inspect -r tsconfig-paths/register src/server.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/application/server/server.ts",
+    "debug": "ts-node-dev --inspect -r tsconfig-paths/register src/application/server/server.ts",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
     "lint": "eslint --fix ./src/*"
   },
