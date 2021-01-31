@@ -1,10 +1,10 @@
-import Exception from '@resources/exceptions/exception'
+import Exception from '@config/exceptions/exception'
 import BankService from 'domain/bank/bank.service'
 import i18next from 'i18next'
 
-import { HttpStatusCode } from '@resources/codes/http.statuscode'
+import { HttpStatusCode } from '@config/codes/http.statuscode'
 import { UserBuilder } from 'domain/user/builders/user.builder'
-import UserService from '@services/user/user.service'
+import UserService from '@domain/user/user.service'
 import Container, { Service } from 'typedi'
 import { Request, Response } from 'express'
 
