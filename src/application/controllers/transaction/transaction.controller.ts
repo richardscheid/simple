@@ -1,13 +1,13 @@
 import { TransactionBuilder } from 'domain/transaction/builders/transaction.builder'
 import { Status } from 'domain/transaction/interfaces/transaction.interface'
-import { HttpStatusCode } from '@resources/codes/http.statuscode'
+import { HttpStatusCode } from '@config/codes/http.statuscode'
 import { Request, Response } from 'express'
 import i18next from 'i18next'
 
 import TransactionService from 'domain/transaction/transaction.service'
-import CategoryService from '@services/category/category.service'
-import Exception from '@resources/exceptions/exception'
-import UserService from '@services/user/user.service'
+import CategoryService from '@domain/category/category.service'
+import Exception from '@config/exceptions/exception'
+import UserService from '@domain/user/user.service'
 import Container, { Service } from 'typedi'
 
 @Service()
