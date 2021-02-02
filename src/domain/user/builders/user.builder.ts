@@ -10,8 +10,8 @@ export class UserBuilder {
     return this
   }
 
-  username (username: string): UserBuilder {
-    this._user.username = username
+  name (name: string): UserBuilder {
+    this._user.name = name
     return this
   }
 

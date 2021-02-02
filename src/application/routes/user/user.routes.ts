@@ -52,7 +52,7 @@ class UserRoutes {
         }).unknown(),
         [Segments.BODY]: Joi.object().keys({
           email: Joi.string().required(),
-          username: Joi.string().required(),
+          name: Joi.string().required(),
           password: Joi.string().required(),
           document: Joi.string(),
           identifier: Joi.string(),

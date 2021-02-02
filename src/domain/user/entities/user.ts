@@ -4,7 +4,7 @@ import { IUser } from '@domain/user/interfaces/user.interface'
 
 const UserSchema = new Schema({
   email: { type: String, required: true, unique: true, index: true, lowercase: true },
-  username: { type: String, required: true, index: true },
+  name: { type: String, required: true, index: true },
   password: { type: String, required: true, minlength: 6, maxlength: 128 },
   document: { type: String },
   identifier: { type: String },

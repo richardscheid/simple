@@ -30,7 +30,7 @@ class AuthController {
             token,
             auth: true,
             type: 'Bearer',
-            user: { id: user._id, name: user.username, email: user.email }
+            user: { id: user._id, name: user.name, email: user.email }
           })
         })
       } catch (err) {

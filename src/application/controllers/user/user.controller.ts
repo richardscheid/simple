@@ -52,7 +52,7 @@ class UserController {
   }
 
   async create (req: Request, res: Response): Promise<Response> {
-    const { email, username, password, document, identifier, agency } = req.body
+    const { email, name, password, document, identifier, agency } = req.body
     const { bank_id } = req.headers
 
     const exists = await UserService.findOne(email)
@@ -66,7 +66,7 @@ class UserController {
     const user = await UserService.create(
       new UserBuilder()
         .email(email)
-        .username(username)
+        .name(name)
         .password(password)
         .document(document)
         .identifier(identifier)

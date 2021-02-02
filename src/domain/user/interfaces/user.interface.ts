@@ -3,7 +3,7 @@ import { IBank } from '@domain/bank/interfaces/bank.interface'
 
 export interface IUser extends Document {
   email: string,
-  username: string,
+  name: string,
   password: string,
   document: string,
   identifier: string,
