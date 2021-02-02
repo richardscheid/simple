@@ -19,6 +19,7 @@ class AlertRoutes {
     this.routes.get('/', AuthController.authenticate, asyncHandler(AlertController.findAll))
 
     this.routes.post('/',
+      AuthController.authenticate,
       celebrate({
         [Segments.HEADERS]: Joi.object({
           category_id: Joi.string().required()
@@ -29,7 +30,6 @@ class AlertRoutes {
           condition: Joi.number().integer().min(0).max(4).required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(AlertController.create))
   }
 }
