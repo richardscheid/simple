@@ -19,12 +19,12 @@ class UserRoutes {
     this.routes.get('/', AuthController.authenticate, asyncHandler(UserController.findAll))
 
     this.routes.get('/:id/transactions',
+      AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
           id: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(UserController.findTransactionByUserId))
 
     this.routes.get('/:id/notifications',
@@ -37,12 +37,12 @@ class UserRoutes {
       asyncHandler(UserController.findNotificationByUserId))
 
     this.routes.get('/:id/details',
+      AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
           id: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(UserController.findById))
 
     this.routes.post('/',
