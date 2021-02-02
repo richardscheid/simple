@@ -19,15 +19,16 @@ class BankRoutes {
     this.routes.get('/', AuthController.authenticate, asyncHandler(BankController.findAll))
 
     this.routes.get('/:code/details',
+      AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
           code: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(BankController.findByCode))
 
     this.routes.post('/',
+      AuthController.authenticate,
       celebrate({
         [Segments.BODY]: Joi.array().items({
           code: Joi.string().required(),
@@ -35,7 +36,6 @@ class BankRoutes {
           document: Joi.string()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(BankController.create))
   }
 }
