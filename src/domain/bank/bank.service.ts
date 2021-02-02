@@ -1,6 +1,8 @@
 import { IBank } from '@domain/bank/interfaces/bank.interface'
 import Bank from '@domain/bank/entities/bank'
+import Container, { Service } from 'typedi'
 
+Service()
 class BankService {
 
   async findAll (): Promise<IBank[]> {
@@ -20,4 +22,4 @@ class BankService {
   }
 }
 
-export default new BankService()
+export default Container.get(BankService)
