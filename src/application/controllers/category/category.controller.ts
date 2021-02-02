@@ -4,6 +4,7 @@ import Exception from '@config/exceptions/exception'
 import { Request, Response } from 'express'
 import Container, { Service } from 'typedi'
 import i18next from 'i18next'
+import { CategoryBuilder } from '../../../domain/category/builders/category.builder'
 
 Service()
 class CategoryController {
@@ -31,7 +32,7 @@ class CategoryController {
 
     if (exists) throw new Exception(HttpStatusCode.ALREADY_EXISTS, i18next.t('error.category.alreadyexists'))
 
-    const category = await CategoryService.create(req.body)
+    const category = await CategoryService.create(new CategoryBuilder().name(name).build())
 
     return res.json(category)
   }
