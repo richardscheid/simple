@@ -20,12 +20,12 @@ class TransactionRoutes {
     this.routes.get('/', AuthController.authenticate, asyncHandler(TransactionController.findAll))
 
     this.routes.get('/:id/details',
+      AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
           id: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(TransactionController.findById))
 
     this.routes.post('/',
