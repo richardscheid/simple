@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { IUser } from '@domain/user/interfaces/user.interface'
 import { JWT_SECRET } from '@config/environments/environments'
 
+import Container, { Service } from 'typedi'
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import i18next from 'i18next'
@@ -11,6 +12,7 @@ import Exception from '@config/exceptions/exception'
 
 import '@resources/auth/passport'
 
+Service()
 class AuthController {
 
   async login (req: Request, res: Response, next: NextFunction) {
@@ -71,4 +73,4 @@ class AuthController {
   }
 }
 
-export default new AuthController()
+export default Container.get(AuthController)
