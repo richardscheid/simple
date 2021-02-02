@@ -19,21 +19,21 @@ class CategoryRoutes {
     this.routes.get('/', AuthController.authenticate, asyncHandler(CategoryController.findAll))
 
     this.routes.get('/:id/details',
+      AuthController.authenticate,
       celebrate({
         [Segments.PARAMS]: Joi.object().keys({
           id: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(CategoryController.findById))
 
     this.routes.post('/',
+      AuthController.authenticate,
       celebrate({
         [Segments.BODY]: Joi.object().keys({
           name: Joi.string().required()
         })
       }),
-      AuthController.authenticate,
       asyncHandler(CategoryController.create))
   }
 }
