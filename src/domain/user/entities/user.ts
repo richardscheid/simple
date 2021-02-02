@@ -31,11 +31,4 @@ UserSchema.methods.validatePassword = function (candidatePassword: string) : boo
   return bcrypt.compareSync(candidatePassword, user.password)
 }
 
-UserSchema.set('toJSON', {
-  transform: function (doc, ret) {
-    delete ret.password
-    return ret
-  }
-})
-
 export default model<IUser>('User', UserSchema)

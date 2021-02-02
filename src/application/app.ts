@@ -73,6 +73,14 @@ class App {
       useNewUrlParser: true,
       useCreateIndex: true
     })
+    mongoose.set('toJSON', {
+      virtuals: true,
+      transform: function (doc, ret) {
+        delete ret.password
+        delete ret._id
+        delete ret.__v
+      }
+    })
   }
 
   private routes (): void {
