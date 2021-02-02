@@ -2,8 +2,10 @@ import CategoryService from '@domain/category/category.service'
 import { HttpStatusCode } from '@config/codes/http.statuscode'
 import Exception from '@config/exceptions/exception'
 import { Request, Response } from 'express'
+import Container, { Service } from 'typedi'
 import i18next from 'i18next'
 
+Service()
 class CategoryController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
@@ -35,4 +37,4 @@ class CategoryController {
   }
 }
 
-export default new CategoryController()
+export default Container.get(CategoryController)
