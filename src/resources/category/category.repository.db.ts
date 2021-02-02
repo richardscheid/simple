@@ -1,10 +1,10 @@
 import { ICategory } from '@domain/category/interfaces/category.interface'
-import { CategoryRepository } from '@domain/category/category.repository'
+import { ICategoryRepository } from '@domain/category/category.repository'
 import Category from '@domain/category/entities/category'
 import Container, { Service } from 'typedi'
 
 @Service()
-class CategoryRepositoryDb implements CategoryRepository {
+class CategoryRepositoryDb implements ICategoryRepository {
 
   async findAll (): Promise<ICategory[]> {
     return await Category.find()

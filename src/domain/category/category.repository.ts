@@ -1,6 +1,6 @@
 import { ICategory } from '@domain/category/interfaces/category.interface'
 
-export interface CategoryRepository {
+export interface ICategoryRepository {
 
   findAll (): Promise<ICategory[]>
 
