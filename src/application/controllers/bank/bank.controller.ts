@@ -1,13 +1,14 @@
+import { BankBuilder } from 'domain/bank/builders/bank.builder'
+import { HttpStatusCode } from '@config/codes/http.statuscode'
+import { IBank } from 'domain/bank/interfaces/bank.interface'
 import Exception from '@config/exceptions/exception'
 import BankService from 'domain/bank/bank.service'
+import Container, { Service } from 'typedi'
+import { Request, Response } from 'express'
 import i18next from 'i18next'
 import R from 'ramda'
 
-import { HttpStatusCode } from '@config/codes/http.statuscode'
-import { Request, Response } from 'express'
-import { IBank } from 'domain/bank/interfaces/bank.interface'
-import { BankBuilder } from 'domain/bank/builders/bank.builder'
-
+Service()
 class BankController {
 
   async findAll (req: Request, res: Response): Promise<Response> {
@@ -39,4 +40,4 @@ class BankController {
   }
 }
 
-export default new BankController()
+export default Container.get(BankController)
