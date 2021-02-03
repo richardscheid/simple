@@ -1,0 +1,706 @@
+{
+	"info": {
+		"_postman_id": "071d1f05-3287-492b-85c2-6bcea6f85fcb",
+		"name": "Simple",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"",
+									"pm.environment.set(\"token\", data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rscheid@live.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorize",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alert",
+			"item": [
+				{
+					"name": "/alerts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/alerts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"alerts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/alerts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "category_id",
+								"value": "5efa6cb23e3788137dc63bab",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Amount greater than 200\",\n\t\"target\": 200,\n\t\"condition\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/alerts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"alerts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bank",
+			"item": [
+				{
+					"name": "/banks/:code/details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/banks/001/details",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"banks",
+								"001",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/banks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/banks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"banks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/banks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"code\": \"001\",\n\t\t\"name\": \"BANCO DO BRASIL\",\n\t\t\"document\": \"00.000.000/0001-91\"\n\t},\n\t{\n\t\t\"code\": \"341\",\n\t\t\"name\": \"ITAÚ\"\n\t},\n\t{\n\t\t\"code\": \"104\",\n\t\t\"name\": \"CAIXA ECONÔMICA FEDERAL\"\n\t},\n\t{\n\t\t\"code\": \"033\",\n\t\t\"name\": \"BANCO SANTANDER S.A.\"\n\t},\n\t{\n\t\t\"code\": \"070\",\n\t\t\"name\": \"BRB - BANCO DE BRASÍLIA\"\n\t},\n\t{\n\t\t\"code\": \"077\",\n\t\t\"name\": \"BANCO INTER\",\n\t\t\"document\": \"00.416.968/0001-01\"\n\t},\n\t{\n\t\t\"code\": \"237\",\n\t\t\"name\": \"BRADESCO\"\n\t},\n\t{\n\t\t\"code\": \"745\",\n\t\t\"name\": \"CITIBANK\"\n\t},\n\t{\n\t\t\"code\": \"422\",\n\t\t\"name\": \"BANCO SAFRA\"\n\t},\n\t{\n\t\t\"code\": \"399\",\n\t\t\"name\": \"BANCO HSBC\"\n\t},\n\t{\n\t\t\"code\": \"756\",\n\t\t\"name\": \"BANCOOB\"\n\t},\n\t{\n\t\t\"code\": \"212\",\n\t\t\"name\": \"BANCO ORIGINAL\"\n\t},\n\t{\n\t\t\"code\": \"002\",\n\t\t\"name\": \"BANCO CENTRAL DO BRASIL\"\n\t},\n\t{\n\t\t\"code\": \"003\",\n\t\t\"name\": \"BANCO DA AMAZONIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"004\",\n\t\t\"name\": \"BANCO DO NORDESTE DO BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"007\",\n\t\t\"name\": \"BANCO NAC DESENV. ECO. SOCIAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"008\",\n\t\t\"name\": \"BANCO MERIDIONAL DO BRASIL\"\n\t},\n\t{\n\t\t\"code\": \"020\",\n\t\t\"name\": \"BANCO DO ESTADO DE ALAGOAS S.A\"\n\t},\n\t{\n\t\t\"code\": \"021\",\n\t\t\"name\": \"BANCO DO ESTADO DO ESPIRITO SANTO S.A\"\n\t},\n\t{\n\t\t\"code\": \"022\",\n\t\t\"name\": \"BANCO DE CREDITO REAL DE MINAS GERAIS SA\"\n\t},\n\t{\n\t\t\"code\": \"024\",\n\t\t\"name\": \"BANCO DO ESTADO DE PERNAMBUCO\"\n\t},\n\t{\n\t\t\"code\": \"025\",\n\t\t\"name\": \"BANCO ALFA S/A\"\n\t},\n\t{\n\t\t\"code\": \"026\",\n\t\t\"name\": \"BANCO DO ESTADO DO ACRE S.A\"\n\t},\n\t{\n\t\t\"code\": \"027\",\n\t\t\"name\": \"BANCO DO ESTADO DE SANTA CATARINA S.A\"\n\t},\n\t{\n\t\t\"code\": \"028\",\n\t\t\"name\": \"BANCO DO ESTADO DA BAHIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"029\",\n\t\t\"name\": \"BANCO DO ESTADO DO RIO DE JANEIRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"030\",\n\t\t\"name\": \"BANCO DO ESTADO DA PARAIBA S.A\"\n\t},\n\t{\n\t\t\"code\": \"031\",\n\t\t\"name\": \"BANCO DO ESTADO DE GOIAS S.A\"\n\t},\n\t{\n\t\t\"code\": \"032\",\n\t\t\"name\": \"BANCO DO ESTADO DO MATO GROSSO S.A.\"\n\t},\n\t{\n\t\t\"code\": \"034\",\n\t\t\"name\": \"BANCO DO ESADO DO AMAZONAS S.A\"\n\t},\n\t{\n\t\t\"code\": \"035\",\n\t\t\"name\": \"BANCO DO ESTADO DO CEARA S.A\"\n\t},\n\t{\n\t\t\"code\": \"036\",\n\t\t\"name\": \"BANCO DO ESTADO DO MARANHAO S.A\"\n\t},\n\t{\n\t\t\"code\": \"037\",\n\t\t\"name\": \"BANCO DO ESTADO DO PARA S.A\"\n\t},\n\t{\n\t\t\"code\": \"038\",\n\t\t\"name\": \"BANCO DO ESTADO DO PARANA S.A\"\n\t},\n\t{\n\t\t\"code\": \"039\",\n\t\t\"name\": \"BANCO DO ESTADO DO PIAUI S.A\"\n\t},\n\t{\n\t\t\"code\": \"041\",\n\t\t\"name\": \"BANCO DO ESTADO DO RIO GRANDE DO SUL S.A\"\n\t},\n\t{\n\t\t\"code\": \"047\",\n\t\t\"name\": \"BANCO DO ESTADO DE SERGIPE S.A\"\n\t},\n\t{\n\t\t\"code\": \"048\",\n\t\t\"name\": \"BANCO DO ESTADO DE MINAS GERAIS S.A\"\n\t},\n\t{\n\t\t\"code\": \"059\",\n\t\t\"name\": \"BANCO DO ESTADO DE RONDONIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"106\",\n\t\t\"name\": \"BANCO ITABANCO S.A.\"\n\t},\n\t{\n\t\t\"code\": \"107\",\n\t\t\"name\": \"BANCO BBM S.A\"\n\t},\n\t{\n\t\t\"code\": \"109\",\n\t\t\"name\": \"BANCO CREDIBANCO S.A\"\n\t},\n\t{\n\t\t\"code\": \"116\",\n\t\t\"name\": \"BANCO B.N.L DO BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"148\",\n\t\t\"name\": \"MULTI BANCO S.A\"\n\t},\n\t{\n\t\t\"code\": \"151\",\n\t\t\"name\": \"CAIXA ECONOMICA DO ESTADO DE SAO PAULO\"\n\t},\n\t{\n\t\t\"code\": \"153\",\n\t\t\"name\": \"CAIXA ECONOMICA DO ESTADO DO R.G.SUL\"\n\t},\n\t{\n\t\t\"code\": \"165\",\n\t\t\"name\": \"BANCO NORCHEM S.A\"\n\t},\n\t{\n\t\t\"code\": \"166\",\n\t\t\"name\": \"BANCO INTER-ATLANTICO S.A\"\n\t},\n\t{\n\t\t\"code\": \"168\",\n\t\t\"name\": \"BANCO C.C.F. BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"175\",\n\t\t\"name\": \"CONTINENTAL BANCO S.A\"\n\t},\n\t{\n\t\t\"code\": \"184\",\n\t\t\"name\": \"BBA - CREDITANSTALT S.A\"\n\t},\n\t{\n\t\t\"code\": \"199\",\n\t\t\"name\": \"BANCO FINANCIAL PORTUGUES\"\n\t},\n\t{\n\t\t\"code\": \"200\",\n\t\t\"name\": \"BANCO FRICRISA AXELRUD S.A\"\n\t},\n\t{\n\t\t\"code\": \"201\",\n\t\t\"name\": \"BANCO AUGUSTA INDUSTRIA E COMERCIAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"204\",\n\t\t\"name\": \"BANCO S.R.L S.A\"\n\t},\n\t{\n\t\t\"code\": \"205\",\n\t\t\"name\": \"BANCO SUL AMERICA S.A\"\n\t},\n\t{\n\t\t\"code\": \"206\",\n\t\t\"name\": \"BANCO MARTINELLI S.A\"\n\t},\n\t{\n\t\t\"code\": \"208\",\n\t\t\"name\": \"BANCO PACTUAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"210\",\n\t\t\"name\": \"DEUTSCH SUDAMERIKANICHE BANK AG\"\n\t},\n\t{\n\t\t\"code\": \"211\",\n\t\t\"name\": \"BANCO SISTEMA S.A\"\n\t},\n\t{\n\t\t\"code\": \"213\",\n\t\t\"name\": \"BANCO ARBI S.A\"\n\t},\n\t{\n\t\t\"code\": \"214\",\n\t\t\"name\": \"BANCO DIBENS S.A\"\n\t},\n\t{\n\t\t\"code\": \"215\",\n\t\t\"name\": \"BANCO AMERICA DO SUL S.A\"\n\t},\n\t{\n\t\t\"code\": \"216\",\n\t\t\"name\": \"BANCO REGIONAL MALCON S.A\"\n\t},\n\t{\n\t\t\"code\": \"217\",\n\t\t\"name\": \"BANCO AGROINVEST S.A\"\n\t},\n\t{\n\t\t\"code\": \"218\",\n\t\t\"name\": \"BS2\",\n\t\t\"document\": \"71.027.866/0001-34\"\n\t},\n\t{\n\t\t\"code\": \"219\",\n\t\t\"name\": \"BANCO DE CREDITO DE SAO PAULO S.A\"\n\t},\n\t{\n\t\t\"code\": \"220\",\n\t\t\"name\": \"BANCO CREFISUL\"\n\t},\n\t{\n\t\t\"code\": \"221\",\n\t\t\"name\": \"BANCO GRAPHUS S.A\"\n\t},\n\t{\n\t\t\"code\": \"222\",\n\t\t\"name\": \"BANCO AGF BRASIL S. A.\"\n\t},\n\t{\n\t\t\"code\": \"223\",\n\t\t\"name\": \"BANCO INTERUNION S.A\"\n\t},\n\t{\n\t\t\"code\": \"224\",\n\t\t\"name\": \"BANCO FIBRA S.A\"\n\t},\n\t{\n\t\t\"code\": \"225\",\n\t\t\"name\": \"BANCO BRASCAN S.A\"\n\t},\n\t{\n\t\t\"code\": \"228\",\n\t\t\"name\": \"BANCO ICATU S.A\"\n\t},\n\t{\n\t\t\"code\": \"229\",\n\t\t\"name\": \"BANCO CRUZEIRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"230\",\n\t\t\"name\": \"BANCO BANDEIRANTES S.A\"\n\t},\n\t{\n\t\t\"code\": \"231\",\n\t\t\"name\": \"BANCO BOAVISTA S.A\"\n\t},\n\t{\n\t\t\"code\": \"232\",\n\t\t\"name\": \"BANCO INTERPART S.A\"\n\t},\n\t{\n\t\t\"code\": \"233\",\n\t\t\"name\": \"BANCO MAPPIN S.A\"\n\t},\n\t{\n\t\t\"code\": \"234\",\n\t\t\"name\": \"BANCO LAVRA S.A.\"\n\t},\n\t{\n\t\t\"code\": \"235\",\n\t\t\"name\": \"BANCO LIBERAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"236\",\n\t\t\"name\": \"BANCO CAMBIAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"239\",\n\t\t\"name\": \"BANCO BANCRED S.A\"\n\t},\n\t{\n\t\t\"code\": \"240\",\n\t\t\"name\": \"BANCO DE CREDITO REAL DE MINAS GERAIS S.\"\n\t},\n\t{\n\t\t\"code\": \"241\",\n\t\t\"name\": \"BANCO CLASSICO S.A\"\n\t},\n\t{\n\t\t\"code\": \"242\",\n\t\t\"name\": \"BANCO EUROINVEST S.A\"\n\t},\n\t{\n\t\t\"code\": \"243\",\n\t\t\"name\": \"BANCO MÁXIMA S.A\",\n\t\t\"document\": \"33.923.798/0001-00\"\n\t},\n\t{\n\t\t\"code\": \"244\",\n\t\t\"name\": \"BANCO CIDADE S.A\"\n\t},\n\t{\n\t\t\"code\": \"245\",\n\t\t\"name\": \"BANCO EMPRESARIAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"246\",\n\t\t\"name\": \"BANCO ABC ROMA S.A\"\n\t},\n\t{\n\t\t\"code\": \"247\",\n\t\t\"name\": \"BANCO OMEGA S.A\"\n\t},\n\t{\n\t\t\"code\": \"249\",\n\t\t\"name\": \"BANCO INVESTCRED S.A\"\n\t},\n\t{\n\t\t\"code\": \"250\",\n\t\t\"name\": \"BANCO SCHAHIN CURY S.A\"\n\t},\n\t{\n\t\t\"code\": \"251\",\n\t\t\"name\": \"BANCO SAO JORGE S.A.\"\n\t},\n\t{\n\t\t\"code\": \"252\",\n\t\t\"name\": \"BANCO FININVEST S.A\"\n\t},\n\t{\n\t\t\"code\": \"254\",\n\t\t\"name\": \"BANCO PARANA BANCO S.A\"\n\t},\n\t{\n\t\t\"code\": \"255\",\n\t\t\"name\": \"MILBANCO S.A.\"\n\t},\n\t{\n\t\t\"code\": \"256\",\n\t\t\"name\": \"BANCO GULVINVEST S.A\"\n\t},\n\t{\n\t\t\"code\": \"258\",\n\t\t\"name\": \"BANCO INDUSCRED S.A\"\n\t},\n\t{\n\t\t\"code\": \"261\",\n\t\t\"name\": \"BANCO VARIG S.A\"\n\t},\n\t{\n\t\t\"code\": \"262\",\n\t\t\"name\": \"BANCO BOREAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"263\",\n\t\t\"name\": \"BANCO CACIQUE\"\n\t},\n\t{\n\t\t\"code\": \"264\",\n\t\t\"name\": \"BANCO PERFORMANCE S.A\"\n\t},\n\t{\n\t\t\"code\": \"265\",\n\t\t\"name\": \"BANCO FATOR S.A\"\n\t},\n\t{\n\t\t\"code\": \"266\",\n\t\t\"name\": \"BANCO CEDULA S.A\"\n\t},\n\t{\n\t\t\"code\": \"267\",\n\t\t\"name\": \"BANCO BBM-COM.C.IMOB.CFI S.A.\"\n\t},\n\t{\n\t\t\"code\": \"275\",\n\t\t\"name\": \"BANCO REAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"277\",\n\t\t\"name\": \"BANCO PLANIBANC S.A\"\n\t},\n\t{\n\t\t\"code\": \"282\",\n\t\t\"name\": \"BANCO BRASILEIRO COMERCIAL\"\n\t},\n\t{\n\t\t\"code\": \"291\",\n\t\t\"name\": \"BANCO DE CREDITO NACIONAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"294\",\n\t\t\"name\": \"BCR - BANCO DE CREDITO REAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"295\",\n\t\t\"name\": \"BANCO CREDIPLAN S.A\"\n\t},\n\t{\n\t\t\"code\": \"300\",\n\t\t\"name\": \"BANCO DE LA NACION ARGENTINA S.A\"\n\t},\n\t{\n\t\t\"code\": \"302\",\n\t\t\"name\": \"BANCO DO PROGRESSO S.A\"\n\t},\n\t{\n\t\t\"code\": \"303\",\n\t\t\"name\": \"BANCO HNF S.A.\"\n\t},\n\t{\n\t\t\"code\": \"304\",\n\t\t\"name\": \"BANCO PONTUAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"308\",\n\t\t\"name\": \"BANCO COMERCIAL BANCESA S.A.\"\n\t},\n\t{\n\t\t\"code\": \"318\",\n\t\t\"name\": \"BANCO B.M.G. S.A\"\n\t},\n\t{\n\t\t\"code\": \"320\",\n\t\t\"name\": \"BANCO INDUSTRIAL E COMERCIAL\"\n\t},\n\t{\n\t\t\"code\": \"346\",\n\t\t\"name\": \"BANCO FRANCES E BRASILEIRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"347\",\n\t\t\"name\": \"BANCO SUDAMERIS BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"351\",\n\t\t\"name\": \"BANCO BOZANO SIMONSEN S.A\"\n\t},\n\t{\n\t\t\"code\": \"353\",\n\t\t\"name\": \"BANCO GERAL DO COMERCIO S.A\"\n\t},\n\t{\n\t\t\"code\": \"356\",\n\t\t\"name\": \"ABN AMRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"366\",\n\t\t\"name\": \"BANCO SOGERAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"369\",\n\t\t\"name\": \"PONTUAL\"\n\t},\n\t{\n\t\t\"code\": \"370\",\n\t\t\"name\": \"BEAL - BANCO EUROPEU PARA AMERICA LATINA\"\n\t},\n\t{\n\t\t\"code\": \"372\",\n\t\t\"name\": \"BANCO ITAMARATI S.A\"\n\t},\n\t{\n\t\t\"code\": \"375\",\n\t\t\"name\": \"BANCO FENICIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"376\",\n\t\t\"name\": \"CHASE MANHATTAN BANK S.A\"\n\t},\n\t{\n\t\t\"code\": \"388\",\n\t\t\"name\": \"BANCO MERCANTIL DE DESCONTOS S/A\"\n\t},\n\t{\n\t\t\"code\": \"389\",\n\t\t\"name\": \"BANCO MERCANTIL DO BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"392\",\n\t\t\"name\": \"BANCO MERCANTIL DE SAO PAULO S.A\"\n\t},\n\t{\n\t\t\"code\": \"394\",\n\t\t\"name\": \"BANCO B.M.C. S.A\"\n\t},\n\t{\n\t\t\"code\": \"409\",\n\t\t\"name\": \"UNIBANCO - UNIAO DOS BANCOS BRASILEIROS\"\n\t},\n\t{\n\t\t\"code\": \"412\",\n\t\t\"name\": \"BANCO NACIONAL DA BAHIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"415\",\n\t\t\"name\": \"BANCO NACIONAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"420\",\n\t\t\"name\": \"BANCO NACIONAL DO NORTE S.A\"\n\t},\n\t{\n\t\t\"code\": \"424\",\n\t\t\"name\": \"BANCO NOROESTE S.A\"\n\t},\n\t{\n\t\t\"code\": \"434\",\n\t\t\"name\": \"BANCO FORTALEZA S.A\"\n\t},\n\t{\n\t\t\"code\": \"453\",\n\t\t\"name\": \"BANCO RURAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"456\",\n\t\t\"name\": \"BANCO TOKIO S.A\"\n\t},\n\t{\n\t\t\"code\": \"464\",\n\t\t\"name\": \"BANCO SUMITOMO BRASILEIRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"466\",\n\t\t\"name\": \"BANCO MITSUBISHI BRASILEIRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"472\",\n\t\t\"name\": \"LLOYDS BANK PLC\"\n\t},\n\t{\n\t\t\"code\": \"473\",\n\t\t\"name\": \"BANCO FINANCIAL PORTUGUES S.A\"\n\t},\n\t{\n\t\t\"code\": \"477\",\n\t\t\"name\": \"CITIBANK N.A\"\n\t},\n\t{\n\t\t\"code\": \"479\",\n\t\t\"name\": \"BANCO DE BOSTON S.A\"\n\t},\n\t{\n\t\t\"code\": \"480\",\n\t\t\"name\": \"BANCO PORTUGUES DO ATLANTICO-BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"483\",\n\t\t\"name\": \"BANCO AGRIMISA S.A.\"\n\t},\n\t{\n\t\t\"code\": \"487\",\n\t\t\"name\": \"DEUTSCHE BANK S.A - BANCO ALEMAO\"\n\t},\n\t{\n\t\t\"code\": \"488\",\n\t\t\"name\": \"BANCO J. P. MORGAN S.A\"\n\t},\n\t{\n\t\t\"code\": \"489\",\n\t\t\"name\": \"BANESTO BANCO URUGAUAY S.A\"\n\t},\n\t{\n\t\t\"code\": \"492\",\n\t\t\"name\": \"INTERNATIONALE NEDERLANDEN BANK N.V.\"\n\t},\n\t{\n\t\t\"code\": \"493\",\n\t\t\"name\": \"BANCO UNION S.A.C.A\"\n\t},\n\t{\n\t\t\"code\": \"494\",\n\t\t\"name\": \"BANCO LA REP. ORIENTAL DEL URUGUAY\"\n\t},\n\t{\n\t\t\"code\": \"495\",\n\t\t\"name\": \"BANCO LA PROVINCIA DE BUENOS AIRES\"\n\t},\n\t{\n\t\t\"code\": \"496\",\n\t\t\"name\": \"BANCO EXTERIOR DE ESPANA S.A\"\n\t},\n\t{\n\t\t\"code\": \"498\",\n\t\t\"name\": \"CENTRO HISPANO BANCO\"\n\t},\n\t{\n\t\t\"code\": \"499\",\n\t\t\"name\": \"BANCO IOCHPE S.A\"\n\t},\n\t{\n\t\t\"code\": \"501\",\n\t\t\"name\": \"BANCO BRASILEIRO IRAQUIANO S.A.\"\n\t},\n\t{\n\t\t\"code\": \"502\",\n\t\t\"name\": \"BANCO SANTANDER DE NEGOCIOS S.A\"\n\t},\n\t{\n\t\t\"code\": \"504\",\n\t\t\"name\": \"BANCO MULTIPLIC S.A\"\n\t},\n\t{\n\t\t\"code\": \"505\",\n\t\t\"name\": \"BANCO GARANTIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"600\",\n\t\t\"name\": \"BANCO LUSO BRASILEIRO S.A\"\n\t},\n\t{\n\t\t\"code\": \"601\",\n\t\t\"name\": \"BFC BANCO S.A.\"\n\t},\n\t{\n\t\t\"code\": \"602\",\n\t\t\"name\": \"BANCO PATENTE S.A\"\n\t},\n\t{\n\t\t\"code\": \"604\",\n\t\t\"name\": \"BANCO INDUSTRIAL DO BRASIL S.A\"\n\t},\n\t{\n\t\t\"code\": \"607\",\n\t\t\"name\": \"BANCO SANTOS NEVES S.A\"\n\t},\n\t{\n\t\t\"code\": \"608\",\n\t\t\"name\": \"BANCO OPEN S.A\"\n\t},\n\t{\n\t\t\"code\": \"610\",\n\t\t\"name\": \"BANCO V.R. S.A\"\n\t},\n\t{\n\t\t\"code\": \"611\",\n\t\t\"name\": \"BANCO PAULISTA S.A\"\n\t},\n\t{\n\t\t\"code\": \"612\",\n\t\t\"name\": \"BANCO GUANABARA S.A\"\n\t},\n\t{\n\t\t\"code\": \"613\",\n\t\t\"name\": \"BANCO PECUNIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"616\",\n\t\t\"name\": \"BANCO INTERPACIFICO S.A\"\n\t},\n\t{\n\t\t\"code\": \"617\",\n\t\t\"name\": \"BANCO INVESTOR S.A.\"\n\t},\n\t{\n\t\t\"code\": \"618\",\n\t\t\"name\": \"BANCO TENDENCIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"621\",\n\t\t\"name\": \"BANCO APLICAP S.A.\"\n\t},\n\t{\n\t\t\"code\": \"622\",\n\t\t\"name\": \"BANCO DRACMA S.A\"\n\t},\n\t{\n\t\t\"code\": \"623\",\n\t\t\"name\": \"BANCO PAnameRICANO S.A\"\n\t},\n\t{\n\t\t\"code\": \"624\",\n\t\t\"name\": \"BANCO GENERAL MOTORS S.A\"\n\t},\n\t{\n\t\t\"code\": \"625\",\n\t\t\"name\": \"BANCO ARAUCARIA S.A\"\n\t},\n\t{\n\t\t\"code\": \"626\",\n\t\t\"name\": \"BANCO FICSA S.A\"\n\t},\n\t{\n\t\t\"code\": \"627\",\n\t\t\"name\": \"BANCO DESTAK S.A\"\n\t},\n\t{\n\t\t\"code\": \"628\",\n\t\t\"name\": \"BANCO CRITERIUM S.A\"\n\t},\n\t{\n\t\t\"code\": \"629\",\n\t\t\"name\": \"BANCORP BANCO COML. E. DE INVESTMENTO\"\n\t},\n\t{\n\t\t\"code\": \"630\",\n\t\t\"name\": \"BANCO INTERCAP S.A\"\n\t},\n\t{\n\t\t\"code\": \"633\",\n\t\t\"name\": \"BANCO REDIMENTO S.A\"\n\t},\n\t{\n\t\t\"code\": \"634\",\n\t\t\"name\": \"BANCO TRIANGULO S.A\"\n\t},\n\t{\n\t\t\"code\": \"635\",\n\t\t\"name\": \"BANCO DO ESTADO DO AMAPA S.A\"\n\t},\n\t{\n\t\t\"code\": \"637\",\n\t\t\"name\": \"BANCO SOFISA S.A\"\n\t},\n\t{\n\t\t\"code\": \"638\",\n\t\t\"name\": \"BANCO PROSPER S.A\"\n\t},\n\t{\n\t\t\"code\": \"639\",\n\t\t\"name\": \"BIG S.A. - BANCO IRMAOS GUIMARAES\"\n\t},\n\t{\n\t\t\"code\": \"640\",\n\t\t\"name\": \"BANCO DE CREDITO METROPOLITANO S.A\"\n\t},\n\t{\n\t\t\"code\": \"641\",\n\t\t\"name\": \"BANCO EXCEL ECONOMICO S/A\"\n\t},\n\t{\n\t\t\"code\": \"643\",\n\t\t\"name\": \"BANCO SEGMENTO S.A\"\n\t},\n\t{\n\t\t\"code\": \"645\",\n\t\t\"name\": \"BANCO DO ESTADO DE RORAIMA S.A\"\n\t},\n\t{\n\t\t\"code\": \"647\",\n\t\t\"name\": \"BANCO MARKA S.A\"\n\t},\n\t{\n\t\t\"code\": \"648\",\n\t\t\"name\": \"BANCO ATLANTIS S.A\"\n\t},\n\t{\n\t\t\"code\": \"649\",\n\t\t\"name\": \"BANCO DIMENSAO S.A\"\n\t},\n\t{\n\t\t\"code\": \"650\",\n\t\t\"name\": \"BANCO PEBB S.A\"\n\t},\n\t{\n\t\t\"code\": \"652\",\n\t\t\"name\": \"BANCO FRANCES E BRASILEIRO SA\"\n\t},\n\t{\n\t\t\"code\": \"653\",\n\t\t\"name\": \"BANCO INDUSVAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"654\",\n\t\t\"name\": \"BANCO A. J. RENNER S.A\"\n\t},\n\t{\n\t\t\"code\": \"655\",\n\t\t\"name\": \"BANCO VOTORANTIM S.A.\"\n\t},\n\t{\n\t\t\"code\": \"656\",\n\t\t\"name\": \"BANCO MATRIX S.A\"\n\t},\n\t{\n\t\t\"code\": \"657\",\n\t\t\"name\": \"BANCO TECNICORP S.A\"\n\t},\n\t{\n\t\t\"code\": \"658\",\n\t\t\"name\": \"BANCO PORTO REAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"702\",\n\t\t\"name\": \"BANCO SANTOS S.A\"\n\t},\n\t{\n\t\t\"code\": \"705\",\n\t\t\"name\": \"BANCO INVESTCORP S.A.\"\n\t},\n\t{\n\t\t\"code\": \"707\",\n\t\t\"name\": \"BANCO DAYCOVAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"711\",\n\t\t\"name\": \"BANCO VETOR S.A.\"\n\t},\n\t{\n\t\t\"code\": \"713\",\n\t\t\"name\": \"BANCO CINDAM S.A\"\n\t},\n\t{\n\t\t\"code\": \"715\",\n\t\t\"name\": \"BANCO VEGA S.A\"\n\t},\n\t{\n\t\t\"code\": \"718\",\n\t\t\"name\": \"BANCO OPERADOR S.A\"\n\t},\n\t{\n\t\t\"code\": \"719\",\n\t\t\"name\": \"BANCO PRIMUS S.A\"\n\t},\n\t{\n\t\t\"code\": \"720\",\n\t\t\"name\": \"BANCO MAXINVEST S.A\"\n\t},\n\t{\n\t\t\"code\": \"721\",\n\t\t\"name\": \"BANCO CREDIBEL S.A\"\n\t},\n\t{\n\t\t\"code\": \"722\",\n\t\t\"name\": \"BANCO INTERIOR DE SAO PAULO S.A\"\n\t},\n\t{\n\t\t\"code\": \"724\",\n\t\t\"name\": \"BANCO PORTO SEGURO S.A\"\n\t},\n\t{\n\t\t\"code\": \"725\",\n\t\t\"name\": \"BANCO FINABANCO S.A\"\n\t},\n\t{\n\t\t\"code\": \"726\",\n\t\t\"name\": \"BANCO UNIVERSAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"728\",\n\t\t\"name\": \"BANCO FITAL S.A\"\n\t},\n\t{\n\t\t\"code\": \"729\",\n\t\t\"name\": \"BANCO FONTE S.A\"\n\t},\n\t{\n\t\t\"code\": \"730\",\n\t\t\"name\": \"BANCO COMERCIAL PARAGUAYO S.A\"\n\t},\n\t{\n\t\t\"code\": \"731\",\n\t\t\"name\": \"BANCO GNPP S.A.\"\n\t},\n\t{\n\t\t\"code\": \"732\",\n\t\t\"name\": \"BANCO PREMIER S.A.\"\n\t},\n\t{\n\t\t\"code\": \"733\",\n\t\t\"name\": \"BANCO NACOES S.A.\"\n\t},\n\t{\n\t\t\"code\": \"734\",\n\t\t\"name\": \"BANCO GERDAU S.A\"\n\t},\n\t{\n\t\t\"code\": \"735\",\n\t\t\"name\": \"BANCO NEON\"\n\t},\n\t{\n\t\t\"code\": \"736\",\n\t\t\"name\": \"BANCO UNITED S.A\"\n\t},\n\t{\n\t\t\"code\": \"737\",\n\t\t\"name\": \"THECA\"\n\t},\n\t{\n\t\t\"code\": \"738\",\n\t\t\"name\": \"MARADA\"\n\t},\n\t{\n\t\t\"code\": \"739\",\n\t\t\"name\": \"BGN\"\n\t},\n\t{\n\t\t\"code\": \"740\",\n\t\t\"name\": \"BCN BARCLAYS\"\n\t},\n\t{\n\t\t\"code\": \"741\",\n\t\t\"name\": \"BRP\"\n\t},\n\t{\n\t\t\"code\": \"742\",\n\t\t\"name\": \"EQUATORIAL\"\n\t},\n\t{\n\t\t\"code\": \"743\",\n\t\t\"name\": \"BANCO EMBLEMA S.A\"\n\t},\n\t{\n\t\t\"code\": \"744\",\n\t\t\"name\": \"THE FIRST NATIONAL BANK OF BOSTON\"\n\t},\n\t{\n\t\t\"code\": \"746\",\n\t\t\"name\": \"MODAL S.A.\"\n\t},\n\t{\n\t\t\"code\": \"747\",\n\t\t\"name\": \"RABOBANK DO BRASIL\",\n\t\t\"document\": \"01.023.570/0001-60\"\n\t},\n\t{\n\t\t\"code\": \"748\",\n\t\t\"name\": \"SICREDI\"\n\t},\n\t{\n\t\t\"code\": \"749\",\n\t\t\"name\": \"BRMSANTIL SA\"\n\t},\n\t{\n\t\t\"code\": \"750\",\n\t\t\"name\": \"BANCO REPUBLIC NATIONAL OF NEW YORK (BRA\"\n\t},\n\t{\n\t\t\"code\": \"751\",\n\t\t\"name\": \"DRESDNER BANK LATEInameRIKA-BRASIL S/A\"\n\t},\n\t{\n\t\t\"code\": \"752\",\n\t\t\"name\": \"BANCO BANQUE NATIONALE DE PARIS BRASIL S\"\n\t},\n\t{\n\t\t\"code\": \"753\",\n\t\t\"name\": \"BANCO COMERCIAL URUGUAI S.A.\"\n\t},\n\t{\n\t\t\"code\": \"755\",\n\t\t\"name\": \"BANCO MERRILL LYNCH S.A\"\n\t},\n\t{\n\t\t\"code\": \"757\",\n\t\t\"name\": \"BANCO KEB DO BRASIL S.A.\"\n\t},\n\t{\n\t\t\"code\": \"260\",\n\t\t\"name\": \"Nu Pagamentos S.A\",\n\t\t\"document\": \"18.236.120/0001-58\"\n\t},\n\t{\n\t\t\"code\": \"102\",\n\t\t\"name\": \"XP INVESTIMENTOS\"\n\t},\n\t{\n\t\t\"code\": \"336\",\n\t\t\"name\": \"BANCO C6 S.A.\",\n\t\t\"document\": \"31.872.495/0001-72\"\n\t},\n\t{\n\t\t\"code\": \"290\",\n\t\t\"name\": \"PagSeguro Internet S.A.\",\n\t\t\"document\": \"08.561.701/0001-01\"\n\t},\n\t{\n\t\t\"code\": \"323\",\n\t\t\"name\": \"MercadoPago.com Representações Ltda.\",\n\t\t\"document\": \"10.573.521/0001-91\"\n\t},\n\t{\n\t\t\"code\": \"332\",\n\t\t\"name\": \"Acesso Soluções de Pagamento S.A.\",\n\t\t\"document\": \"13.140.088/0001-99\"\n\t},\n\t{\n\t\t\"code\": \"325\",\n\t\t\"name\": \"Órama DTVM S.A.\",\n\t\t\"document\": \"13.293.225/0001-25\"\n\t},\n\t{\n\t\t\"code\": \"85\",\n\t\t\"name\": \"COOPERATIVA CENTRAL DE CREDITO - AILOS\",\n\t\t\"document\": \"05.463.212/0001-29\"\n\t},\n\t{\n\t\t\"code\": \"125\",\n\t\t\"name\": \"PLURAL S.A. BANCO MULTIPLO\",\n\t\t\"document\": \"45.246.410/0001-55\"\n\t},\n\t{\n\t\t\"code\": \"197\",\n\t\t\"name\": \"STONE PAGAMENTOS S.A.\",\n\t\t\"document\": \"16.501.555/0002-38\"\n\t}\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/banks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"banks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "/categories/:id/details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories/5efa6cb23e3788137dc63bab/details",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories",
+								"5efa6cb23e3788137dc63bab",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Grocery\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notification",
+			"item": [
+				{
+					"name": "/notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/notifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "/transactions/:id/details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions/5fde53a48e8a4e13c932e2e4/details",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions",
+								"5fde53a48e8a4e13c932e2e4",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "user_id",
+								"value": "5fde1c399d275b0b77dbcf2f",
+								"type": "text"
+							},
+							{
+								"key": "category_name",
+								"value": "Gas Station",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"identifier\": \"10.903.643/0001-07\",\n    \"total\": 179.99,\n    \"coo\": 12343212332123,\n    \"date\": \"2020-12-19T17:22:49-0300\",\n    \"items\": [\n        {\n            \"name\": \"Licor 43\",\n            \"value\": 149,\n            \"unit\": 1\n        },\n        {\n            \"name\": \"Beer\",\n            \"value\": 30.49,\n            \"unit\": 1\n        }\n    ],\n    \"texts\": [\n        \"Hippo\",\n        \"Coqueiros\",\n        \"Florianópolis\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/transactions/uploads",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "transaction_id",
+									"value": "601a7b89c78b8e058c9483e1",
+									"contentType": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/richardscheid/Downloads/joshua-reddekopp-SyYmXSDnJ54-unsplash.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/transactions/uploads",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transactions",
+								"uploads"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "/users/:id/notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/5fde1c399d275b0b77dbcf2f/notifications",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"5fde1c399d275b0b77dbcf2f",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/:id/transactions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/5fde1c399d275b0b77dbcf2f/transactions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"5fde1c399d275b0b77dbcf2f",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users/:id/details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/5fc173b333042d060a011379/details",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"5fc173b333042d060a011379",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "bank_id",
+								"value": "5fbeda16f7b7c20cf71792b9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"endy@live.com\",\n    \"username\": \"Endy Brother\",\n    \"password\": \"123456\",\n    \"document\": \"083.634.949-09\",\n    \"identifier\": \"3077\",\n    \"agency\": \"16.892-0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}
