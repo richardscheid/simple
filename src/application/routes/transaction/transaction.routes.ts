@@ -54,7 +54,7 @@ class TransactionRoutes {
 
     this.routes.post('/uploads',
       AuthController.authenticate,
-      upload.single('image'),
+      upload.single('file'),
       celebrate({
         [Segments.BODY]: Joi.object().keys({
           transaction_id: Joi.string().required()
