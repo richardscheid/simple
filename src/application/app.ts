@@ -36,7 +36,7 @@ class App {
     this.express.use(express.json())
     this.express.use(express.urlencoded({ extended: false }))
     this.express.use(passport.initialize())
-    this.express.use('/files', express.static('files'))
+    this.express.use('/files', express.static(path.join(__dirname, '..', '..', 'files')))
     this.i18n()
     this.cors()
   }
