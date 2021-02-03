@@ -7,4 +7,5 @@ files
 #Files
 .env
 .vscode
+.DS_Store
 debug.log
