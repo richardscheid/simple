@@ -1,5 +1,6 @@
-import { Schema, model } from 'mongoose'
 import { ITransaction } from '@domain/transaction/interfaces/transaction.interface'
+import { URL } from '@config/environments/environments'
+import { Schema, model } from 'mongoose'
 
 const TransactionSchema = new Schema({
   identifier: { type: String, required: true },
@@ -32,7 +33,7 @@ const TransactionSchema = new Schema({
 })
 
 TransactionSchema.virtual('image_url').get(function () {
-  return `${process.env.URL}/files/${this.image}`
+  return `${URL}/files/${this.image}`
 })
 
 export default model<ITransaction>('Transaction', TransactionSchema)
