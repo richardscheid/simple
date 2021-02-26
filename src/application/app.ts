@@ -31,7 +31,7 @@ class App {
   private middlewares (): void {
     this.express.use(flash())
     this.express.use(helmet())
-    this.express.use(limiter())
+    // this.express.use(limiter())
     this.express.use(compression())
     this.express.use(express.json())
     this.express.use(express.urlencoded({ extended: false }))
